@@ -1,0 +1,19 @@
+@tailwind base;
+
+*>*{
+    font-family: 'Work Sans', sans-serif;
+}
+
+
+@tailwind components;
+
+@tailwind utilities;
+
+.content p {
+  @apply my-6;
+}
+
+.content ul {
+  @apply my-6;
+}
+
