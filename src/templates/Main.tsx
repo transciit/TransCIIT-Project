@@ -81,11 +81,11 @@ const Main = (props: IMainProps) => (
                   Blog
                 </a>
               </Link>
-              <Link href="/contact">
+              {/* <Link href="/contact">
                 <a className="transition-color text-base font-semibold uppercase duration-100 hover:text-indigo-500">
                   Contact
                 </a>
-              </Link>
+              </Link> */}
               <div className={newLocal_3}>
                 <a
                   href="#_"
