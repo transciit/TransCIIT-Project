@@ -34,7 +34,7 @@ export default function Hero(props: IMetaProps) {
               href="#_"
               className="fold-bold hover:shadow-3xl relative mx-auto mt-0 inline-block w-auto rounded-md border-t border-gray-200 bg-indigo-50 px-14 py-4 font-manrope text-base font-bold text-indigo-600 shadow-sm hover:bg-indigo-600 hover:text-white sm:mt-1"
             >
-              Academia
+              Students
             </a>
           </div>
 
