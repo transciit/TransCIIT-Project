@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
+import { useAuth } from '@/context/AuthContext';
 import { Meta } from '@/layouts/Meta';
 import { Onboarding } from '@/templates/Onboarding';
 
@@ -19,6 +22,24 @@ export default function SignIn() {
       url: 'https://google.com',
     },
   ];
+  const router = useRouter();
+  const { user, login } = useAuth();
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+
+    console.log(user);
+    try {
+      await login(data.email, data.password);
+      router.push('/feed');
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Onboarding
       metaOnboard={<Meta title="Log In" description="Log in to TransCIIT" />}
@@ -50,11 +71,15 @@ export default function SignIn() {
               Or Sign in with your e-mail
             </div>
           </div>
-          <form className="mx-auto max-w-xl">
+          <form className="mx-auto max-w-xl" onSubmit={handleLogin}>
             <div className="relative mt-5">
               <input
                 type="email"
                 id="email"
+                value={data.email}
+                onChange={(e: any) =>
+                  setData({ ...data, email: e.target.value })
+                }
                 className="peer block w-full appearance-none rounded-lg border border-slate-400 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-indigo-500"
                 placeholder=" "
               />
@@ -72,6 +97,10 @@ export default function SignIn() {
                 id="password"
                 className="peer block w-full appearance-none rounded-lg border border-slate-400 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-indigo-500"
                 placeholder=" "
+                value={data.password}
+                onChange={(e: any) =>
+                  setData({ ...data, password: e.target.value })
+                }
               />
               <label
                 htmlFor="password"
@@ -83,19 +112,9 @@ export default function SignIn() {
             <button type="submit" className={newLocal}>
               <span className="ml-3">Log In</span>
             </button>
-            <p className="mt-6 text-center text-xs text-gray-600">
-              I agree to abide by TranCIIT{' '}
-              <a href="#" className="border-b border-dotted border-gray-500">
-                Terms of Service
-              </a>{' '}
-              and its{' '}
-              <a href="#" className="border-b border-dotted border-gray-500">
-                Privacy Policy
-              </a>
-            </p>
 
             <p className="mt-8 text-center text-sm text-gray-600">
-              I don&asop;t have an account?{' '}
+              I don&apos;t have an account?{' '}
               <Link href="/onboarding/signup">
                 <a className="border-b border-dotted border-indigo-600">
                   Sign Up

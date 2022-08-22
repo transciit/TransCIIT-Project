@@ -1,24 +1,10 @@
 /* eslint-disable tailwindcss/no-contradicting-classname */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import React, { Fragment } from 'react';
 
-import { AppConfig } from '../utils/AppConfig';
-
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { AppConfig } from '@/utils/AppConfig';
 
 type IMainProps = {
   meta: ReactNode;
@@ -27,6 +13,8 @@ type IMainProps = {
 
 const newLocal_2 =
   'relative flex items-center inline-block h-5 h-full font-black leading-none';
+const newLocal_3 =
+  'flex flex-col block w-full font-medium border-t border-gray-200 md:hidden';
 const styling = {
   backgroundImage: "url('/assets/images/bg.png')",
   width: '100%',
@@ -68,161 +56,73 @@ const Main = (props: IMainProps) => (
                 </span>
               </a>
             </Link>
-            <Disclosure as="nav" className="bg-gray-800">
-              {({ open }) => (
-                <>
-                  <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                    <div className="relative flex h-16 items-center justify-between">
-                      <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        {/* Mobile menu button */}
-                        <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                          <span className="sr-only">Open main menu</span>
-                          {open ? (
-                            <XIcon
-                              className="block h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <MenuIcon
-                              className="block h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </Disclosure.Button>
-                      </div>
-                      <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div className="flex shrink-0 items-center">
-                          <img
-                            className="block h-8 w-auto lg:hidden"
-                            src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
-                            alt="Workflow"
-                          />
-                          <img
-                            className="hidden h-8 w-auto lg:block"
-                            src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
-                            alt="Workflow"
-                          />
-                        </div>
-                        <div className="hidden sm:ml-6 sm:block">
-                          <div className="flex space-x-4">
-                            {navigation.map((item) => (
-                              <a
-                                key={item.name}
-                                href={item.href}
-                                className={classNames(
-                                  item.current
-                                    ? 'bg-gray-900 text-white'
-                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                  'px-3 py-2 rounded-md text-sm font-medium'
-                                )}
-                                aria-current={item.current ? 'page' : undefined}
-                              >
-                                {item.name}
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <button
-                          type="button"
-                          className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                        >
-                          <span className="sr-only">View notifications</span>
-                          <BellIcon className="h-6 w-6" aria-hidden="true" />
-                        </button>
 
-                        {/* Profile dropdown */}
-                        <Menu as="div" className="relative ml-3">
-                          <div>
-                            <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                              <span className="sr-only">Open user menu</span>
-                              <img
-                                className="h-8 w-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                              />
-                            </Menu.Button>
-                          </div>
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-100"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
-                          >
-                            <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black focus:outline-none">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="#"
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    Your Profile
-                                  </a>
-                                )}
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="#"
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    Settings
-                                  </a>
-                                )}
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="#"
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
-                                  >
-                                    Sign out
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </Menu.Items>
-                          </Transition>
-                        </Menu>
-                      </div>
-                    </div>
-                  </div>
+            <nav
+              id="nav"
+              className="absolute top-0 left-0 z-50 mt-24 flex h-64 w-full flex-col items-center justify-between border-t border-gray-200 bg-white pt-5 text-sm text-indigo-900 md:relative md:mt-0 md:flex md:h-24 md:w-auto md:flex-row md:border-none md:bg-transparent md:py-0 lg:text-base"
+            >
+              <Link href="/">
+                <a className="transition-color mx-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:ml-12 md:mr-3 lg:mr-8">
+                  Home
+                </a>
+              </Link>
+              <Link href="/about">
+                <a className="transition-color mr-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:mr-3 lg:mr-8">
+                  About Us
+                </a>
+              </Link>
+              <Link href="/projects/matched">
+                <a className="transition-color mr-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:mr-3 lg:mr-8">
+                  Matched Projects
+                </a>
+              </Link>
+              <Link href="/blogs">
+                <a className="transition-color text-base font-semibold uppercase duration-100 hover:text-indigo-500">
+                  Blog
+                </a>
+              </Link>
+              {/* <Link href="/contact">
+                <a className="transition-color text-base font-semibold uppercase duration-100 hover:text-indigo-500">
+                  Contact
+                </a>
+              </Link> */}
+              <div className={newLocal_3}>
+                <a
+                  href="#_"
+                  className="w-full py-2 text-center text-base font-semibold uppercase text-indigo-500"
+                >
+                  Login
+                </a>
+                <a
+                  href="#_"
+                  className="fold-semibold leading-none relative inline-block w-full bg-indigo-500 px-5 py-3 text-center text-base uppercase text-white"
+                >
+                  Get Started
+                </a>
+              </div>
+            </nav>
+            <div className="absolute left-0 mt-48 hidden w-full flex-col items-center justify-center border-b border-gray-200 pb-8 md:relative md:mt-0 md:flex md:w-auto md:flex-row md:items-end md:justify-between md:border-none md:bg-transparent md:p-0">
+              <a
+                href="#_"
+                className="relative z-40 mr-0 px-3 py-2 text-base font-semibold text-indigo-500 sm:mr-3 md:mt-0 md:px-5"
+              >
+                Login
+              </a>
+              <a
+                href="#_"
+                className="fold-semibold leading-none relative z-40 inline-block h-full w-auto rounded bg-indigo-500 px-5 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:shadow-xl sm:w-full lg:bg-indigo-500 lg:text-white"
+              >
+                Register
+              </a>
+            </div>
 
-                  <Disclosure.Panel className="sm:hidden">
-                    <div className="space-y-1 px-2 pt-2 pb-3">
-                      {navigation.map((item) => (
-                        <Disclosure.Button
-                          key={item.name}
-                          as="a"
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'block px-3 py-2 rounded-md text-base font-medium'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </Disclosure.Button>
-                      ))}
-                    </div>
-                  </Disclosure.Panel>
-                </>
-              )}
-            </Disclosure>
+            <div
+              id="nav-mobile-btn"
+              className="absolute top-0 right-0 z-50 mt-8 mr-10 block w-6 cursor-pointer select-none sm:mt-10 md:hidden"
+            >
+              <span className="mt-2 block h-1 w-full rounded-full bg-gray-800 duration-200 sm:mt-1"></span>
+              <span className="mt-1 block h-1 w-full rounded-full bg-gray-800 duration-200"></span>
+            </div>
           </div>
         </header>
         <div className="mx-auto px-7">

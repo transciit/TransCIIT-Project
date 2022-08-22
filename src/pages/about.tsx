@@ -1,5 +1,5 @@
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
+import { Main } from '@/templates/Main c';
 
 import AboutUs from '../components/about/AboutUs';
 import Hero from '../components/index/Hero';

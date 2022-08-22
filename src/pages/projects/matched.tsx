@@ -6,7 +6,7 @@ import type { GetStaticProps } from 'next';
 import Article from '@/components/matched/Article';
 import type { Projects } from '@/interfaces/projects';
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
+import { Main } from '@/templates/Main c';
 import { matchedProjectData } from '@/utils/matchedProjectData';
 
 type Props = {

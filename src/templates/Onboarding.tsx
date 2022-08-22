@@ -1,5 +1,3 @@
-import '@splidejs/react-splide/css/sea-green';
-
 import Lottie from 'lottie-react';
 import type { ReactNode } from 'react';
 import React from 'react';

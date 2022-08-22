@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
 import Link from 'next/link';
-import React from 'react';
+import Router from 'next/router';
+import React, { useState } from 'react';
 
+import { useAuth } from '@/context/AuthContext';
 import { Meta } from '@/layouts/Meta';
 import { Onboarding } from '@/templates/Onboarding';
 
@@ -19,6 +22,26 @@ export default function SignUp() {
       url: 'https://google.com',
     },
   ];
+  const { user, signup } = useAuth();
+  console.log(user);
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      await signup(data.email, data.password);
+      Router.push('/onboarding/as');
+    } catch (err) {
+      console.log(err);
+    }
+
+    console.log(data);
+  };
+
   return (
     <Onboarding
       metaOnboard={<Meta title="Sign Up" description="Sign up to TransCIIT" />}
@@ -50,13 +73,21 @@ export default function SignUp() {
               Or Sign up with your e-mail
             </div>
           </div>
-          <form className="mx-auto max-w-xl">
+          <form className="mx-auto max-w-xl" onSubmit={handleSignup}>
             <div className="relative mt-5">
               <input
                 type="email"
                 id="email"
                 className="peer block w-full appearance-none rounded-lg border border-slate-400 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-indigo-500"
                 placeholder=" "
+                required
+                onChange={(e: any) =>
+                  setData({
+                    ...data,
+                    email: e.target.value,
+                  })
+                }
+                value={data.email}
               />
               <label
                 htmlFor="email"
@@ -70,8 +101,16 @@ export default function SignUp() {
               <input
                 type="password"
                 id="password"
+                required
                 className="peer block w-full appearance-none rounded-lg border border-slate-400 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-indigo-500"
                 placeholder=" "
+                onChange={(e: any) =>
+                  setData({
+                    ...data,
+                    password: e.target.value,
+                  })
+                }
+                value={data.password}
               />
               <label
                 htmlFor="password"
@@ -83,16 +122,6 @@ export default function SignUp() {
             <button type="submit" className={newLocal}>
               <span className="ml-3">Sign Up</span>
             </button>
-            <p className="mt-6 text-center text-xs text-gray-600">
-              I agree to abide by TranCIIT{' '}
-              <a href="#" className="border-b border-dotted border-gray-500">
-                Terms of Service
-              </a>{' '}
-              and its{' '}
-              <a href="#" className="border-b border-dotted border-gray-500">
-                Privacy Policy
-              </a>
-            </p>
 
             <p className="mt-8 text-center text-sm text-gray-600">
               Already have an account?{' '}

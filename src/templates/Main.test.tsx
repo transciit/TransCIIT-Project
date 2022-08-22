@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 
-import { Main } from './Main';
+import { Main } from './Main c';
 
 describe('Main template', () => {
   describe('Render method', () => {
