@@ -5,7 +5,11 @@ import { Main } from './Main';
 describe('Main template', () => {
   describe('Render method', () => {
     it('should have a link to phanuelmutuma.co.ke', () => {
-      render(<Main meta={null}>{null}</Main>);
+      render(
+        <Main meta={null} name={'null'}>
+          {null}
+        </Main>
+      );
 
       const copyrightSection = screen.getByText(/© Copyright/);
       const copyrightLink = within(copyrightSection).getByRole('link');

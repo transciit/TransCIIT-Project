@@ -6,9 +6,9 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import ProtectedRoute from '@/components/ProtectedRoute';
-import { AuthContextProvider } from '@/context/AuthContext';
+import { AuthContextProvider } from '@/lib/auth';
 
-const noAuthRequired = ['/', '/onbaording/signin', '/onbaording/signup'];
+const noAuthRequired = ['/', '/onboarding/signin', '/onboarding/signup'];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();

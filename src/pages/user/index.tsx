@@ -19,6 +19,7 @@ export default function UserProfile() {
             description="Matching the needs of climate entrepreneurs with the skills of master's students"
           />
         }
+        name={'user'}
       >
         <div className="relative w-full items-center justify-center overflow-x-hidden md:px-10">
           <div className="mx-auto max-w-6xl">

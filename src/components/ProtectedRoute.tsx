@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/lib/auth';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuth();
@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!user) {
-      router.push('/onboarding/login');
+      router.push('/onboarding/signin');
     }
   }, [router, user]);
 

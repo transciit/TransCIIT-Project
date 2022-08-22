@@ -46,6 +46,7 @@ const StaticPropsDetail = ({ item, errors, items }: Props) => {
           description="Matching the needs of climate entrepreneurs with the skills of master's students"
         />
       }
+      name={'blogDetails'}
     >
       <div className="mx-auto max-w-4xl space-y-12 px-6 py-16">
         <article className="space-y-8 dark:bg-gray-800 dark:text-gray-50">

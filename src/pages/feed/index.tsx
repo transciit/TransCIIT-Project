@@ -18,6 +18,7 @@ export default function index() {
             description="Matching the needs of climate entrepreneurs with the skills of master's students"
           />
         }
+        name={'feed'}
       >
         <div className="relative w-full items-center justify-center overflow-x-hidden md:px-10">
           <div className="mx-auto max-w-6xl">

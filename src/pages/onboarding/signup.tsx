@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 import Link from 'next/link';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { useAuth } from '@/context/AuthContext';
 import { Meta } from '@/layouts/Meta';
+import { useAuth } from '@/lib/auth';
 import { Onboarding } from '@/templates/Onboarding';
 
 export default function SignUp() {
+  const router = useRouter();
   const newLocal =
     'focus:shadow-outline mt-5 flex w-full items-center justify-center rounded-lg bg-indigo-500 py-4 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out hover:bg-indigo-900 focus:outline-none';
   const socialButtons = [
@@ -22,8 +23,7 @@ export default function SignUp() {
       url: 'https://google.com',
     },
   ];
-  const { user, signup } = useAuth();
-  console.log(user);
+  const { signup } = useAuth();
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -31,15 +31,12 @@ export default function SignUp() {
 
   const handleSignup = async (e: any) => {
     e.preventDefault();
-
     try {
       await signup(data.email, data.password);
-      Router.push('/onboarding/as');
+      router.push('/onboarding/as');
     } catch (err) {
       console.log(err);
     }
-
-    console.log(data);
   };
 
   return (

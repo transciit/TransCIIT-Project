@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import { useAuth } from '@/context/AuthContext';
 import { Meta } from '@/layouts/Meta';
+import { useAuth } from '@/lib/auth';
 import { Onboarding } from '@/templates/Onboarding';
 
 export default function SignIn() {
@@ -23,7 +23,7 @@ export default function SignIn() {
     },
   ];
   const router = useRouter();
-  const { user, login } = useAuth();
+  const { user, signin } = useAuth();
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -34,7 +34,7 @@ export default function SignIn() {
 
     console.log(user);
     try {
-      await login(data.email, data.password);
+      await signin(data.email, data.password);
       router.push('/feed');
     } catch (err) {
       console.log(err);

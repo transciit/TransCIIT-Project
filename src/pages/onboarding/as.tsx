@@ -1,16 +1,41 @@
+/* eslint-disable no-console */
+import { doc, setDoc } from 'firebase/firestore';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+import { db } from '@/config/firebase';
 import { Meta } from '@/layouts/Meta';
+import { useAuth } from '@/lib/auth';
 import { Onboarding } from '@/templates/Onboarding';
 
 export default function SignIn() {
   const [isToggledOn, setToggle] = useState(false);
-
   const newLocal =
     'focus:shadow-outline mt-10 flex w-full items-center justify-center rounded-lg bg-slate-500 py-4 font-semibold tracking-wide text-gray-100';
 
   const newLocal2 =
     'focus:shadow-outline mt-10 flex w-full items-center justify-center rounded-lg bg-indigo-500 py-4 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out hover:bg-indigo-900 focus:outline-none';
+
+  const [data, setData] = useState({
+    type: '',
+  });
+
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const savetoDb = async (e: any) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, 'users', user.uid), {
+        email: user.email,
+        name: user.displayName,
+        type: data.type,
+      });
+      router.push('/onboarding/account');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Onboarding
@@ -27,7 +52,7 @@ export default function SignIn() {
             Tell us about yourself
           </h1>
           <div className="mt-8 w-full flex-1">
-            <form className="mx-auto max-w-xl">
+            <form className="mx-auto max-w-xl" onSubmit={savetoDb}>
               <h3 className="mb-5 text-lg font-medium text-gray-500 dark:text-white">
                 This will help us setup your account type
               </h3>
@@ -39,7 +64,10 @@ export default function SignIn() {
                     name="yourself"
                     value="entrepreneur"
                     className="peer hidden"
-                    onChange={() => setToggle(true)}
+                    onChange={(e: any) => {
+                      setData({ ...data, type: e.target.value });
+                      setToggle(true);
+                    }}
                   />
                   <label
                     htmlFor="entrepreneur"
@@ -73,7 +101,10 @@ export default function SignIn() {
                     name="yourself"
                     value="student"
                     className="peer hidden"
-                    onChange={() => setToggle(true)}
+                    onChange={(e: any) => {
+                      setData({ ...data, type: e.target.value });
+                      setToggle(true);
+                    }}
                   />
                   <label
                     htmlFor="student"
