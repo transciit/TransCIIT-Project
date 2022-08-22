@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main c';
+import { Main } from '@/templates/Main';
 
 import About from '../components/index/About';
 import Hero from '../components/index/Hero';

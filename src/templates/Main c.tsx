@@ -22,7 +22,7 @@ const styling = {
   backgroundPosition: 'top',
   backgroundRepeat: 'no-repeat',
 };
-const Main = (props: IMainProps) => (
+const Mainc = (props: IMainProps) => (
   <div className="w-full text-gray-700 antialiased">
     {props.meta}
 
@@ -306,4 +306,4 @@ const Main = (props: IMainProps) => (
   </div>
 );
 
-export { Main };
+export { Mainc };
