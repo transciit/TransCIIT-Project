@@ -3,10 +3,10 @@
 
 import type { GetStaticProps } from 'next';
 
+import { Main } from '@/base/Main';
 import Article from '@/components/matched/Article';
 import type { Projects } from '@/interfaces/projects';
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
 import { matchedProjectData } from '@/utils/matchedProjectData';
 
 type Props = {

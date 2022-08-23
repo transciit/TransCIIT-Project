@@ -12,13 +12,13 @@ type IMainProps = {
   children: ReactNode;
 };
 
-const styling = {
-  backgroundImage: "url('/assets/images/bg.png')",
-  width: '100%',
-  height: '100%',
-  backgroundPosition: 'top',
-  backgroundRepeat: 'no-repeat',
-};
+// const styling = {
+//   backgroundImage: "url('/assets/images/bg.png')",
+//   width: '100%',
+//   height: '100%',
+//   backgroundPosition: 'top',
+//   backgroundRepeat: 'no-repeat',
+// };
 
 const Main = (props: IMainProps) => {
   return (
@@ -26,8 +26,8 @@ const Main = (props: IMainProps) => {
       {props.meta}
 
       <div className="mx-auto">
-        <div style={styling}>
-          <NavBar />
+        <div>
+          <NavBar needs={props.name} />
           <div className="mx-auto px-7">
             <div className="content py-5 text-xl">{props.children}</div>
           </div>

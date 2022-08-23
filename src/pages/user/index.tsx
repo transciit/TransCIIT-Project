@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import React from 'react';
 
+import { Main } from '@/base/Main';
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
 
-import PersonalCard from './personal';
-import ProfileCard from './profile';
+import PersonalCard from './components/personal';
+import ProfileCard from './components/profile';
 
 export default function UserProfile() {
   return (

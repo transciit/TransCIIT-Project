@@ -15,15 +15,7 @@ type IMainProps = {
 export const Onboarding = (props: IMainProps) => {
   // <AnimationRevealPage> },
   return (
-    <Main
-      meta={
-        <Meta
-          title="TransCIIT Project"
-          description="Matching the needs of climate entrepreneurs with the skills of master's students"
-        />
-      }
-      name={'onboard'}
-    >
+    <Main meta={<Meta title=" " description=" " />} name={'onboard'}>
       <div className="-m-8 flex min-h-screen justify-center font-medium text-white">
         {props.metaOnboard}
         <div className="mx-10 my-16 flex max-w-screen-xl flex-1 justify-center rounded-lg border border-slate-300 text-gray-900 sm:mx-20 ">
@@ -36,7 +28,7 @@ export const Onboarding = (props: IMainProps) => {
               width={400}
             />
           </div>
-          <div className="mt-10 w-full max-w-3xl p-6">
+          <div className="w-full max-w-3xl p-6">
             {props.children}
             <p className="mt-6 text-center text-xs text-gray-600">
               I agree to abide by TranCIIT{' '}

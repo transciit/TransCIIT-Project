@@ -8,18 +8,18 @@ import { useRouter } from 'next/router';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { AuthContextProvider } from '@/lib/auth';
 
-const noAuthRequired = ['/', '/onboarding/signin', '/onboarding/signup'];
+const authRequired = ['/feed', '/user'];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   return (
     <AuthContextProvider>
-      {noAuthRequired.includes(router.pathname) ? (
-        <Component {...pageProps} />
-      ) : (
+      {authRequired.includes(router.pathname) ? (
         <ProtectedRoute>
           <Component {...pageProps} />
         </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
       )}
       ;
     </AuthContextProvider>

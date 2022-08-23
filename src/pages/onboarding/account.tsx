@@ -3,10 +3,10 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+import { Onboarding } from '@/base/Onboarding';
 import { db } from '@/config/firebase';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
-import { Onboarding } from '@/templates/Onboarding';
 
 export default function SignIn() {
   const newLocal2 =
@@ -44,7 +44,7 @@ export default function SignIn() {
         }
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

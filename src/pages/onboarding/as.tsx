@@ -3,10 +3,10 @@ import { doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+import { Onboarding } from '@/base/Onboarding';
 import { db } from '@/config/firebase';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
-import { Onboarding } from '@/templates/Onboarding';
 
 export default function SignIn() {
   const [isToggledOn, setToggle] = useState(false);

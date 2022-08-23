@@ -3,10 +3,10 @@
 
 import type { GetStaticProps } from 'next';
 
+import { Main } from '@/base/Main';
 import Article from '@/components/blog/Article';
 import type { Blogs } from '@/interfaces/blog';
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
 import { blogData } from '@/utils/blogData';
 
 type Props = {

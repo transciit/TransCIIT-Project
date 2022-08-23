@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
+import { Onboarding } from '@/base/Onboarding';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
-import { Onboarding } from '@/templates/Onboarding';
 
 export default function SignUp() {
   const router = useRouter();
@@ -15,11 +15,6 @@ export default function SignUp() {
     {
       iconImageSrc: '/assets/images/google-icon.png',
       text: 'Sign Up With Google',
-      url: 'https://google.com',
-    },
-    {
-      iconImageSrc: '/assets/images/twitter-icon.png',
-      text: 'Sign Up With Twitter',
       url: 'https://google.com',
     },
   ];
