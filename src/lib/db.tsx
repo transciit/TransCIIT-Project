@@ -60,3 +60,77 @@ export const getInvestmentDetails = async (id) => {
     return { err };
   }
 };
+
+export const getUserType = async (uid) => {
+  try {
+    const docRef = doc(db, 'users', uid);
+    const docSnap = await getDoc(docRef);
+    const userType: any[] = [];
+    userType.push({ id: docSnap.id, ...docSnap.data() });
+    return { userType };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getUser = async (uid) => {
+  try {
+    const docRef = doc(db, 'users', uid);
+    const docSnap = await getDoc(docRef);
+    const userAbout: any[] = [];
+    userAbout.push({ about: docSnap.data()?.about });
+    return { userAbout };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getStudents = async () => {
+  const q = query(collection(db, 'users'), where('type', '==', 'student'));
+  try {
+    const querySnapshot = await getDocs(q);
+    const fetchStudents: any[] = [];
+    querySnapshot.forEach((document) => {
+      fetchStudents.push({ id: document.id, ...document.data() });
+    });
+    return { fetchStudents };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getMatchedE = async (uid) => {
+  const q = query(
+    collection(db, 'users'),
+    where('entrepreneurId', '==', uid),
+    where('matched', '==', true)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const fetchMatchedE: any[] = [];
+    querySnapshot.forEach((document) => {
+      fetchMatchedE.push({ id: document.id, ...document.data() });
+    });
+    return { fetchMatchedE };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getMatchedS = async (uid) => {
+  const q = query(
+    collection(db, 'users'),
+    where('student_id', '==', uid),
+    where('matched', '==', true)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const fetchMatchedS: any[] = [];
+    querySnapshot.forEach((document) => {
+      fetchMatchedS.push({ id: document.id, ...document.data() });
+    });
+    return { fetchMatchedS };
+  } catch (err: any) {
+    return { err };
+  }
+};

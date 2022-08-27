@@ -5,37 +5,39 @@ import useSWR from 'swr';
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
-import EmptyCard from '@/pages/entrepreneur/components/emptycard';
-import FeedCard from '@/pages/entrepreneur/components/feedcard';
-import { Modal } from '@/pages/entrepreneur/components/modal';
-import { Side } from '@/pages/entrepreneur/components/side';
-import { Top } from '@/pages/entrepreneur/components/top';
 import fetcher from '@/utils/fetcher';
+
+import EmptyCard from '../../entrepreneur/components/emptycard';
+import FeedCard from '../../entrepreneur/components/feedcard';
+import { Side } from '../../entrepreneur/components/side';
+import { Modal } from '../components/modal';
 
 export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
+  const { user } = useAuth();
   const getId = (idDetails: string) => {
     setId(idDetails);
   };
-
-  const { user } = useAuth();
+  const [enterId, setEnterId] = useState({});
+  const getEnterId = (idDetails: string) => {
+    setEnterId(idDetails);
+  };
 
   // changables
-  const where = 'invested';
-  const { data: investmentData } = useSWR(`/api/invested/${user.uid}`, fetcher);
-  const { data: investmentDetails } = useSWR(
-    `/api/invested/detail/${id}`,
-    fetcher
-  );
-  const investment = investmentData?.investments;
-  const investmentDetail = investmentDetails?.investmentDetail;
+  const where = 'student';
+  const { data: fetchMatchedE } = useSWR(`/api/matched/e/${user.uid}`, fetcher);
+  const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
+  const { data: userWho } = useSWR(`/api/profile/${enterId}`, fetcher);
+  const feeds = fetchMatchedE?.fetchMatchedE;
+  const userW = userWho?.userWho;
+  const feedDetail = feedDetails?.feedD;
   return (
     <>
       <DashBoard
         metaDashboard={
           <Meta
-            title=" Feeds | TransCIIT Project"
+            title="Projects | TransCIIT Project"
             description="Welcome to TransCIIT"
           />
         }
@@ -43,12 +45,9 @@ export default function Index() {
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
-            <div className="top-6">
-              <Top topName={`Good Morning, ${user.displayName}`} />
-            </div>
-            {investment?.length ? (
+            {feeds?.length ? (
               <FeedCard
-                feeds={investment}
+                feeds={feeds}
                 setOpen={setOpen}
                 getId={getId}
                 from={where}
@@ -63,10 +62,11 @@ export default function Index() {
         </div>
       </DashBoard>
       <Modal
-        feedDetails={investmentDetail}
-        from={where}
+        feedDetails={feedDetail}
         open={open}
         setOpen={setOpen}
+        getEnterId={getEnterId}
+        userE={userW}
       />
     </>
   );

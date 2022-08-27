@@ -1,9 +1,12 @@
+/* eslint-disable consistent-return */
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
+import { db } from '@/config/firebase';
 import { useAuth } from '@/lib/auth';
 
 const onboard = 'onboard';
@@ -17,18 +20,16 @@ const navigation = [
 ];
 
 const entrepreneurs = [
-  { name: 'Find Projects', href: '/', current: true },
-  { name: 'Invested Projects', href: '/about', current: false },
-  { name: 'View Students', href: '/blogs', current: false },
+  { name: 'Dashboard', href: '/entrepreneur', current: false },
+  { name: 'Matched Projects', href: '/mp/entrepreneur', current: false },
   { name: 'Contact', href: '#', current: false },
 ];
 
-// const students = [
-//   { name: 'Find Projects', href: '/', current: true },
-//   { name: 'Invested Projects', href: '/about', current: false },
-//   { name: 'View Students', href: '/blogs', current: false },
-//   { name: 'Contact', href: '#', current: false },
-// ];
+const studentNav = [
+  { name: 'Find Projects', href: '/students', current: false },
+  { name: 'Matched Projects', href: '/mp/student', current: false },
+  { name: 'Contact', href: '#', current: false },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -40,7 +41,26 @@ type Props = {
 
 const NavBar = (props: Props) => {
   const { user, logout } = useAuth();
+  const [current, setCurrent] = useState('');
   const router = useRouter();
+  const savetoDb = async () => {
+    try {
+      const ref = doc(db, 'users', user.uid);
+
+      const docSnap = await getDoc(ref);
+
+      if (docSnap.exists()) {
+        if (docSnap.data().type.includes('student')) {
+          setCurrent('student');
+        } else {
+          setCurrent('entrepreneur');
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  savetoDb();
   return (
     <div>
       <header className="relative z-50 h-24 w-full">
@@ -126,41 +146,63 @@ const NavBar = (props: Props) => {
                           </div>
                           <div className="hidden lg:ml-6 lg:block">
                             <div className="flex space-x-4">
-                              {props.needs.includes(onboard)
-                                ? navigation.map((item) => (
-                                    <Link key={item.name} href={item.href}>
-                                      <a
-                                        className={classNames(
-                                          item.current
-                                            ? 'text-indigo-600'
-                                            : 'text-gray-700 hover:bg-gray-800 hover:text-white',
-                                          'px-3 py-2 rounded-md text-sm font-semibold uppercase'
-                                        )}
-                                        aria-current={
-                                          item.current ? 'page' : undefined
-                                        }
-                                      >
-                                        {item.name}
-                                      </a>
-                                    </Link>
-                                  ))
-                                : entrepreneurs.map((item) => (
-                                    <Link key={item.name} href={item.href}>
-                                      <a
-                                        className={classNames(
-                                          item.current
-                                            ? 'text-indigo-600'
-                                            : 'text-gray-700 hover:bg-gray-800 hover:text-white',
-                                          'px-3 py-2 rounded-md text-sm font-semibold uppercase'
-                                        )}
-                                        aria-current={
-                                          item.current ? 'page' : undefined
-                                        }
-                                      >
-                                        {item.name}
-                                      </a>
-                                    </Link>
-                                  ))}
+                              {!user ? (
+                                navigation.map((item) => (
+                                  <Link key={item.name} href={item.href}>
+                                    <a
+                                      className={classNames(
+                                        item.current
+                                          ? 'text-indigo-600'
+                                          : 'text-gray-700 hover:bg-gray-800 hover:text-white',
+                                        'px-3 py-2 rounded-md text-sm font-semibold uppercase'
+                                      )}
+                                      aria-current={
+                                        item.current ? 'page' : undefined
+                                      }
+                                    >
+                                      {item.name}
+                                    </a>
+                                  </Link>
+                                ))
+                              ) : (
+                                <>
+                                  {current === 'entrepreneur'
+                                    ? entrepreneurs.map((item) => (
+                                        <Link key={item.name} href={item.href}>
+                                          <a
+                                            className={classNames(
+                                              item.current
+                                                ? 'text-indigo-600'
+                                                : 'text-gray-700 hover:bg-gray-800 hover:text-white',
+                                              'px-3 py-2 rounded-md text-sm font-semibold uppercase'
+                                            )}
+                                            aria-current={
+                                              item.current ? 'page' : undefined
+                                            }
+                                          >
+                                            {item.name}
+                                          </a>
+                                        </Link>
+                                      ))
+                                    : studentNav.map((item) => (
+                                        <Link key={item.name} href={item.href}>
+                                          <a
+                                            className={classNames(
+                                              item.current
+                                                ? 'text-indigo-600'
+                                                : 'text-gray-700 hover:bg-gray-800 hover:text-white',
+                                              'px-3 py-2 rounded-md text-sm font-semibold uppercase'
+                                            )}
+                                            aria-current={
+                                              item.current ? 'page' : undefined
+                                            }
+                                          >
+                                            {item.name}
+                                          </a>
+                                        </Link>
+                                      ))}
+                                </>
+                              )}
                             </div>
                           </div>
                           <div className="hidden lg:ml-6 lg:block"></div>

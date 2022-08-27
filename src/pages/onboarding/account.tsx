@@ -1,4 +1,3 @@
-import { updateProfile } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -31,20 +30,17 @@ export default function SignIn() {
         country: data.country,
         phone: data.phone,
       });
-      updateProfile(user, {
-        displayName: `${data.fname} ${' '} ${data.lname}`,
-      });
       const docSnap = await getDoc(ref);
 
       if (docSnap.exists()) {
         if (docSnap.data().type.includes('student')) {
-          router.push('/user');
+          router.push('/students');
         } else {
-          router.push('/feed');
+          router.push('/entrepreneur');
         }
       }
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 

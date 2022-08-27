@@ -1,6 +1,8 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import React from 'react';
 
+import { useAuth } from '@/lib/auth';
+
 interface DataProps {
   feeds: any;
   setOpen: any;
@@ -9,12 +11,13 @@ interface DataProps {
 }
 
 const FeedCard = ({ feeds, setOpen, getId, from }: DataProps) => {
+  const { user } = useAuth();
   return (
     <div>
       {feeds?.map((feed) => (
         <div
           key={feed.id}
-          className="group mt-5 rounded-lg border border-slate-400 p-1 shadow-sm hover:cursor-pointer hover:bg-slate-100"
+          className="group mt-5 rounded-lg border border-slate-300 bg-white p-1 hover:cursor-pointer hover:bg-slate-100"
           onClick={() => {
             setOpen(true);
             getId(feed.id);
@@ -35,8 +38,8 @@ const FeedCard = ({ feeds, setOpen, getId, from }: DataProps) => {
                   </span>
                 </div>
                 <div className="mb-2 ml-4 mt-1 flex flex-col">
-                  <div className="text-sm font-medium text-gray-700 lg:text-base">
-                    {feed.author_name}
+                  <div className="text-sm font-medium text-slate-800 lg:text-base">
+                    {user.displayName}
                   </div>
                   <div className="flex w-full">
                     <div className="font-base mr-1 cursor-pointer text-xs text-blue-700">
@@ -76,56 +79,44 @@ const FeedCard = ({ feeds, setOpen, getId, from }: DataProps) => {
             </div>
           </div>
           <div
-            className="m-3 mb-2 px-2 text-lg font-medium text-slate-700 line-clamp-2 hover:line-clamp-none group-hover:cursor-pointer group-hover:text-indigo-500 group-hover:underline md:text-xl lg:line-clamp-1"
+            className="m-3 mb-2 px-2 text-lg font-medium text-slate-800 line-clamp-2 hover:line-clamp-none group-hover:cursor-pointer group-hover:text-indigo-500 group-hover:underline md:text-xl lg:line-clamp-1"
             onClick={() => {
               setOpen(true);
               getId(feed.id);
             }}
           >
-            {feed.business_primary_need}
+            {feed.primary_need}
           </div>
           <div className="mt-3 mb-2 flex w-full">
-            <div className="ml-5  items-center rounded-md text-xs font-normal text-primary-500">
+            <div className="ml-5  items-center rounded-md text-sm font-normal text-primary-500">
               {feed.business_focus}
             </div>
           </div>
-          <div className="mx-3 mb-3 px-2 text-sm text-slate-600 line-clamp-3">
-            {feed.business_primary_gap_details}
+          <div className="mx-3 mb-3 px-2 text-base text-slate-700 line-clamp-3">
+            {feed.primary_gap}
           </div>
 
           <div className="mx-3 flex justify-start px-2">
-            {feed.business_primary_area_expertise?.map((item) => (
+            <button
+              type="button"
+              className="mr-2 mb-2 rounded-full border border-slate-200 bg-slate-100 py-[6px] px-5 text-sm text-slate-700 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+            >
+              {feed.area_of_expertise}
+            </button>
+
+            {/* {feed.area_of_expertise?.map((item) => (
               <button
                 type="button"
                 key={item}
-                className="mr-2 mb-2 rounded-full border border-gray-200 bg-gray-100 py-[6px] px-5 text-sm text-slate-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                className="mr-2 mb-2 rounded-full border border-slate-200 bg-slate-100 py-[6px] px-5 text-sm text-slate-700 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
               >
                 {item}
               </button>
-            ))}
+            ))} */}
           </div>
 
           <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
             <hr className="my-3 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-            <div className="text-grey-600 ml-3 mb-4 text-xs font-normal">
-              <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-sm font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
-                <svg
-                  aria-hidden="true"
-                  className="h-3 w-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="sr-only">Icon description</span>
-              </span>
-              This project is approved for investing
-            </div>
           </div>
         </div>
       ))}

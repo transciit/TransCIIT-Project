@@ -7,33 +7,37 @@ import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
-import EmptyCard from './components/emptycard';
-import FeedCard from './components/feedcard';
-import { Modal } from './components/modal';
-import { Side } from './components/side';
-import { Top } from './components/top';
+import EmptyCard from '../../entrepreneur/components/emptycard';
+import FeedCard from '../../entrepreneur/components/feedcard';
+import { Side } from '../../entrepreneur/components/side';
+import { Modal } from '../components/modal';
 
 export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
+  const { user } = useAuth();
   const getId = (idDetails: string) => {
     setId(idDetails);
   };
-
-  const { user } = useAuth();
+  const [enterId, setEnterId] = useState({});
+  const getEnterId = (idDetails: string) => {
+    setEnterId(idDetails);
+  };
 
   // changables
-  const where = 'feeds';
-  const { data: feedData } = useSWR('/api/feed', fetcher);
+  const where = 'student';
+  const { data: fetchMatchedS } = useSWR(`/api/matched/s/${user.uid}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
-  const feeds = feedData?.feeds;
+  const { data: userWho } = useSWR(`/api/profile/${enterId}`, fetcher);
+  const feeds = fetchMatchedS?.fetchMatchedS;
+  const userW = userWho?.userWho;
   const feedDetail = feedDetails?.feedD;
   return (
     <>
       <DashBoard
         metaDashboard={
           <Meta
-            title=" Feeds | TransCIIT Project"
+            title="Projects | TransCIIT Project"
             description="Welcome to TransCIIT"
           />
         }
@@ -41,9 +45,6 @@ export default function Index() {
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
-            <div className="top-6">
-              <Top topName={`Good Morning, ${user.displayName}`} />
-            </div>
             {feeds?.length ? (
               <FeedCard
                 feeds={feeds}
@@ -62,9 +63,10 @@ export default function Index() {
       </DashBoard>
       <Modal
         feedDetails={feedDetail}
-        from={where}
         open={open}
         setOpen={setOpen}
+        getEnterId={getEnterId}
+        userE={userW}
       />
     </>
   );

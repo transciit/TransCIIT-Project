@@ -4,13 +4,13 @@ import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import EmptyCard from '@/pages/entrepreneur/components/emptycard';
-import FeedCard from '@/pages/entrepreneur/components/feedcard';
-import { Modal } from '@/pages/entrepreneur/components/modal';
-import { Side } from '@/pages/entrepreneur/components/side';
-import { Top } from '@/pages/entrepreneur/components/top';
 import fetcher from '@/utils/fetcher';
+
+import AddProjects from './components/AddProjects';
+import FeedCard from './components/feedcard';
+import { Modal } from './components/modal';
+import { Side } from './components/side';
+import { Top } from './components/top';
 
 export default function Index() {
   const [open, setOpen] = useState(false);
@@ -19,17 +19,12 @@ export default function Index() {
     setId(idDetails);
   };
 
-  const { user } = useAuth();
-
   // changables
-  const where = 'invested';
-  const { data: investmentData } = useSWR(`/api/invested/${user.uid}`, fetcher);
-  const { data: investmentDetails } = useSWR(
-    `/api/invested/detail/${id}`,
-    fetcher
-  );
-  const investment = investmentData?.investments;
-  const investmentDetail = investmentDetails?.investmentDetail;
+  const where = 'entrepreneur';
+  const { data: feedData } = useSWR('/api/feed', fetcher);
+  const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
+  const feeds = feedData?.feeds;
+  const feedDetail = feedDetails?.feedD;
   return (
     <>
       <DashBoard
@@ -44,17 +39,17 @@ export default function Index() {
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
             <div className="top-6">
-              <Top topName={`Good Morning, ${user.displayName}`} />
+              <Top topName={`Good Afternoon`} />
             </div>
-            {investment?.length ? (
+            {feeds?.length ? (
               <FeedCard
-                feeds={investment}
+                feeds={feeds}
                 setOpen={setOpen}
                 getId={getId}
                 from={where}
               />
             ) : (
-              <EmptyCard />
+              <AddProjects />
             )}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
@@ -63,7 +58,7 @@ export default function Index() {
         </div>
       </DashBoard>
       <Modal
-        feedDetails={investmentDetail}
+        feedDetails={feedDetail}
         from={where}
         open={open}
         setOpen={setOpen}
