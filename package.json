@@ -22,6 +22,7 @@
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@nandorojo/swr-firestore": "^0.16.0",
+    "@splidejs/react-splide": "^0.7.8",
     "@tailwindcss/line-clamp": "^0.4.0",
     "axios": "^0.27.2",
     "feather-icons": "^4.28.0",

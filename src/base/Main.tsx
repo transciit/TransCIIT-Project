@@ -210,7 +210,6 @@ const Main = (props: IMainProps) => {
             </div>
           </div>
         )}
-        ;
       </div>
     </div>
   );
