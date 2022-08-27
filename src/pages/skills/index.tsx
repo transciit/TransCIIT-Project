@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
 
-import { Side } from '../entrepreneur/components/side';
-import MySkillsCard from './components/myskills';
-import StudentReviewCard from './components/review';
-import Stepper from './components/Stepper';
-import StepperControl from './components/StepperControl';
-import { UseContextProvider } from './context/StepperContext';
+import { Side } from '../../components/entrepreneur/components/side';
+import MySkillsCard from '../../components/skills/components/myskills';
+import StudentReviewCard from '../../components/skills/components/review';
+import Stepper from '../../components/skills/components/Stepper';
+import StepperControl from '../../components/skills/components/StepperControl';
+import { UseContextProvider } from '../../components/skills/context/StepperContext';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);

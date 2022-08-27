@@ -4,8 +4,8 @@ import React from 'react';
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
 
-import { Side } from '../entrepreneur/components/side';
-import { Top } from '../entrepreneur/components/top';
+import { Side } from '../../components/entrepreneur/components/side';
+import { Top } from '../../components/entrepreneur/components/top';
 
 export default function Index() {
   // changables

@@ -7,11 +7,11 @@ import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
-import EmptyCard from '../entrepreneur/components/emptycard';
-import FeedCard from '../entrepreneur/components/feedcard';
-import { Side } from '../entrepreneur/components/side';
-import AddSkills from './components/AddSkills';
-import { Modal } from './components/modal';
+import EmptyCard from '../../components/entrepreneur/components/emptycard';
+import FeedCard from '../../components/entrepreneur/components/feedcard';
+import { Side } from '../../components/entrepreneur/components/side';
+import AddSkills from '../../components/students/components/AddSkills';
+import { Modal } from '../../components/students/components/modal';
 
 export default function Index() {
   const [open, setOpen] = useState(false);

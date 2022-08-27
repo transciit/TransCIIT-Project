@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // import { storage } from '@/config/firebase';
-import { isEmpty } from '@/pages/validator';
+import { isEmpty } from '@/validator';
 
 import { useStepperContext } from '../context/StepperContext';
 

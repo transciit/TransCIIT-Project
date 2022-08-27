@@ -5,14 +5,14 @@ import React, { useState } from 'react';
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
 
-import { Side } from '../entrepreneur/components/side';
-import AdditionalCard from '../projects/components/additional';
-import BusinessCard from '../projects/components/business';
-import OverviewCard from '../projects/components/overview';
-import ReviewCard from '../projects/components/review';
-import Stepper from './components/Stepper';
-import StepperControl from './components/StepperControl';
-import { UseContextProvider } from './context/StepperContext';
+import { Side } from '../../components/entrepreneur/components/side';
+import Stepper from '../../components/project/components/Stepper';
+import StepperControl from '../../components/project/components/StepperControl';
+import { UseContextProvider } from '../../components/project/context/StepperContext';
+import AdditionalCard from '../../components/projects/components/additional';
+import BusinessCard from '../../components/projects/components/business';
+import OverviewCard from '../../components/projects/components/overview';
+import ReviewCard from '../../components/projects/components/review';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);

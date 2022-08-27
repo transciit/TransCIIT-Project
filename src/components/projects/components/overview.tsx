@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import validator from 'validator';
 
-import { useStepperContext } from '@/pages/project/context/StepperContext';
+import { useStepperContext } from '@/components/project/context/StepperContext';
 // import { storage } from '@/config/firebase';
-import { isEmpty } from '@/pages/validator';
+import { isEmpty } from '@/validator';
 
 const OverviewCard = ({ getDone }) => {
   //  const [progress, setProgress] = useState(0);

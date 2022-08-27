@@ -1,5 +1,5 @@
-import { useStepperContext } from '@/pages/project/context/StepperContext';
-import { isEmpty } from '@/pages/validator';
+import { useStepperContext } from '@/components/project/context/StepperContext';
+import { isEmpty } from '@/validator';
 
 const BusinessCard = ({ getDone }) => {
   const { userData, setUserData } = useStepperContext();

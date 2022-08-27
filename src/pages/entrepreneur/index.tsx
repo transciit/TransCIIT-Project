@@ -6,11 +6,11 @@ import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
 import fetcher from '@/utils/fetcher';
 
-import AddProjects from './components/AddProjects';
-import FeedCard from './components/feedcard';
-import { Modal } from './components/modal';
-import { Side } from './components/side';
-import { Top } from './components/top';
+import AddProjects from '../../components/entrepreneur/components/AddProjects';
+import FeedCard from '../../components/entrepreneur/components/feedcard';
+import { Modal } from '../../components/entrepreneur/components/modal';
+import { Side } from '../../components/entrepreneur/components/side';
+import { Top } from '../../components/entrepreneur/components/top';
 
 export default function Index() {
   const [open, setOpen] = useState(false);

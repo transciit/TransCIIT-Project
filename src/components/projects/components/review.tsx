@@ -3,9 +3,9 @@ import { addDoc, collection } from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { useStepperContext } from '@/components/project/context/StepperContext';
 import { db } from '@/config/firebase';
 import { useAuth } from '@/lib/auth';
-import { useStepperContext } from '@/pages/project/context/StepperContext';
 
 const ReviewCard = () => {
   const { userData } = useStepperContext();

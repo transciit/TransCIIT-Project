@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
+import EmptyCard from '@/components/entrepreneur/components/emptycard';
+import FeedCard from '@/components/entrepreneur/components/feedcard';
+import { Modal } from '@/components/entrepreneur/components/modal';
+import { Side } from '@/components/entrepreneur/components/side';
+import { Top } from '@/components/entrepreneur/components/top';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
-import EmptyCard from '@/pages/entrepreneur/components/emptycard';
-import FeedCard from '@/pages/entrepreneur/components/feedcard';
-import { Modal } from '@/pages/entrepreneur/components/modal';
-import { Side } from '@/pages/entrepreneur/components/side';
-import { Top } from '@/pages/entrepreneur/components/top';
 import fetcher from '@/utils/fetcher';
 
 export default function Index() {
