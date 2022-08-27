@@ -3,13 +3,27 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 
-// import { AuthProvider } from '../lib/auth';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { AuthContextProvider } from '@/lib/auth';
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  // <AuthProvider>
-  <Component {...pageProps} />
-  // </AuthProvider>
-);
+const authRequired = ['/feed', '/user'];
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+  return (
+    <AuthContextProvider>
+      {authRequired.includes(router.pathname) ? (
+        <ProtectedRoute>
+          <Component {...pageProps} />
+        </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
+      )}
+      ;
+    </AuthContextProvider>
+  );
+};
 
 export default MyApp;

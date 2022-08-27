@@ -1,5 +1,5 @@
+import { Main } from '@/base/Main';
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
 
 import AboutUs from '../components/about/AboutUs';
 import Hero from '../components/index/Hero';
@@ -12,6 +12,7 @@ const About = () => (
         description="Matching the needs of climate entrepreneurs with the skills of master's students"
       />
     }
+    name={'about'}
   >
     <div className="relative w-full items-center justify-center overflow-x-hidden lg:py-20 xl:pt-10 xl:pb-6">
       <Hero hero="Who We Are" herodes="TransCIIT Project" />

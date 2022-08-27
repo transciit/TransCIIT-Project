@@ -32,6 +32,7 @@ module.exports = {
       manrope: ['Manrope', 'sans-serif'],
       montserrat: ['Montserrat', 'sans-serif'],
       inter: ['Inter', 'sans-serif'],
+      playfair: ['Playfair Display', 'sans-serif'],
     },
     extend: {
       colors: {

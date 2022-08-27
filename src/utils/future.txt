@@ -1,0 +1,17 @@
+const getCalled = (route) => {
+    const calledApi: any[] = [];
+    calledApi['/feed'] = '/api/feed';
+    calledApi['/user/invested'] = '/api/feed';
+    calledApi['/user/myprojects'] = '/api/feed';
+    return calledApi[route.includes] ? calledApi[route.includes] : '/api/feed';
+  };
+
+  const getCalledDetail = (route) => {
+    const calledApiDetail: any[] = [];
+    calledApiDetail['/feed'] = `/api/feeds/${id}`;
+    calledApiDetail['/user/invested'] = `/api/feeds/${id}`;
+    calledApiDetail['/user/myprojects'] = `/api/feeds/${id}`;
+    return calledApiDetail[route.includes]
+      ? calledApiDetail[route.includes]
+      : `/api/feeds/${id}`;
+  };

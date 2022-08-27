@@ -3,10 +3,10 @@
 
 import type { GetStaticProps } from 'next';
 
+import { Main } from '@/base/Main';
 import Article from '@/components/blog/Article';
 import type { Blogs } from '@/interfaces/blog';
 import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
 import { blogData } from '@/utils/blogData';
 
 type Props = {
@@ -22,6 +22,7 @@ export default function Matched({ items }: Props) {
           description="Matching the needs of climate entrepreneurs with the skills of master's students"
         />
       }
+      name={'blogs'}
     >
       <div className="relative w-full items-center justify-center overflow-x-hidden lg:py-20 xl:pt-10 xl:pb-6">
         <div className="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
