@@ -19,7 +19,7 @@ const Index = () => {
         }
         name={'home'}
       >
-        <div className="relative w-full items-center justify-center overflow-x-hidden lg:py-20 xl:pt-10 xl:pb-6">
+        <div className="relative w-full items-center justify-center overflow-x-hidden  xl:pb-6">
           <div>
             <Hero
               hero="Transforming Climate Innovation Ecosystems through Inclusive

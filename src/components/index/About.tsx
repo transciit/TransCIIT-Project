@@ -1,16 +1,94 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+
 export default function About() {
   return (
-    <div>
-      <div className="container mx-auto mt-32 flex h-full flex-col items-center justify-between rounded-[2.5rem] bg-light_green-500 px-2">
-        <div className="container mx-auto flex h-full max-w-6xl flex-col items-center justify-between">
+    <div className="sm:px-7">
+      <div className="container mx-auto flex h-full flex-col items-center justify-between bg-light_green-500 sm:rounded-[2.5rem] ">
+        <div className="container mx-auto flex h-full flex-col items-center justify-between">
           <h2 className="mt-14 text-sm font-medium uppercase tracking-tight text-indigo-500">
             Who We Are
           </h2>
           <h3 className="mt-2 max-w-2xl text-center text-3xl font-extrabold leading-tight text-gray-900 sm:px-0 sm:text-5xl">
             About Us
           </h3>
-          <div className="mt-0 flex w-full flex-col sm:mt-10 lg:my-2 lg:flex-row">
+
+          <div className=" mx-auto my-16 box-border flex flex-col content-center items-center rounded-[2.5rem] border-0 border-solid border-gray-300 bg-white px-8 py-10 text-black md:flex-row lg:px-16">
+            <div className="relative mt-5 mb-4 -ml-5 box-border w-full max-w-md border-solid bg-contain bg-no-repeat px-4 text-center md:ml-0 md:mt-0 md:w-1/2 md:max-w-none lg:mb-0 xl:pl-10">
+              <img src="/assets/images/about/about.jpg" alt="image" />
+            </div>
+
+            <div className="order-first box-border w-full border-solid text-black md:order-none md:w-1/2 md:pl-10">
+              <h2 className="m-0 mb-10 border-0 border-gray-300 text-xl font-extrabold leading-tight md:text-2xl lg:text-3xl">
+                Objectives
+              </h2>
+              <div>
+                <span
+                  className="mr-2 mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  data-primary="yellow-400"
+                >
+                  <span className="text-base font-bold"> 1 </span>
+                </span>{' '}
+                <div>
+                  To investigate approaches on how to establish strong relations
+                  between the full range of actors in
+                </div>
+                <div>
+                  Kenya’s Climate Innovation Ecosystem (CIE). Two objectives are
+                  embedded in this approach:
+                </div>
+                <div>
+                  active participation of young people and women (inclusivity),
+                  and productive interactions between
+                </div>
+                <div>
+                  academic, practitioner, policymaker and citizen perspectives
+                  (transdisciplinarity).
+                </div>
+              </div>
+
+              <div>
+                <span
+                  className="mr-2 mb-5 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  data-primary="yellow-400"
+                >
+                  <span className="text-base font-bold"> 2 </span>
+                </span>{' '}
+                <div>
+                  To pilot a matchmaking service in Kenya for entrepreneurs and
+                  postgraduate students
+                </div>
+              </div>
+
+              <div>
+                <span
+                  className="mr-2 mb-5 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  data-primary="yellow-400"
+                >
+                  <span className="text-base font-bold"> 3 </span>
+                </span>{' '}
+                <div>
+                  To develop a website that facilitates future matchmaking
+                  services of this kind
+                </div>
+              </div>
+
+              <div>
+                <span
+                  className="mr-2 mb-5 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  data-primary="yellow-400"
+                >
+                  <span className="text-base font-bold"> 4 </span>
+                </span>{' '}
+                <div>
+                  To demonstrate to innovation ecosystem stakeholders beyond the
+                  project the benefits of the matchmaking service
+                </div>
+              </div>
+              <p></p>
+            </div>
+          </div>
+
+          {/* <div className="mt-0 flex w-full flex-col sm:mt-10 lg:my-2 lg:flex-row">
             <div className="mx-auto mb-0 w-full max-w-md p-4 sm:mb-16 lg:mb-0 lg:w-1/3 ">
               <div className="relative mr-5 flex h-full flex-col items-center justify-center rounded-[2.5rem] bg-white p-20 px-10">
                 <svg
@@ -296,7 +374,7 @@ export default function About() {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
