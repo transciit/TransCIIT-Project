@@ -20,6 +20,44 @@ export default function Hero(props: IMetaProps) {
       }}
     >
       <div className="bg-indigo-700/80">
+        <div className="container mx-auto py-32 text-center sm:px-4 ">
+          <div className="sm:leading-none xl:text-7xl hidden text-4xl font-extrabold leading-xtight tracking-tight text-white sm:block sm:text-5xl md:text-6xl">
+            <span className="block">Matching the needs of climate</span>
+            <span className="relative inline-block text-white">
+              entrepreneurs with the skills
+            </span>
+            <span className="relative inline-block text-white">
+              of master&apos;s students
+            </span>
+          </div>
+          <div className="sm:none sm:leading-none xl:text-7xl block text-4xl font-extrabold leading-xtight tracking-tight text-white sm:hidden sm:text-5xl md:text-6xl">
+            {props.herodes}
+          </div>
+          <div className="mx-auto mt-6 max-w-lg text-center text-base text-gray-100 sm:text-base md:mt-12 md:max-w-xl md:text-lg xl:text-xl">
+            {props.hero}
+          </div>
+          <div className="relative mx-5 mt-12 flex max-w-md items-center overflow-hidden rounded-full text-center sm:mx-auto">
+            <input
+              type="text"
+              name="email"
+              placeholder="Have a Question? Reach out"
+              className="h-12 w-full px-6 py-2 font-medium text-indigo-800 focus:outline-none"
+            />
+            <span className="relative top-0 right-0 block">
+              <button
+                type="button"
+                className="leading-6 inline-flex h-12 w-32 items-center border border-transparent bg-indigo-400 px-8 text-base font-bold text-white transition duration-150 ease-in-out hover:bg-indigo-700 focus:outline-none active:bg-indigo-700"
+              >
+                Send
+              </button>
+            </span>
+          </div>
+          <div className="mt-8 text-sm text-gray-300">
+            By signing up, you agree to our terms and services.
+          </div>
+        </div>
+      </div>
+      <div className="hidden bg-indigo-700/80">
         <div className="container mx-auto flex h-full flex-col items-center justify-between px-4 sm:max-w-7xl lg:py-20 xl:pt-10">
           <div className="z-30 flex w-full flex-col items-center pt-12 text-center lg:pt-10">
             <p className=" sm:text-md pr-0 text-base text-gray-50 xl:text-lg">

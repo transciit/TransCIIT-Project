@@ -9,7 +9,10 @@ export default function About() {
             Who We Are
           </h2>
           <h3 className="mt-2 max-w-2xl text-center text-3xl font-extrabold leading-tight text-gray-900 sm:px-0 sm:text-5xl">
-            About Us
+            Learn More{' '}
+            <span className="w-full bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent lg:inline">
+              About Us
+            </span>
           </h3>
 
           <div className=" mx-auto my-16 box-border flex flex-col content-center items-center rounded-[2.5rem] border-0 border-solid border-gray-300 bg-white px-8 py-10 text-black md:flex-row lg:px-16">

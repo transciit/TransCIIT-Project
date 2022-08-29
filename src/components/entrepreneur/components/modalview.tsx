@@ -1,8 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
+import useSWR from 'swr';
 
 import ViewStudents from '@/pages/students/ViewStudents';
+import fetcher from '@/utils/fetcher';
 
 import EmptyCard from './emptycard';
 
@@ -15,6 +17,8 @@ interface Props {
 
 export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
   console.log(from);
+  const { data: fetchStudents } = useSWR('/api/students', fetcher);
+  const student = fetchStudents?.fetchStudents;
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -69,8 +73,11 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
                   <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-10 flex-1 px-4 sm:px-6">
-                      {feedDetails?.length ? (
-                        <ViewStudents feedDetail={feedDetails} />
+                      {student?.length ? (
+                        <ViewStudents
+                          feedDetail={feedDetails}
+                          student={student}
+                        />
                       ) : (
                         <EmptyCard />
                       )}
