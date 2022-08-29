@@ -27,6 +27,8 @@ export const AuthContextProvider = ({
           uid: userChange.uid,
           email: userChange.email,
           displayName: userChange.displayName,
+          profile: userChange.photoURL,
+          getIdToken: userChange.getIdToken(),
         });
       } else {
         setUser(null);

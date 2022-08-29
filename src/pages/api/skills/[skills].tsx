@@ -2,10 +2,10 @@
 /* eslint-disable import/no-cycle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getUser } from '@/lib/db';
+import { getUserAbout } from '@/lib/db';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const result = await getUser(req.query.skills);
+  const result = await getUserAbout(req.query.skills);
 
   if (result.err) {
     res.status(500).json({ errors: result.err });
