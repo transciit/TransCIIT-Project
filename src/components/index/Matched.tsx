@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 export default function Matched() {
   return (
-    <div>
+    <div className="px-7">
       <div className="container mx-auto mt-12 flex h-full flex-col items-center justify-between rounded-[2.5rem] bg-pink-50 px-2">
         <div className="container mx-auto flex h-full max-w-6xl flex-col items-center justify-between px-8 lg:flex-row xl:px-0">
           <div className="z-30 flex w-full max-w-xl flex-col items-center py-48 text-center lg:w-1/2 lg:items-start lg:py-10 lg:text-left xl:py-20">

@@ -61,7 +61,7 @@ export const getInvestmentDetails = async (id) => {
   }
 };
 
-export const getUserType = async (uid) => {
+export const getUser = async (uid) => {
   try {
     const docRef = doc(db, 'users', uid);
     const docSnap = await getDoc(docRef);
@@ -73,7 +73,7 @@ export const getUserType = async (uid) => {
   }
 };
 
-export const getUser = async (uid) => {
+export const getUserAbout = async (uid) => {
   try {
     const docRef = doc(db, 'users', uid);
     const docSnap = await getDoc(docRef);

@@ -1,15 +1,109 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 // import FeedCard from './feedcard';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import useSWR from 'swr';
 
 import { Main } from '@/base/Main';
+import { db, storage } from '@/config/firebase';
 import { Meta } from '@/layouts/Meta';
+import { useAuth } from '@/lib/auth';
+import fetcher from '@/utils/fetcher';
 
-import PersonalCard from './components/personal';
-import ProfileCard from './components/profile';
+import PersonalCard from '../../components/users/components/personal';
+import ProfileCard from '../../components/users/components/profile';
 
 export default function UserProfile() {
+  const { user } = useAuth();
+  const reference = doc(db, 'users', user.uid);
+
+  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const ud = userDetails?.userDetails;
+  const [profile, setProfile] = useState('/assets/images/placeholder.png');
+
+  const getFromDB = async () => {
+    const docSnap = await getDoc(reference);
+
+    if (docSnap.exists()) {
+      if (docSnap.data().profile) {
+        setProfile(docSnap.data().profile);
+      }
+    }
+  };
+
+  getFromDB();
+
+  const savetoDb = async (downloadURL: any) => {
+    try {
+      await updateDoc(reference, {
+        profile: downloadURL,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!e.target.files) return;
+
+    const file: any = e.target.files[0];
+
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    const storageRef = ref(storage, `resources/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progressBar =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`Upload is ${progressBar}% done`);
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+
+          default:
+        }
+      },
+      (onError) => {
+        // A full list of error codes is available at
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (onError.code) {
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+
+          // ...
+
+          case 'storage/unknown':
+            // Unknown error occurred, inspect error.serverResponse
+            break;
+
+          default:
+        }
+      },
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setProfile(downloadURL);
+          savetoDb(downloadURL);
+        });
+      }
+    );
+  };
+
   return (
     <>
       <Main
@@ -33,22 +127,29 @@ export default function UserProfile() {
                           <div className="mx-6 my-3 font-inter text-lg font-bold text-slate-700">
                             Profile Photo
                           </div>
-                          <span className="inline-block h-24 w-24 overflow-hidden rounded-full bg-gray-100">
-                            <svg
-                              className="h-full w-full text-gray-300"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                          </span>
-                          <button
-                            type="button"
-                            className="leading-4 mt-4 rounded-xl bg-indigo-400 px-9 py-2 text-sm font-medium text-gray-100 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                          >
-                            Change
-                          </button>
-
+                          <Image
+                            src={profile}
+                            alt="Picture of the author"
+                            width={80}
+                            height={80}
+                            className="rounded-full"
+                          />
+                          <div>
+                            <label htmlFor="fileUpload">
+                              <div>
+                                <h3 className="leading-4 mt-4 rounded-xl bg-indigo-400 px-9 py-2 text-sm font-medium text-gray-100 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                  Change
+                                </h3>
+                              </div>
+                            </label>
+                            <input
+                              hidden
+                              id="fileUpload"
+                              type="file"
+                              accept="image/*"
+                              onChange={handleFileSelected}
+                            />
+                          </div>
                           <div className="relative mx-5 mt-3 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
                             <div className="text-grey-600 text-xs font-normal">
                               Update your profile picture
@@ -57,35 +158,40 @@ export default function UserProfile() {
                         </div>
                       </div>
                       <hr className="m-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-                      <div className="mx-6 mt-3 font-inter text-lg font-bold text-slate-700">
-                        John Doe
-                      </div>
-                      <div className="mx-6 mb-4 items-center text-xs font-normal text-gray-600 focus-within:text-gray-400">
-                        Full name
-                      </div>
-                      <hr className="m-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-                      <div className="mx-6 mt-3 font-inter text-sm text-slate-700">
-                        This information will be displayed publicly so be
-                        careful what you share.
-                      </div>
-                      <div className="mx-6 mb-4 mt-2 items-center text-xs font-normal text-gray-600 focus-within:text-gray-400">
-                        Description
-                      </div>
-                      <hr className="m-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-                      <div className="mx-6 mt-3 font-inter text-sm text-slate-700">
-                        user@email.com
-                      </div>
-                      <div className="mx-6 mb-4 mt-2 items-center text-xs font-normal text-gray-600 focus-within:text-gray-400">
-                        Email
-                      </div>
-                      <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-sm">
-                        <Link href="#">
-                          <a className="font-bold text-indigo-500">
-                            {' '}
-                            Edit Profile
-                          </a>
-                        </Link>
-                      </div>
+                      {ud?.length ? (
+                        <div>
+                          <div className="mx-6 mt-3 font-inter text-lg font-bold text-slate-700">
+                            {`${ud[0].firstName} ${ud[0].lastName}`}
+                          </div>
+                          <div className="mx-6 mb-4 items-center text-xs font-normal text-gray-600 focus-within:text-gray-400">
+                            Full name
+                          </div>
+                          <hr className="m-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+                          <div className="mx-6 mt-3 font-inter text-sm text-slate-700">
+                            {ud[0].about}
+                          </div>
+                          <div className="mx-6 mb-4 mt-2 items-center text-xs font-normal text-gray-600 focus-within:text-gray-400">
+                            Description
+                          </div>
+                          <hr className="m-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+                          <div className="mx-6 mt-3 font-inter text-sm text-slate-700">
+                            {ud[0].email}
+                          </div>
+                          <div className="mx-6 mb-4 mt-2 items-center text-xs font-normal text-gray-600 focus-within:text-gray-400">
+                            Email
+                          </div>
+                          <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-sm">
+                            <Link href="#">
+                              <a className="font-bold text-indigo-500">
+                                {' '}
+                                Edit Profile
+                              </a>
+                            </Link>
+                          </div>
+                        </div>
+                      ) : (
+                        'Loading Profile'
+                      )}
                     </div>
                   </div>
 
@@ -99,8 +205,8 @@ export default function UserProfile() {
                 </div>
               </div>
               <div className="col-span-2 py-5">
-                <PersonalCard />
-                <ProfileCard />
+                {ud?.length ? <PersonalCard usr={ud} /> : 'Loading'}
+                {ud?.length ? <ProfileCard usr={ud} /> : ''}
               </div>
             </div>
           </div>

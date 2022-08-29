@@ -28,8 +28,8 @@ const Main = (props: IMainProps) => {
       <div className="mx-auto">
         <div>
           <NavBar needs={props.name} />
-          <div className="mx-auto px-7">
-            <div className="content py-5 text-xl">{props.children}</div>
+          <div className="mx-auto">
+            <div className="content text-xl">{props.children}</div>
           </div>
         </div>
         {props.name.includes('onboard') ? (

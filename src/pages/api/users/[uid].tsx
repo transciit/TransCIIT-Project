@@ -2,14 +2,24 @@
 /* eslint-disable import/no-cycle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getUserType } from '@/lib/db';
+import { getUser } from '@/lib/db';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const result = await getUserType(req.query.uid);
+  const result = await getUser(req.query.uid);
 
   if (result.err) {
     res.status(500).json({ errors: result.err });
   }
+  // // read current file contents
+  // const filePath = path.join(process.cwd(), 'users.json');
+  // const fileData = fs.readFile(filePath);
+  // const data = JSON.parse(fileData);
 
-  res.status(200).json({ userType: result.userType });
+  // // append the new user
+  // data.push(result.userType);
+
+  // // write the file back to users.json
+  // fs.writeFile(filePath, JSON.stringify(data));
+
+  res.status(200).json({ userDetails: result.userType });
 };

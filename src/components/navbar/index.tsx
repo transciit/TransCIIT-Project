@@ -2,6 +2,7 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import { doc, getDoc } from 'firebase/firestore';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Fragment, useState } from 'react';
@@ -41,9 +42,10 @@ type Props = {
 
 const NavBar = (props: Props) => {
   const { user, logout } = useAuth();
+  const [profile, setProfile] = useState('/assets/images/placeholder.png');
   const [current, setCurrent] = useState('');
   const router = useRouter();
-  const savetoDb = async () => {
+  const getUserFromDb = async () => {
     try {
       const ref = doc(db, 'users', user.uid);
 
@@ -55,12 +57,15 @@ const NavBar = (props: Props) => {
         } else {
           setCurrent('entrepreneur');
         }
+        if (docSnap.data().profile) {
+          setProfile(docSnap.data().profile);
+        }
       }
     } catch (err) {
       console.log(err);
     }
   };
-  savetoDb();
+  getUserFromDb();
   return (
     <div>
       <header className="relative z-50 h-24 w-full">
@@ -229,15 +234,13 @@ const NavBar = (props: Props) => {
                                     <span className="sr-only">
                                       Open user menu
                                     </span>
-                                    <span className="inline-block h-9 w-9 overflow-hidden rounded-full bg-gray-100">
-                                      <svg
-                                        className="h-full w-full text-gray-300"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                      </svg>
-                                    </span>
+                                    <Image
+                                      src={profile}
+                                      alt="Picture of the author"
+                                      width={36}
+                                      height={36}
+                                      className="rounded-full"
+                                    />
                                   </Menu.Button>
                                 </div>
                                 <Transition
@@ -305,15 +308,13 @@ const NavBar = (props: Props) => {
                                     <span className="sr-only">
                                       Open user menu
                                     </span>
-                                    <span className="inline-block h-7 w-7 overflow-hidden rounded-full bg-gray-100 md:h-9 md:w-9">
-                                      <svg
-                                        className="h-full w-full text-gray-300"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                      </svg>
-                                    </span>
+                                    <Image
+                                      src={profile}
+                                      alt="Picture of the author"
+                                      width={36}
+                                      height={36}
+                                      className="rounded-full"
+                                    />
                                   </Menu.Button>
                                 </div>
                                 <Transition
@@ -379,22 +380,64 @@ const NavBar = (props: Props) => {
 
                     <Disclosure.Panel className="sm:hidden">
                       <div className="space-y-1 px-2 pt-2 pb-3">
-                        {navigation.map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as="a"
-                            href={item.href}
-                            className={classNames(
-                              item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-700 hover:bg-gray-700 hover:text-white',
-                              'block px-3 py-2 rounded-md text-base font-medium'
-                            )}
-                            aria-current={item.current ? 'page' : undefined}
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
+                        {!user ? (
+                          navigation.map((item) => (
+                            <Disclosure.Button
+                              key={item.name}
+                              as="a"
+                              href={item.href}
+                              className={classNames(
+                                item.current
+                                  ? 'bg-gray-900 text-white'
+                                  : 'text-gray-700 hover:bg-gray-700 hover:text-white',
+                                'block px-3 py-2 rounded-md text-base font-medium'
+                              )}
+                              aria-current={item.current ? 'page' : undefined}
+                            >
+                              {item.name}
+                            </Disclosure.Button>
+                          ))
+                        ) : (
+                          <>
+                            {current === 'entrepreneur'
+                              ? entrepreneurs.map((item) => (
+                                  <Disclosure.Button
+                                    key={item.name}
+                                    as="a"
+                                    href={item.href}
+                                    className={classNames(
+                                      item.current
+                                        ? 'bg-gray-900 text-white'
+                                        : 'text-gray-700 hover:bg-gray-700 hover:text-white',
+                                      'block px-3 py-2 rounded-md text-base font-medium'
+                                    )}
+                                    aria-current={
+                                      item.current ? 'page' : undefined
+                                    }
+                                  >
+                                    {item.name}
+                                  </Disclosure.Button>
+                                ))
+                              : studentNav.map((item) => (
+                                  <Disclosure.Button
+                                    key={item.name}
+                                    as="a"
+                                    href={item.href}
+                                    className={classNames(
+                                      item.current
+                                        ? 'bg-gray-900 text-white'
+                                        : 'text-gray-700 hover:bg-gray-700 hover:text-white',
+                                      'block px-3 py-2 rounded-md text-base font-medium'
+                                    )}
+                                    aria-current={
+                                      item.current ? 'page' : undefined
+                                    }
+                                  >
+                                    {item.name}
+                                  </Disclosure.Button>
+                                ))}
+                          </>
+                        )}
                       </div>
                     </Disclosure.Panel>
                   </>
@@ -409,3 +452,16 @@ const NavBar = (props: Props) => {
 };
 
 export default NavBar;
+// /{navigation.map((item) => (
+//   <Disclosure.Button
+//     key={item.name}
+//     as="a"
+//     href={item.href}
+//     className={classNames(
+
+//     )}
+//     aria-current={item.current ? 'page' : undefined}
+//   >
+//     {item.name}
+//   </Disclosure.Button>
+// ))}

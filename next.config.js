@@ -7,6 +7,9 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['.'],
   },
+  images: {
+    domains: ['firebasestorage.googleapis.com'],
+  },
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
