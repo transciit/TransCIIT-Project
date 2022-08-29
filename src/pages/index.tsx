@@ -1,6 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 
 import { Main } from '@/base/Main';
+import Partners from '@/components/index/Partners';
 import { Meta } from '@/layouts/Meta';
 
 import About from '../components/index/About';
@@ -27,6 +28,8 @@ Transdisciplinarity"
               herodes="Matching the needs of climate entrepreneurs with the skills of master's students"
             />
           </div>
+
+          <Partners />
 
           <About />
           <Matched />
