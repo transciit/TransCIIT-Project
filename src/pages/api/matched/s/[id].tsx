@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getMatchedS } from '@/lib/db';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const result = await getMatchedS(req.query.s);
+  const result = await getMatchedS(req.query.id);
 
   if (result.err) {
     res.status(500).json({ errors: result.err });

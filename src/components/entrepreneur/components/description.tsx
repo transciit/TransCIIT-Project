@@ -1,9 +1,11 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { useAuth } from '@/lib/auth';
+
+import { Modal } from './modalview';
 
 type Props = {
   feedDetail: any;
@@ -12,11 +14,16 @@ type Props = {
 
 const DescriptionCard = ({ feedDetail, from }: Props) => {
   const { user } = useAuth();
-  const router = useRouter();
-  router.push({
-    pathname: '/students/ViewEntrepreneurs',
-    query: { project_id: 'Someone' },
-  });
+  const [open, setOpen] = useState(false);
+  // const router = useRouter();
+
+  // const handleMatched = () => {
+  // router.push({
+  //   pathname: '/students/ViewEntrepreneurs',
+  //   query: { project_id: 'Someone' },
+  // });
+  // };
+
   return (
     <div>
       {feedDetail?.map((feedDetails) => (
@@ -148,6 +155,9 @@ const DescriptionCard = ({ feedDetail, from }: Props) => {
                   <>
                     <button
                       type="button"
+                      onClick={() => {
+                        setOpen(true);
+                      }}
                       className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
                     >
                       Match Project
@@ -245,6 +255,9 @@ const DescriptionCard = ({ feedDetail, from }: Props) => {
                 <>
                   <button
                     type="button"
+                    onClick={() => {
+                      setOpen(true);
+                    }}
                     className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
                   >
                     Match Project
@@ -259,6 +272,12 @@ const DescriptionCard = ({ feedDetail, from }: Props) => {
               )}
             </div>
           </div>
+          <Modal
+            feedDetails={feedDetail}
+            from={'where'}
+            open={open}
+            setOpen={setOpen}
+          />
         </div>
       ))}
     </div>

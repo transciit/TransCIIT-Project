@@ -23,6 +23,24 @@ export const getFeeds = async () => {
   }
 };
 
+export const getMyProjects = async (uid) => {
+  const q = query(
+    collection(db, 'feed'),
+    where('matched', '==', false),
+    where('entrepreneur_id', '==', uid)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const myProjects: any[] = [];
+    querySnapshot.forEach((document) => {
+      myProjects.push({ id: document.id, ...document.data() });
+    });
+    return { myProjects };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
 export const getFeedDetails = async (id) => {
   try {
     const docRef = doc(db, 'feed', id);
@@ -101,8 +119,8 @@ export const getStudents = async () => {
 
 export const getMatchedE = async (uid) => {
   const q = query(
-    collection(db, 'users'),
-    where('entrepreneurId', '==', uid),
+    collection(db, 'feed'),
+    where('entrepreneur_id', '==', uid),
     where('matched', '==', true)
   );
   try {
@@ -119,7 +137,7 @@ export const getMatchedE = async (uid) => {
 
 export const getMatchedS = async (uid) => {
   const q = query(
-    collection(db, 'users'),
+    collection(db, 'feed'),
     where('student_id', '==', uid),
     where('matched', '==', true)
   );
