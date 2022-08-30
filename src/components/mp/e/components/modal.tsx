@@ -2,8 +2,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
 
+import EmptyCard from '@/components/entrepreneur/components/emptycard';
+
 import DescriptionCard from './description';
-import EmptyCard from './emptycard';
 
 interface Props {
   feedDetails: any;

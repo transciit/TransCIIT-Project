@@ -1,35 +1,13 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import React from 'react';
 
 import { DashBoard } from '@/base/Dashboard';
-import EmptyCard from '@/components/entrepreneur/components/emptycard';
-import FeedCard from '@/components/entrepreneur/components/feedcard';
-import { Modal } from '@/components/entrepreneur/components/modal';
-import { Side } from '@/components/entrepreneur/components/side';
-import { Top } from '@/components/entrepreneur/components/top';
 import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
 
 export default function Index() {
-  const [open, setOpen] = useState(false);
-  const [id, setId] = useState({});
-  const getId = (idDetails: string) => {
-    setId(idDetails);
-  };
-
-  const { user } = useAuth();
-
   // changables
   const where = 'invested';
-  const { data: investmentData } = useSWR(`/api/invested/${user.uid}`, fetcher);
-  const { data: investmentDetails } = useSWR(
-    `/api/invested/detail/${id}`,
-    fetcher
-  );
-  const investment = investmentData?.investments;
-  const investmentDetail = investmentDetails?.investmentDetail;
+
   return (
     <>
       <DashBoard
@@ -44,9 +22,9 @@ export default function Index() {
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
             <div className="top-6">
-              <Top topName={`Good Morning, ${user.displayName}`} />
+              {/* <Top topName={`Good Morning, ${user.displayName}`} /> */}
             </div>
-            {investment?.length ? (
+            {/* {investment?.length ? (
               <FeedCard
                 feeds={investment}
                 setOpen={setOpen}
@@ -55,19 +33,19 @@ export default function Index() {
               />
             ) : (
               <EmptyCard />
-            )}
+            )} */}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            <Side />
+            {/* <Side /> */}
           </div>
         </div>
       </DashBoard>
-      <Modal
+      {/* <Modal
         feedDetails={investmentDetail}
         from={where}
         open={open}
         setOpen={setOpen}
-      />
+      /> */}
     </>
   );
 }

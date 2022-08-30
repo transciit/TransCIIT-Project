@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
+import FeedCard from '@/components/mp/e/components/feedcard';
+import { Modal } from '@/components/mp/e/components/modal';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
 import EmptyCard from '../../../components/entrepreneur/components/emptycard';
-import FeedCard from '../../../components/entrepreneur/components/feedcard';
 import { Side } from '../../../components/entrepreneur/components/side';
-import { Modal } from '../../../components/mp/components/modal';
 
 export default function Index() {
   const [open, setOpen] = useState(false);
@@ -19,18 +19,20 @@ export default function Index() {
   const getId = (idDetails: string) => {
     setId(idDetails);
   };
-  const [enterId, setEnterId] = useState({});
-  const getEnterId = (idDetails: string) => {
-    setEnterId(idDetails);
+  const [studentId, setStudentId] = useState({});
+  const getStudentId = (idDetails: string) => {
+    setStudentId(idDetails);
   };
 
   // changables
   const where = 'student';
   const { data: fetchMatchedE } = useSWR(`/api/matched/e/${user.uid}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
-  const { data: userWho } = useSWR(`/api/profile/${enterId}`, fetcher);
+  const { data: studentDetails } = useSWR(`/api/users/${studentId}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const ud = userDetails?.userDetails;
   const feeds = fetchMatchedE?.fetchMatchedE;
-  const userW = userWho?.userWho;
+  const sd = studentDetails?.userDetails;
   const feedDetail = feedDetails?.feedD;
   return (
     <>
@@ -44,12 +46,13 @@ export default function Index() {
         nameDashboard={where}
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
-          <div className="col-span-3 py-5">
+          <div className="col-span-3">
             {feeds?.length ? (
               <FeedCard
                 feeds={feeds}
                 setOpen={setOpen}
                 getId={getId}
+                getStudentId={getStudentId}
                 from={where}
               />
             ) : (
@@ -57,17 +60,15 @@ export default function Index() {
             )}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            <Side />
+            {ud?.length ? <Side ud={ud} /> : ''}
           </div>
         </div>
       </DashBoard>
-      <Modal
-        feedDetails={feedDetail}
-        open={open}
-        setOpen={setOpen}
-        getEnterId={getEnterId}
-        userE={userW}
-      />
+      {sd?.length ? (
+        <Modal feedDetails={feedDetail} open={open} setOpen={setOpen} ud={sd} />
+      ) : (
+        ''
+      )}
     </>
   );
 }

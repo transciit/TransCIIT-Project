@@ -7,12 +7,12 @@ import EmptyCard from './emptycard';
 
 interface Props {
   feedDetails: any;
-  from: string;
+  ud: any;
   open: any;
   setOpen: any;
 }
 
-export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
+export const Modal = ({ feedDetails, ud, open, setOpen }: Props) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -68,7 +68,7 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-10 flex-1 px-4 sm:px-6">
                       {feedDetails?.length ? (
-                        <DescriptionCard feedDetail={feedDetails} from={from} />
+                        <DescriptionCard feedDetail={feedDetails} ud={ud} />
                       ) : (
                         <EmptyCard />
                       )}

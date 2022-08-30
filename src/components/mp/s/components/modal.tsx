@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
 
-import EmptyCard from '@/components/entrepreneur/components/emptycard';
+import EmptyCard from '@/components/students/components/emptycard';
 
 import DescriptionCard from './description';
 
@@ -10,17 +10,10 @@ interface Props {
   feedDetails: any;
   open: any;
   setOpen: any;
-  getEnterId: (arg: string) => void;
-  userE: any;
+  ud: any;
 }
 
-export const Modal = ({
-  feedDetails,
-  open,
-  setOpen,
-  getEnterId,
-  userE,
-}: Props) => {
+export const Modal = ({ feedDetails, open, setOpen, ud }: Props) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -76,11 +69,7 @@ export const Modal = ({
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-10 flex-1 px-4 sm:px-6">
                       {feedDetails?.length ? (
-                        <DescriptionCard
-                          feedDetail={feedDetails}
-                          getEnterId={getEnterId}
-                          userE={userE}
-                        />
+                        <DescriptionCard feedDetail={feedDetails} ud={ud} />
                       ) : (
                         <EmptyCard />
                       )}

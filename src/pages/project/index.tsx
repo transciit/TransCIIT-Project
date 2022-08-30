@@ -1,9 +1,12 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useState } from 'react';
+import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
+import { useAuth } from '@/lib/auth';
+import fetcher from '@/utils/fetcher';
 
 import { Side } from '../../components/entrepreneur/components/side';
 import Stepper from '../../components/project/components/Stepper';
@@ -15,10 +18,13 @@ import OverviewCard from '../../components/projects/components/overview';
 import ReviewCard from '../../components/projects/components/review';
 
 const Index = () => {
+  const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [done, setDone] = useState(false);
 
   const steps = ['Overview', 'Additional', 'Business', 'Review'];
+  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const ud = userDetails?.userDetails;
 
   const handleClick = (direction) => {
     let newStep = currentStep;
@@ -93,7 +99,7 @@ const Index = () => {
           <ReviewCard current={area} /> */}
         </div>
         <div className="sticky top-6 hidden py-5 lg:block">
-          <Side />
+          {ud?.length ? <Side ud={ud} /> : ''}
         </div>
       </div>
     </DashBoard>

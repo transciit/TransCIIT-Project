@@ -2,6 +2,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
 import { doc, updateDoc } from 'firebase/firestore';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -10,12 +11,10 @@ import { useAuth } from '@/lib/auth';
 
 type Props = {
   feedDetail: any;
-  from: string;
-  getEnterId: (arg: string) => void;
-  userE: any;
+  ud: any;
 };
 
-const DescriptionCard = ({ feedDetail, from, getEnterId, userE }: Props) => {
+const DescriptionCard = ({ feedDetail, ud }: Props) => {
   const { user } = useAuth();
   const router = useRouter();
   const first = feedDetail[0];
@@ -27,7 +26,7 @@ const DescriptionCard = ({ feedDetail, from, getEnterId, userE }: Props) => {
         student_id: user.uid,
         matched: true,
       });
-      router.push('/student/matched');
+      router.push('/mp/student');
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +40,6 @@ const DescriptionCard = ({ feedDetail, from, getEnterId, userE }: Props) => {
               <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400 sm:mt-5">
                 <div className="text-grey-600 text-xs font-normal">
                   {feedDetails.business_focus}
-                  {getEnterId(feedDetails.entrepreneurId)}
                 </div>
               </div>
               <div className="mt-1 mb-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
@@ -158,21 +156,15 @@ const DescriptionCard = ({ feedDetail, from, getEnterId, userE }: Props) => {
           <div className="ml-3 hidden p-1 lg:block">
             <div className="mt-10 rounded-xl border border-slate-300 bg-gray-100 sm:mt-0 ">
               <div className="mx-5 mt-5">
-                {from.includes('bidded') ? (
-                  <p></p>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        savetoDb();
-                      }}
-                      className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
-                    >
-                      Match Project
-                    </button>
-                  </>
-                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    savetoDb();
+                  }}
+                  className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
+                >
+                  Match Project
+                </button>
 
                 <button
                   type="button"
@@ -212,30 +204,35 @@ const DescriptionCard = ({ feedDetail, from, getEnterId, userE }: Props) => {
                       className="relative mt-3 flex justify-center"
                     >
                       <div>
-                        <Menu.Button className="flex justify-center rounded-full bg-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                          <span className="sr-only">Open user menu</span>
-                          <img
-                            className="h-12 w-12 rounded-full"
-                            src="#"
-                            alt=""
-                          />
-                        </Menu.Button>
+                        <Image
+                          src={
+                            ud !== undefined
+                              ? ud[0].profile
+                              : '/assets/images/placeholder.png'
+                          }
+                          alt="Picture of the author"
+                          width={70}
+                          height={70}
+                          className="rounded-full"
+                        />
                       </div>
                     </Menu>
                     <div className="mt-3 mb-1 px-4 text-center font-inter text-lg font-medium text-slate-900">
-                      {userE?.name}
+                      {`${ud[0].firstName} ${ud[0].lastName}`}
                     </div>
                     <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
+                      <div className="text-grey-600 text-xs font-normal">
+                        {ud[0].about}
+                      </div>
+                    </div>
+                    <div className="relative mx-1 items-center self-center overflow-hidden text-center text-indigo-700 focus-within:text-gray-400">
                       <div className="text-grey-600 mb-4 text-xs font-normal">
-                        {userE?.email}
+                        {ud[0].email}
                       </div>
                     </div>
                     <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-base">
                       <Link href="#">
-                        <a className="font-bold text-indigo-500">
-                          {' '}
-                          View Profile
-                        </a>
+                        <a className="font-bold text-indigo-500">Contact</a>
                       </Link>
                     </div>
                   </div>
@@ -253,32 +250,21 @@ const DescriptionCard = ({ feedDetail, from, getEnterId, userE }: Props) => {
           </div>
           <div className="fixed inset-x-0 bottom-0 block rounded-xl border border-slate-300 bg-gray-100 sm:mt-0 lg:hidden">
             <div className="mx-5 mt-5 grid grid-rows-2 md:grid-cols-2 md:grid-rows-none">
-              {from.includes('bidded') ? (
-                <button
-                  type="button"
-                  className="col-span-2 mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"
-                >
-                  Talk to Entrepreneur
-                </button>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      savetoDb();
-                    }}
-                    className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
-                  >
-                    Match Project
-                  </button>
-                  <button
-                    type="button"
-                    className="mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"
-                  >
-                    Talk to Entrepreneur
-                  </button>
-                </>
-              )}
+              <button
+                type="button"
+                onClick={() => {
+                  savetoDb();
+                }}
+                className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
+              >
+                Match Project
+              </button>
+              <button
+                type="button"
+                className="mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"
+              >
+                Talk to Entrepreneur
+              </button>
             </div>
           </div>
         </div>
