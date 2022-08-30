@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import { Main } from '@/base/Main';
+import Loading from '@/components/loading';
 import { db, storage } from '@/config/firebase';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
@@ -205,7 +206,7 @@ export default function UserProfile() {
                 </div>
               </div>
               <div className="col-span-2 py-5">
-                {ud?.length ? <PersonalCard usr={ud} /> : 'Loading'}
+                {ud?.length ? <PersonalCard usr={ud} /> : <Loading />}
                 {ud?.length ? <ProfileCard usr={ud} /> : ''}
               </div>
             </div>
