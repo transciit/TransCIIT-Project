@@ -46,7 +46,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                 {feedDetails.business_name}
               </div>
               <div className="ml-5 mb-7 items-center rounded-md text-base font-normal text-primary-500">
-                By {user.displayName}
+                By {`${ud[0].firstName} ${ud[0].lastName}`}
               </div>
 
               <div>
