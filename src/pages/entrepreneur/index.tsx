@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
+import Loading from '@/components/loading';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
@@ -23,9 +24,9 @@ export default function Index() {
 
   // changables
   const where = 'entrepreneur';
-  const { data: myProjects } = useSWR(`/api/projects/${user.uid}`, fetcher);
+  const { data: myProjects } = useSWR(`/api/projects/${user?.uid}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
-  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
   const ud = userDetails?.userDetails;
   const feeds = myProjects?.myProjects;
   const feedDetail = feedDetails?.feedD;
@@ -42,24 +43,31 @@ export default function Index() {
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
-            <div className="top-6">{ud?.length ? <Top ud={ud} /> : ''}</div>
+            <div className="top-6">
+              {ud?.length ? <Top ud={ud} /> : <Loading />}
+            </div>
             {feeds?.length ? (
               <FeedCard
                 feeds={feeds}
                 setOpen={setOpen}
                 getId={getId}
                 from={where}
+                ud={ud}
               />
             ) : (
               <AddProjects />
             )}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            {ud?.length ? <Side ud={ud} /> : ''}
+            {ud?.length ? <Side ud={ud} /> : <Loading />}
           </div>
         </div>
       </DashBoard>
-      <Modal feedDetails={feedDetail} ud={ud} open={open} setOpen={setOpen} />
+      {ud?.length ? (
+        <Modal feedDetails={feedDetail} ud={ud} open={open} setOpen={setOpen} />
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

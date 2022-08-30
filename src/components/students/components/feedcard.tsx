@@ -1,7 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import Image from 'next/image';
 import React from 'react';
-
-import { useAuth } from '@/lib/auth';
 
 interface DataProps {
   feeds: any;
@@ -12,7 +11,6 @@ interface DataProps {
 }
 
 const FeedCard = ({ feeds, setOpen, getId, from, getEnterId }: DataProps) => {
-  const { user } = useAuth();
   return (
     <div>
       {feeds?.map((feed) => (
@@ -29,19 +27,22 @@ const FeedCard = ({ feeds, setOpen, getId, from, getEnterId }: DataProps) => {
             <div className="flex w-full flex-row pl-3">
               <div className="flex px-2">
                 <div className="h-auto w-auto rounded-full">
-                  <span className="inline-block h-10 w-10 cursor-pointer overflow-hidden rounded-full bg-gray-100 object-cover lg:h-12 lg:w-12">
-                    <svg
-                      className="h-full w-full text-gray-500"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </span>
+                  <Image
+                    src={
+                      feed.entrepreneur_profile !== undefined &&
+                      feed.entrepreneur_profile !== ''
+                        ? feed.entrepreneur_profile
+                        : '/assets/images/placeholder.png'
+                    }
+                    alt="Picture of the author"
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
                 </div>
                 <div className="mb-2 ml-4 mt-1 flex flex-col">
                   <div className="text-sm font-medium text-slate-800 lg:text-base">
-                    {user.displayName}
+                    {feed.entrepreneur_name}
                   </div>
                   <div className="flex w-full">
                     <div className="font-base mr-1 cursor-pointer text-xs text-blue-700">
@@ -51,7 +52,7 @@ const FeedCard = ({ feeds, setOpen, getId, from, getEnterId }: DataProps) => {
                       className="hidden
               text-xs text-gray-600 md:flex"
                     >
-                      • Sorted by date
+                      • {feed.entrepreneur_email}
                     </div>
                   </div>
                 </div>

@@ -2,15 +2,19 @@
 import { addDoc, collection } from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 import { useStepperContext } from '@/components/project/context/StepperContext';
 import { db } from '@/config/firebase';
 import { useAuth } from '@/lib/auth';
+import fetcher from '@/utils/fetcher';
 
 const ReviewCard = () => {
   const { userData } = useStepperContext();
   const { user } = useAuth();
   const router = useRouter();
+  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const ud = userDetails?.userDetails;
   const savetoDb = async () => {
     const docRef = await addDoc(collection(db, 'feed'), {
       primary_need: userData.primary_need,
@@ -19,12 +23,17 @@ const ReviewCard = () => {
       business_focus: userData.business_focus,
       secondary_need: userData.secondary_need || '',
       secondary_gap: userData.secondary_gap || '',
-      secondary_expertise: userData.secondary || '',
+      secondary_expertise: userData.secondary_expertise || '',
       business_name: userData.business_name,
       business_description: userData.business_description,
       business_contact_name: userData.business_contact_name,
       business_contact_email: userData.business_email,
+      matched: false,
+      help_required: userData.help_required,
       entrepreneur_id: user.uid,
+      entrepreneur_name: `${ud[0].firstName} ${ud[0].lastName}`,
+      entrepreneur_profile: ud[0].profile,
+      entrepreneur_email: ud[0].email,
     });
     console.log(docRef.id);
     router.push('/entrepreneur');
@@ -262,15 +271,19 @@ const ReviewCard = () => {
               </div>
               <hr className="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700"></hr>
               <div className="bg-gray-50 px-4 text-right sm:px-6">
-                <button
-                  type="button"
-                  className="mr-2 mb-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                  onClick={() => {
-                    savetoDb();
-                  }}
-                >
-                  Submit Project
-                </button>
+                {ud.length ? (
+                  <button
+                    type="button"
+                    className="mr-2 mb-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                    onClick={() => {
+                      savetoDb();
+                    }}
+                  >
+                    Submit Project
+                  </button>
+                ) : (
+                  'Loading...'
+                )}
               </div>
             </div>
           </div>

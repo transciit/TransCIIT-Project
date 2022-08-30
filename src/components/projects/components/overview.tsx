@@ -136,7 +136,6 @@ const OverviewCard = ({ getDone }) => {
                     </div>
                     <p className="mt-2 text-base text-gray-500"></p>
                   </div>
-                  <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700"></hr>
 
                   {/* <div>
                     <div className="w-full items-center justify-center">
@@ -243,8 +242,43 @@ const OverviewCard = ({ getDone }) => {
                       </div>
                     </div>
                   </div>
+                  <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700"></hr>
+
+                  <div className="px-2">
+                    <label
+                      htmlFor="company-website"
+                      className="block text-base font-medium text-slate-900"
+                    >
+                      Help Required
+                    </label>
+                    <div className="mt-1 flex rounded-md shadow-sm">
+                      <span className="hidden items-center rounded-l-md border border-r-0 border-slate-400 bg-gray-50 px-3 text-base text-gray-500 md:inline-flex"></span>
+                      <input
+                        type="text"
+                        name="help_required"
+                        id="pr-mary"
+                        className="block w-full flex-1 rounded-md border-slate-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-base md:rounded-none md:rounded-r-md"
+                        placeholder=" "
+                        value={userData.help_required}
+                        style={{ border: error ? '2px solid red' : '' }}
+                        onChange={handleChange}
+                        required
+                      />
+                      {error ? (
+                        <div style={{ color: 'red' }}>
+                          This is a required field
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                    <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                      Brief explanation od your project need.
+                    </div>
+                  </div>
                 </div>
                 <hr className="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700"></hr>
+
                 {/* <div className="bg-gray-50 px-4 text-right sm:px-6">
                     {progress !== 0 && (
                       <button

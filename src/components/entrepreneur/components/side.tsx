@@ -11,7 +11,7 @@ export const Side = ({ ud }) => {
             <div>
               <Image
                 src={
-                  ud !== undefined
+                  ud[0].profile !== undefined
                     ? ud[0].profile
                     : '/assets/images/placeholder.png'
                 }
