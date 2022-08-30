@@ -1,4 +1,4 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
@@ -26,19 +26,12 @@ export default function SignIn() {
     try {
       const ref = doc(db, 'users', user.uid);
       await updateDoc(ref, {
-        name: `${data.fname} ${' '} ${data.lname}`,
+        firstName: data.fname,
+        lastName: data.lname,
         country: data.country,
         phone: data.phone,
       });
-      const docSnap = await getDoc(ref);
-
-      if (docSnap.exists()) {
-        if (docSnap.data().type.includes('student')) {
-          router.push('/students');
-        } else {
-          router.push('/entrepreneur');
-        }
-      }
+      router.push('/redirecting/accountCreationSuccessful');
     } catch (err) {
       console.log(err);
     }

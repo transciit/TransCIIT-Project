@@ -51,18 +51,20 @@ const NavBar = (props: Props) => {
   const router = useRouter();
   const getUserFromDb = async () => {
     try {
-      const ref = doc(db, 'users', user.uid);
+      if (user) {
+        const ref = doc(db, 'users', user?.uid);
 
-      const docSnap = await getDoc(ref);
+        const docSnap = await getDoc(ref);
 
-      if (docSnap.exists()) {
-        if (docSnap.data().type.includes('student')) {
-          setCurrent('student');
-        } else {
-          setCurrent('entrepreneur');
-        }
-        if (docSnap.data().profile) {
-          setProfile(docSnap.data().profile);
+        if (docSnap.exists()) {
+          if (docSnap.data().type.includes('student')) {
+            setCurrent('student');
+          } else {
+            setCurrent('entrepreneur');
+          }
+          if (docSnap.data().profile) {
+            setProfile(docSnap.data().profile);
+          }
         }
       }
     } catch (err) {

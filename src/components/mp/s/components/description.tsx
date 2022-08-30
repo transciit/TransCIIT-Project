@@ -178,7 +178,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                       <div>
                         <Image
                           src={
-                            ud !== undefined
+                            ud[0].profile !== undefined
                               ? ud[0].profile
                               : '/assets/images/placeholder.png'
                           }

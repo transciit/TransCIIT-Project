@@ -19,7 +19,7 @@ export const Top = ({ ud }) => {
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
             <div className="mb-4 text-[11px] font-light text-gray-600 md:text-xs md:font-normal">
-              All listed Projects are certified and Approved by TransCIIT
+              All listed Projects are Approved by TransCIIT
             </div>
           </div>
         </div>

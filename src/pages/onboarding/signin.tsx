@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
-import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import { Onboarding } from '@/base/Onboarding';
-import { db } from '@/config/firebase';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
 
@@ -20,7 +18,7 @@ export default function SignIn() {
     },
   ];
   const router = useRouter();
-  const { user, signin } = useAuth();
+  const { signin } = useAuth();
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -30,17 +28,18 @@ export default function SignIn() {
     e.preventDefault();
     try {
       await signin(data.email, data.password);
-      const ref = doc(db, 'users', user.uid);
+      router.push('/redirecting');
+      // const ref = doc(db, 'users', user.uid);
 
-      const docSnap = await getDoc(ref);
+      // const docSnap = await getDoc(ref);
 
-      if (docSnap.exists()) {
-        if (docSnap.data().type.includes('student')) {
-          router.push('/students');
-        } else {
-          router.push('/entrepreneur');
-        }
-      }
+      // if (docSnap.exists()) {
+      //   if (docSnap.data().type.includes('student')) {
+      //     router.push('/students');
+      //   } else {
+      //     router.push('/entrepreneur');
+      //   }
+      // }
     } catch (err) {
       console.log(err);
     }

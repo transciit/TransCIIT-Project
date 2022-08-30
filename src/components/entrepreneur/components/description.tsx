@@ -4,8 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { useAuth } from '@/lib/auth';
-
 import { Modal } from './modalview';
 
 type Props = {
@@ -14,7 +12,6 @@ type Props = {
 };
 
 const DescriptionCard = ({ feedDetail, ud }: Props) => {
-  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   // const router = useRouter();
 
@@ -40,7 +37,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                 {feedDetails.business_name}
               </div>
               <div className="ml-5 mb-7 items-center rounded-md text-base font-normal text-primary-500">
-                By {user.displayName}
+                By {`${ud[0].firstName} ${ud[0].lastName}`}
               </div>
 
               <div>
@@ -55,7 +52,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                       More Details
                     </div>
                   </div>
-                  <div className="mx-3 mb-3 px-2 text-base text-slate-800 line-clamp-3">
+                  <div className="mx-3 mb-3 px-2 text-base text-slate-800 line-clamp-6">
                     {feedDetails.primary_gap}
                   </div>
 
@@ -200,7 +197,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                       <div>
                         <Image
                           src={
-                            ud !== undefined
+                            ud[0].profile !== undefined
                               ? ud[0].profile
                               : '/assets/images/placeholder.png'
                           }
