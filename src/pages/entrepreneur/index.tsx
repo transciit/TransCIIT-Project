@@ -25,6 +25,8 @@ export default function Index() {
   const where = 'entrepreneur';
   const { data: myProjects } = useSWR(`/api/projects/${user.uid}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const ud = userDetails?.userDetails;
   const feeds = myProjects?.myProjects;
   const feedDetail = feedDetails?.feedD;
   return (
@@ -32,7 +34,7 @@ export default function Index() {
       <DashBoard
         metaDashboard={
           <Meta
-            title=" Feeds | TransCIIT Project"
+            title="Entrepreneur | TransCIIT Project"
             description="Welcome to TransCIIT"
           />
         }
@@ -40,9 +42,7 @@ export default function Index() {
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
-            <div className="top-6">
-              <Top topName={`Good Afternoon`} />
-            </div>
+            <div className="top-6">{ud?.length ? <Top ud={ud} /> : ''}</div>
             {feeds?.length ? (
               <FeedCard
                 feeds={feeds}
@@ -55,16 +55,11 @@ export default function Index() {
             )}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            <Side />
+            {ud?.length ? <Side ud={ud} /> : ''}
           </div>
         </div>
       </DashBoard>
-      <Modal
-        feedDetails={feedDetail}
-        from={where}
-        open={open}
-        setOpen={setOpen}
-      />
+      <Modal feedDetails={feedDetail} ud={ud} open={open} setOpen={setOpen} />
     </>
   );
 }

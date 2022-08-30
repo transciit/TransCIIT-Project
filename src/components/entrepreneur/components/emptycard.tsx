@@ -1,5 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import Link from 'next/link';
 import React from 'react';
 
 const EmptyCard = () => (
@@ -13,11 +12,6 @@ const EmptyCard = () => (
           <div className="text-grey-600 mb-4 text-xs font-normal">
             Check back later or try again
           </div>
-        </div>
-        <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-sm">
-          <Link href="/projects/matched">
-            <a className="font-bold text-indigo-500"> Go to Matched projects</a>
-          </Link>
         </div>
       </div>
     </div>

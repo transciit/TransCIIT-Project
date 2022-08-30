@@ -4,9 +4,6 @@ import React from 'react';
 import { DashBoard } from '@/base/Dashboard';
 import { Meta } from '@/layouts/Meta';
 
-import { Side } from '../../components/entrepreneur/components/side';
-import { Top } from '../../components/entrepreneur/components/top';
-
 export default function Index() {
   // changables
   const where = 'student';
@@ -23,9 +20,9 @@ export default function Index() {
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
-            <div className="top-6">
+            {/* <div className="top-6">
               <Top topName={`Good Afternoon`} />
-            </div>
+            </div> */}
             {/* {feeds?.length ? (
               <FeedCard
                 feeds={feeds}
@@ -38,7 +35,7 @@ export default function Index() {
             )} */}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            <Side />
+            {/* <Side /> */}
           </div>
         </div>
       </DashBoard>

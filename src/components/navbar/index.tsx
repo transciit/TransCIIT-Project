@@ -15,21 +15,25 @@ const onboard = 'onboard';
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'About Us', href: '/about', current: false },
-  { name: 'Matched Projects', href: '/matched', current: false },
-  { name: 'Blogs', href: '/blogs', current: false },
-  { name: 'Contact', href: '#', current: false },
+  { name: 'Matched Projects', href: '/onboarding/signin', current: false },
+  {
+    name: 'Blogs',
+    href: 'https://www.acts-net.org/foresight-africa-blog',
+    current: false,
+  },
+  { name: 'Contact', href: '/contact', current: false },
 ];
 
 const entrepreneurs = [
   { name: 'Dashboard', href: '/entrepreneur', current: false },
   { name: 'Matched Projects', href: '/mp/entrepreneur', current: false },
-  { name: 'Contact', href: '#', current: false },
+  { name: 'Contact', href: '/contact', current: false },
 ];
 
 const studentNav = [
   { name: 'Find Projects', href: '/students', current: false },
   { name: 'Matched Projects', href: '/mp/student', current: false },
-  { name: 'Contact', href: '#', current: false },
+  { name: 'Contact', href: '/contact', current: false },
 ];
 
 function classNames(...classes) {
@@ -276,8 +280,13 @@ const NavBar = (props: Props) => {
                                             'block px-4 py-2 text-sm text-gray-700'
                                           )}
                                           onClick={() => {
-                                            logout();
-                                            router.push('/onboarding/signin');
+                                            try {
+                                              logout();
+                                            } catch (err) {
+                                              console.log(err);
+                                            } finally {
+                                              router.push('/onboarding/signin');
+                                            }
                                           }}
                                         >
                                           Sign out

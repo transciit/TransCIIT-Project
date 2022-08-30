@@ -35,7 +35,7 @@ const Main = (props: IMainProps) => {
         {props.name.includes('onboard') ? (
           <p></p>
         ) : (
-          <div className="mx-auto px-6 md:max-w-screen-xl">
+          <div className="mx-auto px-6 ">
             <footer className="border-t border-gray-200 bg-white px-4 pt-12 pb-8 text-white">
               <div className="container mx-auto flex max-w-6xl flex-col justify-between overflow-hidden px-4 lg:flex-row">
                 <div className="mr-4 w-full pl-12 text-left sm:pl-0 sm:text-center lg:w-1/4 lg:text-left">
