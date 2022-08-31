@@ -2,10 +2,13 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
 import { doc, updateDoc } from 'firebase/firestore';
+import { Button, Modal } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
+import Loading from '@/components/loading';
 import { db } from '@/config/firebase';
 import { useAuth } from '@/lib/auth';
 
@@ -18,6 +21,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
   const { user } = useAuth();
   const router = useRouter();
   const first = feedDetail[0];
+  const [open, setOpen] = useState(false);
   console.log(first.id);
   const savetoDb = async () => {
     try {
@@ -159,7 +163,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                 <button
                   type="button"
                   onClick={() => {
-                    savetoDb();
+                    setOpen(true);
                   }}
                   className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
                 >
@@ -173,6 +177,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                   Talk to Entrepreneur
                 </button>
               </div>
+
               <div className="ml-5 mb-3 items-center rounded-md text-base font-medium text-primary-600">
                 Contact Support for help!
               </div>
@@ -252,9 +257,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
             <div className="mx-5 mt-5 grid grid-rows-2 md:grid-cols-2 md:grid-rows-none">
               <button
                 type="button"
-                onClick={() => {
-                  savetoDb();
-                }}
+                data-modal-toggle="popup-modal"
                 className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
               >
                 Match Project
@@ -269,6 +272,35 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
           </div>
         </div>
       ))}
+      <Modal show={open} popup={true} size="md">
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+              Confirm Match of with Project!
+            </h3>
+          </div>
+          <div className="mt-7 flex justify-center gap-4">
+            <Button
+              onClick={() => {
+                <Loading />;
+                savetoDb();
+                setOpen(false);
+              }}
+            >
+              Match project
+            </Button>
+            <Button
+              color="gray"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Decline
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

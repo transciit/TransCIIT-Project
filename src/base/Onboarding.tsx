@@ -1,11 +1,5 @@
-import Lottie from 'lottie-react';
 import type { ReactNode } from 'react';
 import React from 'react';
-
-import { Meta } from '@/layouts/Meta';
-
-import animationData from '../lotties/login.json';
-import { Main } from './Main';
 
 type IMainProps = {
   metaOnboard: ReactNode;
@@ -15,20 +9,11 @@ type IMainProps = {
 export const Onboarding = (props: IMainProps) => {
   // <AnimationRevealPage> },
   return (
-    <Main meta={<Meta title=" " description=" " />} name={'onboard'}>
-      <div className="-m-8 flex min-h-screen justify-center font-medium text-white">
-        {props.metaOnboard}
-        <div className="mx-10 my-16 flex max-w-screen-xl flex-1 justify-center rounded-lg border border-slate-300 text-gray-900 sm:mx-20 ">
-          <div className="m-auto hidden h-full justify-center text-center sm:rounded-l-lg lg:flex">
-            <Lottie
-              loop={true}
-              autoplay={true}
-              animationData={animationData}
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="w-full max-w-3xl p-6">
+    <div className="h-screen bg-white">
+      {props.metaOnboard}
+      <div className="flex w-full flex-wrap">
+        <div className="flex w-full flex-col md:w-1/2">
+          <div className="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-14 md:pt-0">
             {props.children}
             <p className="mt-6 text-center text-xs text-gray-600">
               I agree to abide by TranCIIT{' '}
@@ -42,8 +27,16 @@ export const Onboarding = (props: IMainProps) => {
             </p>
           </div>
         </div>
+
+        <div className="w-1/2 shadow-2xl">
+          <img
+            className="hidden h-screen w-full object-cover md:block"
+            src="https://source.unsplash.com/IXUM4cJynP0"
+            alt=""
+          />
+        </div>
       </div>
-    </Main>
+    </div>
   );
   // </AnimationRevealPage>'
 };
