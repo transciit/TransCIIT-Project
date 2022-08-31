@@ -1,7 +1,10 @@
 /* eslint-disable no-console */
+import 'react-toastify/dist/ReactToastify.css';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { Onboarding } from '@/base/Onboarding';
 import { Meta } from '@/layouts/Meta';
@@ -26,22 +29,22 @@ export default function SignIn() {
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
+    const id = toast.loading('Please wait...');
     try {
       await signin(data.email, data.password);
       router.push('/redirecting');
-      // const ref = doc(db, 'users', user.uid);
-
-      // const docSnap = await getDoc(ref);
-
-      // if (docSnap.exists()) {
-      //   if (docSnap.data().type.includes('student')) {
-      //     router.push('/students');
-      //   } else {
-      //     router.push('/entrepreneur');
-      //   }
-      // }
     } catch (err) {
-      console.log(err);
+      toast.update(id, {
+        render: 'Username or Password is Incorrect',
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   return (
@@ -128,6 +131,7 @@ export default function SignIn() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </Onboarding>
   );
 }

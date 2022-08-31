@@ -1,7 +1,10 @@
 /* eslint-disable no-console */
+import 'react-toastify/dist/ReactToastify.css';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { Onboarding } from '@/base/Onboarding';
 import { Meta } from '@/layouts/Meta';
@@ -25,12 +28,23 @@ export default function SignUp() {
   });
 
   const handleSignup = async (e: any) => {
+    const id = toast.loading('Please wait...');
     e.preventDefault();
     try {
       await signup(data.email, data.password);
       router.push('/onboarding/as');
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      toast.update(id, {
+        render: 'Email Already Exists',
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -126,6 +140,7 @@ export default function SignUp() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </Onboarding>
   );
 }

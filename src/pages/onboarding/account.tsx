@@ -1,6 +1,9 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import { doc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { Onboarding } from '@/base/Onboarding';
 import { db } from '@/config/firebase';
@@ -23,6 +26,7 @@ export default function SignIn() {
 
   const savetoDb = async (e: any) => {
     e.preventDefault();
+    const id = toast.loading('Please wait...');
     try {
       const ref = doc(db, 'users', user.uid);
       await updateDoc(ref, {
@@ -33,7 +37,17 @@ export default function SignIn() {
       });
       router.push('/redirecting/accountCreationSuccessful');
     } catch (err) {
-      console.log(err);
+      toast.update(id, {
+        render: 'An Error Occurred',
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -176,6 +190,7 @@ export default function SignIn() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Onboarding>
   );
 }

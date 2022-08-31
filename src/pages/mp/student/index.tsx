@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
+import Loading from '@/components/loading';
 import { Modal } from '@/components/mp/s/components/modal';
 import FeedCard from '@/components/students/components/feedcard';
 import { Meta } from '@/layouts/Meta';
@@ -61,7 +62,7 @@ export default function Index() {
             )}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            {ud?.length ? <Side ud={ud} /> : ''}
+            {ud?.length ? <Side ud={ud} /> : <Loading />}
           </div>
         </div>
       </DashBoard>
