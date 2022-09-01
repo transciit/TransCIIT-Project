@@ -12,8 +12,8 @@ export default function Partners() {
           <div className="flex gap-16 lg:gap-20">
             <Image
               src="/assets/images/1.png"
-              width={500}
-              height={200}
+              width={580}
+              height={30}
               alt="TransCIIT"
             />
             <Image

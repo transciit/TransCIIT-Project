@@ -1,4 +1,9 @@
+/* eslint-disable no-console */
 // import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+// React-wrapper file
+import '@yaireo/tagify/dist/tagify.css'; // Tagify CSS
+
+// React-wrapper file
 import { useState } from 'react';
 
 // import { storage } from '@/config/firebase';
@@ -12,10 +17,67 @@ const MySkillsCard = ({ getDone }) => {
 
   const { myData, setMyData } = useStepperContext();
 
+  // // Tagify settings object
+  // const baseTagifySettings = {
+  //   blacklist: ['xxx', 'yyy', 'zzz'],
+  //   maxTags: 6,
+  //   // backspace: "edit",
+  //   placeholder: 'type something',
+  //   dropdown: {
+  //     enabled: 1, // always show suggestions dropdown
+  //   },
+  // };
+  // // this is an example React component which implemenets Tagify within
+  // // itself. This example is a bit elaborate, to demonstrate what's possible.
+  // const tagifyRef1 = useRef();
+
+  // // just a name I made up for allowing dynamic changes for tagify settings on this component
+  // const [tagifySettings] = useState([]);
+  // const [tagifyProps, setTagifyProps] = useState({});
+  // const [tagifyWhitelist, setTagifyWhitelist] = useState<any>([]);
+
+  // on component mount
+  // useEffect(() => {
+  //   setTagifyProps({ loading: true });
+
+  //   const { length } = fc;
+  //   fc.map((item, index) => {
+  //     const items = item.name;
+  //     setTagifyWhitelist(item.name);
+  //     console.log(item.name);
+  //     console.log(tagifyWhitelist);
+
+  //     if (index === length - 1) {
+  //       /* invoke callback */
+  //       console.log(tagifyWhitelist);
+  //       setTagifyProps((lastProps) => ({
+  //         ...lastProps,
+  //         whitelist: ['tagifyWhitelist', 'me'],
+  //         showFilteredDropdown: 'a',
+  //         loading: false,
+  //       }));
+  //     }
+
+  //     return '';
+  //   });
+
+  //   // simulate state change where some tags were deleted
+  // }, []);
+
+  // // merged tagify settings (static & dynamic)
+  // const settings = {
+  //   ...baseTagifySettings,
+  //   ...tagifySettings,
+  // };
+
+  // const onChange = useCallback((e) => {
+  //   console.log('CHANGED:', e.detail.value);
+  // }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setMyData({ ...myData, [name]: value });
-    if (isEmpty(myData.about_you) || isEmpty(myData.area_of_expertise)) {
+    if (isEmpty(myData.about_you)) {
       getDone(false);
     } else {
       getDone(true);
@@ -82,6 +144,31 @@ const MySkillsCard = ({ getDone }) => {
                       Your area of expertise
                     </label>
                     <div className="mt-1 flex rounded-md shadow-sm">
+                      {/* <Tags
+                        tagifyRef={tagifyRef1}
+                        settings={settings}
+                        autoFocus={true}
+                        {...tagifyProps}
+                        onChange={onChange}
+                        onEditInput={() => console.log('onEditInput')}
+                        onEditBeforeUpdate={() =>
+                          console.log`onEditBeforeUpdate`
+                        }
+                        onEditUpdated={() => console.log('onEditUpdated')}
+                        onEditStart={() => console.log('onEditStart')}
+                        onEditKeydown={() => console.log('onEditKeydown')}
+                        onDropdownShow={() => console.log('onDropdownShow')}
+                        onDropdownHide={() => console.log('onDropdownHide')}
+                        onDropdownSelect={() => console.log('onDropdownSelect')}
+                        onDropdownScroll={() => console.log('onDropdownScroll')}
+                        onDropdownNoMatch={() =>
+                          console.log('onDropdownNoMatch')
+                        }
+                        onDropdownUpdated={() =>
+                          console.log('onDropdownUpdated')
+                        }
+                      /> */}
+
                       <input
                         type="text"
                         name="area_of_expertise"

@@ -152,3 +152,17 @@ export const getMatchedS = async (uid) => {
     return { err };
   }
 };
+
+export const getCategories = async () => {
+  const q = query(collection(db, 'categories'));
+  try {
+    const querySnapshot = await getDocs(q);
+    const fetchCategories: any[] = [];
+    querySnapshot.forEach((document) => {
+      fetchCategories.push({ id: document.id, ...document.data() });
+    });
+    return { fetchCategories };
+  } catch (err: any) {
+    return { err };
+  }
+};

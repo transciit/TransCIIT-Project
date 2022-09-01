@@ -40,10 +40,7 @@ export default function Index() {
     <>
       <DashBoard
         metaDashboard={
-          <Meta
-            title="Projects | TransCIIT Project"
-            description="Welcome to TransCIIT"
-          />
+          <Meta title="TransCIIT Project" description="Welcome to TransCIIT" />
         }
         nameDashboard={where}
       >

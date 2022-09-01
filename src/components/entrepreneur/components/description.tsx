@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { Modal } from './modalview';
+import { Modal } from '../studentComponents/modalview';
 
 type Props = {
   feedDetail: any;

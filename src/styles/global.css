@@ -10,7 +10,7 @@
 @tailwind utilities;
 
 .content p {
-  @apply my-6;
+  @apply my-1;
 }
 
 .content ul {
