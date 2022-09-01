@@ -30,6 +30,7 @@ export default function Index() {
   const ud = userDetails?.userDetails;
   const feeds = myProjects?.myProjects;
   const feedDetail = feedDetails?.feedD;
+
   return (
     <>
       <DashBoard

@@ -1,9 +1,12 @@
 /* eslint-disable no-console */
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
+import { doc, updateDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
+import router from 'next/router';
 
+import { db } from '@/config/firebase';
 import { useAuth } from '@/lib/auth';
 
 type Props = {
@@ -13,8 +16,17 @@ type Props = {
 
 const DescriptionCard = ({ feedDetail, ud }: Props) => {
   const { user } = useAuth();
-  const first = feedDetail[0];
-  console.log(first.id);
+  const handleMatch = async () => {
+    try {
+      const referenceData = doc(db, 'feed', feedDetail[0].id);
+      await updateDoc(referenceData, {
+        matched: false,
+      });
+      router.push('/entrepreneur');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -141,7 +153,16 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
           <div className="ml-3 hidden p-1 lg:block">
             <button
               type="button"
-              className="col-span-2 mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"
+              onClick={() => {
+                handleMatch();
+              }}
+              className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            >
+              Unmatch Project
+            </button>
+            <button
+              type="button"
+              className="col-span-2 mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
             >
               Talk to Student
             </button>
@@ -200,6 +221,15 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
           </div>
           <div className="fixed inset-x-0 bottom-0 block rounded-xl border border-slate-300 bg-gray-100 sm:mt-0 lg:hidden">
             <div className="mx-5 mt-5 grid grid-rows-2 md:grid-cols-2 md:grid-rows-none">
+              <button
+                type="button"
+                onClick={() => {
+                  handleMatch();
+                }}
+                className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
+              >
+                Unmatch Project
+              </button>
               <button
                 type="button"
                 className="col-span-2 mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"

@@ -1,9 +1,10 @@
 {
-  "name": "next-js-boilerplate",
-  "version": "2.1.0",
+  "name": "transccit-project",
+  "version": "0.0.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ./scripts/build-search.js",
     "start": "next start",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "export": "next export",
@@ -24,9 +25,13 @@
     "@nandorojo/swr-firestore": "^0.16.0",
     "@splidejs/react-splide": "^0.7.8",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "@yaireo/tagify": "^4.16.2",
+    "algoliasearch": "^4.14.2",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
     "feather-icons": "^4.28.0",
-    "firebase": "^9.9.2",
+    "firebase": "^9.9.3",
+    "firebase-admin": "^11.0.1",
     "flowbite": "^1.5.2",
     "flowbite-react": "^0.1.6",
     "formik": "^2.2.9",
@@ -39,6 +44,8 @@
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^18.2.0",
     "react-github-btn": "^1.2.0",
+    "react-instantsearch-dom": "^6.32.0",
+    "react-instantsearch-hooks-web": "^6.32.1",
     "react-markdown": "^8.0.3",
     "react-modal": "^3.13.1",
     "react-rnd": "^10.2.4",
@@ -102,5 +109,5 @@
     "tailwindcss": "^3.1.6",
     "typescript": "^4.7.4"
   },
-  "author": "Ixartz (https://github.com/ixartz)"
+  "author": "Phanuel Mutuma (https://phanuelmutuma.co.ke)"
 }

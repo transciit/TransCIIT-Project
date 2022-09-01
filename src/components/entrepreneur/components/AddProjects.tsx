@@ -6,7 +6,7 @@ const AddProjects = () => (
     <div className="relative mt-5 justify-center">
       <div className="rounded-lg border border-slate-300 p-10">
         <div className="mt-3 mb-1 px-4 text-center font-inter text-2xl font-medium text-slate-700">
-          You do not have any Projects Yet
+          You do not have any unmatched Projects,
         </div>
         <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
           <div className="mb-4 text-xs font-normal text-gray-600">

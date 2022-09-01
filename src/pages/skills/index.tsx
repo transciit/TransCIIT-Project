@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import { DashBoard } from '@/base/Dashboard';
+import Loading from '@/components/loading';
+import MySkillsCard from '@/components/skills/components/myskills';
 import { Meta } from '@/layouts/Meta';
 import { useAuth } from '@/lib/auth';
 import fetcher from '@/utils/fetcher';
 
 import { Side } from '../../components/entrepreneur/components/side';
-import MySkillsCard from '../../components/skills/components/myskills';
 import StudentReviewCard from '../../components/skills/components/review';
 import Stepper from '../../components/skills/components/Stepper';
 import StepperControl from '../../components/skills/components/StepperControl';
@@ -23,7 +24,9 @@ const Index = () => {
 
   const steps = ['About', 'Review'];
   const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const { data: fetchCategories } = useSWR('/api/category/', fetcher);
   const ud = userDetails?.userDetails;
+  const fc = fetchCategories?.fetchCategories;
 
   const handleClick = (direction) => {
     let newStep = currentStep;
@@ -63,9 +66,13 @@ const Index = () => {
             <Stepper steps={steps} currentStep={currentStep} />
 
             <div className="my-12 rounded-xl border border-slate-200 bg-white p-1 shadow-xl">
-              <UseContextProvider>
-                {displayStep(currentStep)}
-              </UseContextProvider>
+              {fc?.length ? (
+                <UseContextProvider>
+                  {displayStep(currentStep)}
+                </UseContextProvider>
+              ) : (
+                <Loading />
+              )}
 
               <div className="px-4 text-right sm:px-6">
                 {currentStep !== steps.length && (

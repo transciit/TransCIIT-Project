@@ -3,10 +3,10 @@ import { ChevronLeftIcon } from '@heroicons/react/outline';
 import { Fragment } from 'react';
 import useSWR from 'swr';
 
-import ViewStudents from '@/pages/students/ViewStudents';
+import ViewStudents from '@/components/entrepreneur/studentComponents/ViewStudents';
 import fetcher from '@/utils/fetcher';
 
-import EmptyCard from './emptycard';
+import EmptyCard from '../components/emptycard';
 
 interface Props {
   feedDetails: any;
@@ -36,7 +36,7 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:w-[80rem]">
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-500"
@@ -46,7 +46,7 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto relative w-full lg:max-w-7xl">
+                <Dialog.Panel className="pointer-events-auto relative w-full">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-500"
@@ -70,7 +70,7 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-7 shadow-xl">
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-10 flex-1 px-4 sm:px-6">
                       {student?.length ? (
