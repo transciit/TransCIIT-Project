@@ -138,7 +138,7 @@ const PersonalCard = ({ usr }) => {
                           className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
-                      {usr[0].includes('student') ? (
+                      {usr[0].type.includes('student') ? (
                         <div className="col-span-6">
                           <label
                             htmlFor="street-address"
