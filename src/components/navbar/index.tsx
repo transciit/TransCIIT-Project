@@ -15,10 +15,10 @@ const onboard = 'onboard';
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'About Us', href: '/about', current: false },
-  { name: 'Matched Projects', href: '/onboarding/signin', current: false },
+  { name: 'Matched Projects', href: '/matched', current: false },
   {
     name: 'Blogs',
-    href: 'https://www.acts-net.org/foresight-africa-blog',
+    href: '/blogs',
     current: false,
   },
   { name: 'Contact', href: '/contact', current: false },
