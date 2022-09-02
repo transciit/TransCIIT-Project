@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-cycle */
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { Tabs } from 'flowbite-react';
@@ -59,7 +60,11 @@ const ViewStudents = ({ feedDetail, student }) => {
                   student?.map((students) => (
                     <StudentCard
                       key={students.id}
-                      fav={!!students?.liked.includes(user.uid)}
+                      fav={
+                        students?.liked !== undefined
+                          ? !!students?.liked.includes(user.uid)
+                          : false
+                      }
                       students={students}
                       getId={getId}
                       getStudentId={getStudentId}
@@ -75,15 +80,23 @@ const ViewStudents = ({ feedDetail, student }) => {
               <div className="grid-cols-3 gap-8 md:grid">
                 {student.length ? (
                   student?.map((students) =>
-                    students?.liked.includes(user.uid) ? (
-                      <StudentCard
-                        key={students.id}
-                        fav={!!students?.liked.includes(user.uid)}
-                        students={students}
-                        getId={getId}
-                        getStudentId={getStudentId}
-                        setOpen={setOpen}
-                      />
+                    students?.liked !== undefined ? (
+                      students?.liked.includes(user.uid) ? (
+                        <StudentCard
+                          key={students.id}
+                          fav={
+                            students?.liked !== undefined
+                              ? !!students?.liked.includes(user.uid)
+                              : false
+                          }
+                          students={students}
+                          getId={getId}
+                          getStudentId={getStudentId}
+                          setOpen={setOpen}
+                        />
+                      ) : (
+                        ''
+                      )
                     ) : (
                       ''
                     )

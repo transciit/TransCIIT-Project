@@ -166,3 +166,75 @@ export const getCategories = async () => {
     return { err };
   }
 };
+
+export const getInvitesEntrepreneur = async (uid) => {
+  const q = query(
+    collection(db, 'invites'),
+    where('matched', '==', false),
+    where('entrepreneur_id', '==', uid)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const feeds: any[] = [];
+    querySnapshot.forEach((document) => {
+      feeds.push({ id: document.id, ...document.data() });
+    });
+    return { feeds };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getInvitesStudent = async (uid) => {
+  const q = query(
+    collection(db, 'invites'),
+    where('matched', '==', false),
+    where('student_id', '==', uid)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const feeds: any[] = [];
+    querySnapshot.forEach((document) => {
+      feeds.push({ id: document.id, ...document.data() });
+    });
+    return { feeds };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getBidsEntrepreneur = async (uid) => {
+  const q = query(
+    collection(db, 'bids'),
+    where('matched', '==', false),
+    where('entrepreneur_id', '==', uid)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const feeds: any[] = [];
+    querySnapshot.forEach((document) => {
+      feeds.push({ id: document.id, ...document.data() });
+    });
+    return { feeds };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getBidsStudent = async (uid) => {
+  const q = query(
+    collection(db, 'bids'),
+    where('matched', '==', false),
+    where('student_id', '==', uid)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const feeds: any[] = [];
+    querySnapshot.forEach((document) => {
+      feeds.push({ id: document.id, ...document.data() });
+    });
+    return { feeds };
+  } catch (err: any) {
+    return { err };
+  }
+};

@@ -14,6 +14,7 @@ const PersonalCard = ({ usr }) => {
     emailAddress: usr[0].email,
     country: usr[0].country,
     phoneNumber: usr[0].phone,
+    rate: usr[0].rate,
   });
 
   const getDetails = (e) => {
@@ -137,6 +138,27 @@ const PersonalCard = ({ usr }) => {
                           className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
+                      {usr[0].includes('student') ? (
+                        <div className="col-span-6">
+                          <label
+                            htmlFor="street-address"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Your Rate
+                          </label>
+                          <input
+                            type="text"
+                            name="rate"
+                            value={userData.rate}
+                            onChange={getDetails}
+                            id="street-address"
+                            autoComplete="street-address"
+                            className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
+                        </div>
+                      ) : (
+                        ''
+                      )}
                       <div className="col-span-6">
                         <button
                           type="button"

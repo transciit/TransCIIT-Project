@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 
 import { db } from '@/config/firebase';
@@ -15,7 +15,15 @@ const Index = () => {
 
     if (docSnap.exists()) {
       if (docSnap.data().type.includes('student')) {
-        router.push('/students');
+        if (docSnap.data().rate === undefined) {
+          await updateDoc(ref, {
+            rate: 'Not Specified',
+            liked: [5],
+          });
+          router.push('/students');
+        } else {
+          router.push('/students');
+        }
       } else {
         router.push('/entrepreneur');
       }

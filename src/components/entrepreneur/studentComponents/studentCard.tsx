@@ -22,13 +22,7 @@ const StudentCard = ({
 
   return (
     <div>
-      <div
-        className="group mt-4 rounded-lg border border-slate-300 hover:cursor-pointer hover:bg-slate-100 md:mt-0 "
-        onClick={() => {
-          getStudentId(students.id);
-          setOpen(true);
-        }}
-      >
+      <div className="group mt-4 rounded-lg border border-slate-300 hover:cursor-pointer hover:bg-slate-100 md:mt-0 ">
         <div>
           <div className="relative">
             <div className="absolute top-0 right-0 mr-5 mt-3">
@@ -66,7 +60,13 @@ const StudentCard = ({
                 </svg>
               )}
             </div>
-            <div className="mx-5 grid grid-cols-4">
+            <div
+              className="mx-5 grid grid-cols-4"
+              onClick={() => {
+                getStudentId(students.id);
+                setOpen(true);
+              }}
+            >
               <div>
                 <Menu as="div" className="relative mt-5">
                   <div>

@@ -26,7 +26,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
     <div>
       {feedDetail?.map((feedDetails) => (
         <div className="top-6 grid grid-cols-3" key={feedDetails.id}>
-          <div className="col-span-3 mb-28 grid rounded-xl border border-slate-400 bg-white p-1 shadow-lg md:mb-24 lg:col-span-2 lg:mb-0">
+          <div className="col-span-3 mb-28 grid rounded-2xl border border-slate-400 bg-white p-1 md:mb-24 lg:col-span-2 lg:mb-0">
             <div className="mt-10 sm:mt-0">
               <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400 sm:mt-5">
                 <div className="text-grey-600 text-xs font-normal">
@@ -144,7 +144,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
               </div>
             </div>
           </div>
-          <div className="ml-3 hidden p-1 lg:block">
+          <div className="mx-8 hidden p-1 lg:block">
             <div className="mt-10 rounded-xl border border-slate-300 bg-gray-100 sm:mt-0 ">
               <div className="mx-5 mt-5">
                 <button

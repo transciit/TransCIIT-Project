@@ -1,53 +1,74 @@
 /* eslint-disable no-console */
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
+import { deleteDoc, doc } from 'firebase/firestore';
 import { Button, Modal } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import router from 'next/router';
 import { useState } from 'react';
+import { BsExclamationCircle } from 'react-icons/bs';
 
 import Loading from '@/components/loading';
+import { db } from '@/config/firebase';
 
 type Props = {
   feedDetail: any;
   ud: any;
+  feeds: any;
 };
 
-const DescriptionCard = ({ feedDetail, ud }: Props) => {
-  const router = useRouter();
-  const first = feedDetail[0];
+const DescriptionCard = ({ feeds, feedDetail, ud }: Props) => {
   const [open, setOpen] = useState(false);
-  console.log(first.id);
-  const savetoDb = async () => {
+
+  const handleMatch = async () => {
     try {
-      router.push(
-        {
-          pathname: '/terms/student',
-          query: { id: feedDetail[0].id, uid: ud[0].id },
-        },
-        '/terms/student'
-      );
+      const referenceData = doc(db, 'bids', feeds[0].id);
+      await deleteDoc(referenceData);
+      router.push('/students');
     } catch (err) {
       console.log(err);
     }
-    // try {
-    //   const referenceData = doc(db, 'feed', first.id);
-    //   await updateDoc(referenceData, {
-    //     student_id: user.uid,
-    //     matched: true,
-    //   });
-    //   router.push('/mp/student');
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
+
   return (
     <div>
       {feedDetail?.map((feedDetails) => (
         <div className="top-6 grid grid-cols-3" key={feedDetails.id}>
           <div className="col-span-3 mb-28 grid rounded-xl border border-slate-400 bg-white p-1 shadow-lg md:mb-24 lg:col-span-2 lg:mb-0">
-            <div className="mt-10 sm:mt-0">
+            <div className="top-6 hidden md:block lg:block">
+              <div className="mx-5 overflow-hidden rounded-lg  shadow-sm">
+                <div>
+                  <div className="mt-4 mb-2 text-base font-bold text-indigo-600 sm:text-xl">
+                    My Terms
+                  </div>
+                  <div className="grid grid-cols-2 divide-x rounded-lg border border-slate-500 bg-slate-100 p-1 text-center">
+                    <div className="my-2">
+                      <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
+                        <div className="text-sm font-normal text-indigo-600">
+                          Duration
+                        </div>
+                      </div>
+                      <div className="mx-3 px-2 text-lg font-bold text-indigo-800 line-clamp-3">
+                        {feeds[0].duration}
+                      </div>
+                    </div>
+                    <div className="my-2">
+                      <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
+                        <div className="text-sm font-normal text-indigo-600">
+                          Cost
+                        </div>
+                      </div>
+                      <div className="mx-3 px-2 text-lg font-bold text-indigo-800 line-clamp-3">
+                        ${feeds[0].cost}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr className="mt-5 h-px border-0 bg-gray-300 dark:bg-gray-700" />
+            <div className="mt-2 sm:mt-0">
               <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400 sm:mt-5">
                 <div className="text-grey-600 text-xs font-normal">
                   {feedDetails.business_focus}
@@ -57,7 +78,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                 {feedDetails.business_name}
               </div>
               <div className="ml-5 mb-7 items-center rounded-md text-base font-normal text-primary-500">
-                By {`${ud[0].firstName} ${ud[0].lastName}`}
+                By {feeds[0].entrepreneur_name}
               </div>
 
               <div>
@@ -165,48 +186,21 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
             </div>
           </div>
           <div className="ml-3 hidden p-1 lg:block">
-            <div className="mt-10 rounded-xl border border-slate-300 bg-gray-100 sm:mt-0 ">
-              <div className="mx-5 mt-5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    savetoDb();
-                  }}
-                  className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
-                >
-                  Apply Now
-                </button>
-
-                <button
-                  type="button"
-                  className="mb-2 w-full rounded-full border border-gray-300 bg-white px-5 py-2.5 text-base font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                >
-                  Talk to Entrepreneur
-                </button>
-              </div>
-
-              <div className="ml-5 mb-3 items-center rounded-md text-base font-medium text-primary-600">
-                Contact Support for help!
-              </div>
-
-              <div>
-                <div>
-                  <div className="m-3 mb-2 px-2 text-xl font-medium text-slate-900"></div>
-                  <div className="mt-3 mb-2 flex w-full"></div>
-                  <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                  <div>
-                    <div className="relative mx-5 items-center self-center overflow-hidden  text-gray-900 focus-within:text-gray-400">
-                      <div className="text-grey-600 mb-4 text-xs font-normal">
-                        Business Help Required
-                      </div>
-                    </div>
-                    <div className="mx-3 mb-3 px-2 text-base text-indigo-600">
-                      {feedDetails.help_required}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(true);
+              }}
+              className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            >
+              Cancel Bid
+            </button>
+            <button
+              type="button"
+              className="col-span-2 mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            >
+              Talk to Entrepreneur
+            </button>
             <div className="sticky top-6 hidden py-5 md:block lg:block">
               <div className="overflow-hidden rounded-lg shadow-sm">
                 <div>
@@ -265,15 +259,15 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
               <button
                 type="button"
                 onClick={() => {
-                  savetoDb();
+                  setOpen(true);
                 }}
                 className="mb-2 w-full rounded-full bg-indigo-800 px-5 py-3 text-base font-semibold text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:mr-2"
               >
-                Apply Now
+                Cancel Bid
               </button>
               <button
                 type="button"
-                className="mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"
+                className="col-span-2 mb-2 w-full rounded-full border border-indigo-500 bg-white px-5 py-2.5 text-base font-semibold text-indigo-600 hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:ml-2"
               >
                 Talk to Entrepreneur
               </button>
@@ -281,23 +275,25 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
           </div>
         </div>
       ))}
-      <Modal show={open} popup={true} size="md">
+      <Modal show={open} popup={true} size="lg">
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
+            <BsExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Confirm Match of with Project!
+              Are you sure you want to cancel the bid?
             </h3>
           </div>
           <div className="mt-7 flex justify-center gap-4">
             <Button
+              color="failure"
               onClick={() => {
                 <Loading />;
-                savetoDb();
+                handleMatch();
                 setOpen(false);
               }}
             >
-              Match project
+              Yes, I&apos;m sure
             </Button>
             <Button
               color="gray"
@@ -305,7 +301,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                 setOpen(false);
               }}
             >
-              Decline
+              No, cancel
             </Button>
           </div>
         </Modal.Body>

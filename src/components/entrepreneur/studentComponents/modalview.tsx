@@ -37,15 +37,7 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:w-[80rem]">
-              <Transition.Child
-                as={Fragment}
-                enter="transform transition ease-in-out duration-500 sm:duration-500"
-                enterFrom="translate-x-full"
-                enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-500"
-                leaveFrom="translate-x-0"
-                leaveTo="translate-x-full"
-              >
+              <Transition.Child as={Fragment}>
                 <Dialog.Panel className="pointer-events-auto relative w-full">
                   <Transition.Child
                     as={Fragment}
@@ -62,7 +54,7 @@ export const Modal = ({ feedDetails, from, open, setOpen }: Props) => {
                         className="rounded-md text-gray-700 hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-900"
                         onClick={() => setOpen(false)}
                       >
-                        <span className="sr-only">Close panel</span>
+                        <span className="sr-only">Project Description</span>
                         <ChevronLeftIcon
                           className="h-6 w-6"
                           aria-hidden="true"

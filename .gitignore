@@ -38,3 +38,6 @@ local
 
 # vercel
 .vercel
+
+# Sentry
+.sentryclirc
