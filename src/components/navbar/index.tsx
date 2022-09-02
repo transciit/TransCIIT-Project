@@ -25,13 +25,17 @@ const navigation = [
 ];
 
 const entrepreneurs = [
-  { name: 'Dashboard', href: '/entrepreneur', current: false },
+  { name: 'My Projects', href: '/entrepreneur', current: false },
+  { name: 'My Invites', href: '/invites/entrepreneur', current: false },
+  { name: 'Bidded Projects', href: '/bids/entrepreneur', current: false },
   { name: 'Matched Projects', href: '/mp/entrepreneur', current: false },
   { name: 'Contact', href: '/contact', current: false },
 ];
 
 const studentNav = [
   { name: 'Find Projects', href: '/students', current: false },
+  { name: 'My Bids', href: '/bids/student', current: false },
+  { name: 'Invites', href: '/invites/student', current: false },
   { name: 'Matched Projects', href: '/mp/student', current: false },
   { name: 'Contact', href: '/contact', current: false },
 ];
@@ -103,11 +107,11 @@ const NavBar = (props: Props) => {
           </div>
         ) : (
           <>
-            <div className="flex h-7 items-center justify-center bg-indigo-500 text-center">
+            <div className="flex h-7 items-center justify-center bg-red-700 text-center">
               <p className=" pr-0 text-xs font-semibold text-gray-50 sm:text-base md:text-sm">
-                Get the TransCIIT Mobile App.{' '}
-                <span className="text-yellow-400 hover:underline">
-                  <Link href="/about">Download Now</Link>
+                TRANSCIIT WEBSITE IS STILL IN BETA.{' '}
+                <span className="text-yellow-200 hover:underline">
+                  <Link href="/about">LEARN MORE</Link>
                 </span>
               </p>
             </div>

@@ -34,6 +34,8 @@ export default function SignIn() {
         lastName: data.lname,
         country: data.country,
         phone: data.phone,
+        rate: 'Not Specified',
+        liked: [5],
       });
       router.push('/redirecting/accountCreationSuccessful');
     } catch (err) {

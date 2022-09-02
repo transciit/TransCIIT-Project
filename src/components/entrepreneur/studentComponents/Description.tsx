@@ -1,10 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
-import { doc, updateDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
-import { db } from '@/config/firebase';
 
 type Props = {
   feedDetail: any;
@@ -14,20 +11,15 @@ type Props = {
 const DescriptionCard = ({ feedDetail, student }: Props) => {
   const router = useRouter();
 
-  // const handleMatched = () => {
-  // router.push({
-  //   pathname: '/students/ViewEntrepreneurs',
-  //   query: { project_id: 'Someone' },
-  // });
-  // };
   const handleMatch = async () => {
     try {
-      const referenceData = doc(db, 'feed', feedDetail[0].id);
-      await updateDoc(referenceData, {
-        student_id: student[0].id,
-        matched: true,
-      });
-      router.push('/mp/entrepreneur');
+      router.push(
+        {
+          pathname: '/terms/entrepreneur',
+          query: { id: feedDetail[0].id, uid: student[0].id },
+        },
+        '/terms/entrepreneur'
+      );
     } catch (err) {
       console.log(err);
     }
