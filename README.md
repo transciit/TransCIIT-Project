@@ -2,7 +2,7 @@
 
 </p>
 
-🚀 Built with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged, Jest, Testing Library, Commitlint, VSCode, Vercel, PostCSS, Tailwind CSS.
+🚀 Built with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged, Jest, Firebase, Commitlint, VSCode, Vercel, PostCSS, Tailwind CSS.
 
 ### Requirements
 
