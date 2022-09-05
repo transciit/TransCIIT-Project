@@ -4,8 +4,6 @@ import React from 'react';
 
 import NavBar from '@/components/navbar';
 
-import { AppConfig } from '../utils/AppConfig';
-
 type IMainProps = {
   meta: ReactNode;
   name: string;
@@ -202,7 +200,7 @@ const Main = (props: IMainProps) => {
             </footer>
 
             <div className="border-t border-gray-300 py-8 text-center text-sm">
-              © Copyright {new Date().getFullYear()} {AppConfig.title}
+              © {new Date().getFullYear()}
               {'. '}{' '}
               <a href="https://transciit.phanuelmutuma.co.ke">
                 TransCIIT Project

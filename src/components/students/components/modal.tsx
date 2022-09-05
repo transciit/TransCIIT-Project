@@ -11,9 +11,10 @@ interface Props {
   open: any;
   setOpen: any;
   ud: any;
+  sd: any;
 }
 
-export const Modal = ({ feedDetails, open, setOpen, ud }: Props) => {
+export const Modal = ({ feedDetails, open, setOpen, ud, sd }: Props) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -69,7 +70,11 @@ export const Modal = ({ feedDetails, open, setOpen, ud }: Props) => {
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-10 flex-1 px-4 sm:px-6">
                       {feedDetails?.length && ud?.length ? (
-                        <DescriptionCard feedDetail={feedDetails} ud={ud} />
+                        <DescriptionCard
+                          feedDetail={feedDetails}
+                          ud={ud}
+                          sd={sd}
+                        />
                       ) : (
                         <Loading />
                       )}

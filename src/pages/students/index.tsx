@@ -66,7 +66,13 @@ export default function Index() {
           </div>
         </div>
       </DashBoard>
-      <Modal feedDetails={feedDetail} open={open} setOpen={setOpen} ud={ed} />
+      <Modal
+        feedDetails={feedDetail}
+        open={open}
+        setOpen={setOpen}
+        ud={ed}
+        sd={ud}
+      />
     </>
   );
 }

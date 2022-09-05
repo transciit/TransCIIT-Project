@@ -12,9 +12,10 @@ import Loading from '@/components/loading';
 type Props = {
   feedDetail: any;
   ud: any;
+  sd: any;
 };
 
-const DescriptionCard = ({ feedDetail, ud }: Props) => {
+const DescriptionCard = ({ feedDetail, ud, sd }: Props) => {
   const router = useRouter();
   const first = feedDetail[0];
   const [open, setOpen] = useState(false);
@@ -24,7 +25,12 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
       router.push(
         {
           pathname: '/terms/student',
-          query: { id: feedDetail[0].id, uid: ud[0].id },
+          query: {
+            id: feedDetail[0].id,
+            uid: ud[0].id,
+            fn: sd[0].firstName,
+            ln: sd[0].lastName,
+          },
         },
         '/terms/student'
       );
@@ -157,7 +163,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                         </svg>
                         <span className="sr-only">Icon description</span>
                       </span>
-                      This project is approved for investing
+                      This project is approved for matching
                     </div>
                   </div>
                 </div>
