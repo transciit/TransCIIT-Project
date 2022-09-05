@@ -6,11 +6,19 @@ interface DataProps {
   feeds: any;
   setOpen: any;
   getId: (arg: string) => void;
+  getTermId: (arg: string) => void;
   getStudentId: (arg: string) => void;
   from: string;
 }
 
-const FeedCard = ({ feeds, setOpen, getId, getStudentId, from }: DataProps) => {
+const FeedCard = ({
+  feeds,
+  setOpen,
+  getId,
+  getTermId,
+  getStudentId,
+  from,
+}: DataProps) => {
   return (
     <div>
       {feeds?.map((feed) => (
@@ -20,6 +28,7 @@ const FeedCard = ({ feeds, setOpen, getId, getStudentId, from }: DataProps) => {
           onClick={() => {
             setOpen(true);
             getId(feed.project_id);
+            getTermId(feed.id);
             getStudentId(feed.student_id);
           }}
         >

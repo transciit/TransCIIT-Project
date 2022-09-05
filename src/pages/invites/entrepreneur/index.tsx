@@ -16,6 +16,7 @@ import { Side } from '../../../components/entrepreneur/components/side';
 export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
+  const [termId, setTermId] = useState({});
   const { user } = useAuth();
   const getId = (idDetails: string) => {
     setId(idDetails);
@@ -25,12 +26,21 @@ export default function Index() {
     setStudentId(idDetails);
   };
 
+  const getTermId = (idDetails: string) => {
+    setTermId(idDetails);
+  };
+
   // changables
   const where = 'student';
   const { data: fetchInvites } = useSWR(`/api/invites/e/${user?.uid}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
   const { data: studentDetails } = useSWR(`/api/users/${studentId}`, fetcher);
   const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
+  const { data: fetchInviteTerms } = useSWR(
+    `/api/invites/details/${termId}`,
+    fetcher
+  );
+  const terms = fetchInviteTerms?.getInvitesDetails;
   const ud = userDetails?.userDetails;
   const feeds = fetchInvites?.getInvites;
   const sd = studentDetails?.userDetails;
@@ -55,6 +65,7 @@ export default function Index() {
                 getId={getId}
                 getStudentId={getStudentId}
                 from={where}
+                getTermId={getTermId}
               />
             ) : (
               <EmptyCard />
@@ -65,14 +76,17 @@ export default function Index() {
           </div>
         </div>
       </DashBoard>
-
-      <Modal
-        feeds={feeds}
-        feedDetails={feedDetail}
-        open={open}
-        setOpen={setOpen}
-        ud={sd}
-      />
+      {terms?.length ? (
+        <Modal
+          feeds={terms}
+          feedDetails={feedDetail}
+          open={open}
+          setOpen={setOpen}
+          ud={sd}
+        />
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

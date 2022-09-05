@@ -6,6 +6,7 @@ interface DataProps {
   feeds: any;
   setOpen: any;
   getId: (arg: string) => void;
+  getTermId: (arg: string) => void;
   getEntrepreneurId: (arg: string) => void;
   from: string;
 }
@@ -14,6 +15,7 @@ const FeedCard = ({
   feeds,
   setOpen,
   getId,
+  getTermId,
   getEntrepreneurId,
   from,
 }: DataProps) => {
@@ -25,6 +27,7 @@ const FeedCard = ({
           className="group mt-5 rounded-lg border border-slate-300 bg-white p-1 hover:cursor-pointer hover:bg-slate-100"
           onClick={() => {
             setOpen(true);
+            getTermId(feed.id);
             getId(feed.project_id);
             getEntrepreneurId(feed.entrepreneur_id);
           }}

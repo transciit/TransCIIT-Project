@@ -17,12 +17,16 @@ export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
   const { user } = useAuth();
+  const [termId, setTermId] = useState({});
   const getId = (idDetails: string) => {
     setId(idDetails);
   };
   const [entrepreneurId, setEntrepreneurId] = useState({});
   const getEntrepreneurId = (idDetails: string) => {
     setEntrepreneurId(idDetails);
+  };
+  const getTermId = (idDetails: string) => {
+    setTermId(idDetails);
   };
 
   // changables
@@ -34,6 +38,11 @@ export default function Index() {
     fetcher
   );
   const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
+  const { data: fetchInviteTerms } = useSWR(
+    `/api/invites/details/${termId}`,
+    fetcher
+  );
+  const terms = fetchInviteTerms?.getInvitesDetails;
   const ud = userDetails?.userDetails;
   const feeds = fetchInvites?.getInvites;
   const ed = studentDetails?.userDetails;
@@ -58,6 +67,7 @@ export default function Index() {
                 getId={getId}
                 getEntrepreneurId={getEntrepreneurId}
                 from={where}
+                getTermId={getTermId}
               />
             ) : (
               <EmptyCard />
@@ -68,15 +78,18 @@ export default function Index() {
           </div>
         </div>
       </DashBoard>
-
-      <Modal
-        feeds={feeds}
-        feedDetails={feedDetail}
-        open={open}
-        setOpen={setOpen}
-        ud={ed}
-        sd={ud}
-      />
+      {terms?.length ? (
+        <Modal
+          feeds={terms}
+          feedDetails={feedDetail}
+          open={open}
+          setOpen={setOpen}
+          ud={ed}
+          sd={ud}
+        />
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }
