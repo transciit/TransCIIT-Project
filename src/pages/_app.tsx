@@ -9,6 +9,8 @@ import NextNProgress from 'nextjs-progressbar';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { AuthContextProvider } from '@/lib/auth';
 
+export { reportWebVitals } from 'next-axiom';
+
 const authRequired = [
   '/student',
   '/entrepreneur',
