@@ -75,7 +75,7 @@ export default function Index() {
           </div>
         </div>
       </DashBoard>
-      {ud?.length ? (
+      {terms?.length ? (
         <Modal
           feeds={terms}
           feedDetails={feedDetail}
@@ -85,7 +85,7 @@ export default function Index() {
           ed={ud}
         />
       ) : (
-        ''
+        <Loading />
       )}
     </>
   );
