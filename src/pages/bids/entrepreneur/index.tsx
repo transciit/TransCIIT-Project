@@ -16,9 +16,13 @@ import { Side } from '../../../components/entrepreneur/components/side';
 export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
+  const [termId, setTermId] = useState({});
   const { user } = useAuth();
   const getId = (idDetails: string) => {
     setId(idDetails);
+  };
+  const getTermId = (idDetails: string) => {
+    setTermId(idDetails);
   };
   const [studentId, setStudentId] = useState({});
   const getStudentId = (idDetails: string) => {
@@ -31,6 +35,11 @@ export default function Index() {
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
   const { data: studentDetails } = useSWR(`/api/users/${studentId}`, fetcher);
   const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
+  const { data: fetchBidTerms } = useSWR(
+    `/api/bids/details/${termId}`,
+    fetcher
+  );
+  const terms = fetchBidTerms?.getBidsDetails;
   const ud = userDetails?.userDetails;
   const feeds = fetchBids?.getBids;
   const sd = studentDetails?.userDetails;
@@ -55,6 +64,7 @@ export default function Index() {
                 getId={getId}
                 getStudentId={getStudentId}
                 from={where}
+                getTermId={getTermId}
               />
             ) : (
               <EmptyCard />
@@ -65,15 +75,18 @@ export default function Index() {
           </div>
         </div>
       </DashBoard>
-
-      <Modal
-        feeds={feeds}
-        feedDetails={feedDetail}
-        open={open}
-        setOpen={setOpen}
-        ud={sd}
-        ed={ud}
-      />
+      {ud?.length ? (
+        <Modal
+          feeds={terms}
+          feedDetails={feedDetail}
+          open={open}
+          setOpen={setOpen}
+          ud={sd}
+          ed={ud}
+        />
+      ) : (
+        ''
+      )}
     </>
   );
 }

@@ -203,6 +203,18 @@ export const getInvitesStudent = async (uid) => {
   }
 };
 
+export const getInvitesDetails = async (id) => {
+  try {
+    const docRef = doc(db, 'invites', id);
+    const docSnap = await getDoc(docRef);
+    const feedDetail: any[] = [];
+    feedDetail.push({ id: docSnap.id, ...docSnap.data() });
+    return { feedDetail };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
 export const getBidsEntrepreneur = async (uid) => {
   const q = query(
     collection(db, 'bids'),
@@ -216,6 +228,18 @@ export const getBidsEntrepreneur = async (uid) => {
       feeds.push({ id: document.id, ...document.data() });
     });
     return { feeds };
+  } catch (err: any) {
+    return { err };
+  }
+};
+
+export const getBidsDetails = async (id) => {
+  try {
+    const docRef = doc(db, 'bids', id);
+    const docSnap = await getDoc(docRef);
+    const feedDetail: any[] = [];
+    feedDetail.push({ id: docSnap.id, ...docSnap.data() });
+    return { feedDetail };
   } catch (err: any) {
     return { err };
   }

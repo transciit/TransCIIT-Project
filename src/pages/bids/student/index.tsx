@@ -16,6 +16,7 @@ import { Side } from '../../../components/entrepreneur/components/side';
 export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
+  const [termId, setTermId] = useState({});
   const { user } = useAuth();
   const getId = (idDetails: string) => {
     setId(idDetails);
@@ -25,9 +26,17 @@ export default function Index() {
     setEntrepreneurId(idDetails);
   };
 
+  const getTermId = (idDetails: string) => {
+    setTermId(idDetails);
+  };
+
   // changables
   const where = 'student';
   const { data: fetchBids } = useSWR(`/api/bids/s/${user?.uid}`, fetcher);
+  const { data: fetchBidTerms } = useSWR(
+    `/api/bids/details/${termId}`,
+    fetcher
+  );
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
   const { data: studentDetails } = useSWR(
     `/api/users/${entrepreneurId}`,
@@ -36,6 +45,7 @@ export default function Index() {
   const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
   const ud = userDetails?.userDetails;
   const feeds = fetchBids?.getBids;
+  const terms = fetchBidTerms?.getBidsDetails;
   const ed = studentDetails?.userDetails;
   const feedDetail = feedDetails?.feedD;
   return (
@@ -56,6 +66,7 @@ export default function Index() {
                 feeds={feeds}
                 setOpen={setOpen}
                 getId={getId}
+                getTermId={getTermId}
                 getEntrepreneurId={getEntrepreneurId}
                 from={where}
               />
@@ -70,7 +81,7 @@ export default function Index() {
       </DashBoard>
 
       <Modal
-        feeds={feeds}
+        feeds={terms}
         feedDetails={feedDetail}
         open={open}
         setOpen={setOpen}
