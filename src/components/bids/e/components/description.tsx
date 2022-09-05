@@ -1,7 +1,13 @@
 /* eslint-disable no-console */
 /* eslint-disable tailwindcss/no-custom-classname */
 import { Menu } from '@headlessui/react';
-import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 import { Button, Modal } from 'flowbite-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,13 +18,7 @@ import { BsExclamationCircle } from 'react-icons/bs';
 import Loading from '@/components/loading';
 import { db } from '@/config/firebase';
 
-type Props = {
-  feedDetail: any;
-  ud: any;
-  feeds: any;
-};
-
-const DescriptionCard = ({ feeds, feedDetail, ud }: Props) => {
+const DescriptionCard = ({ feeds, feedDetail, ud, ed }) => {
   const [open, setOpen] = useState(false);
 
   const handleMatch = async () => {
@@ -32,6 +32,28 @@ const DescriptionCard = ({ feeds, feedDetail, ud }: Props) => {
       });
       const referenceData2 = doc(db, 'bids', feeds[0].id);
       await deleteDoc(referenceData2);
+      await addDoc(collection(db, 'mail'), {
+        to: ud[0].email,
+        template: {
+          name: 'invites',
+          data: {
+            main: `${ed[0].firstName} ${ed[0].lastName} has matched with you`,
+            subject: `${ed[0].firstName} ${ed[0].lastName} has matched with you on project, ${feedDetail[0].primary_need}`,
+            body: 'You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project',
+          },
+        },
+      });
+      await addDoc(collection(db, 'mail'), {
+        to: ed[0].email,
+        template: {
+          name: 'invites',
+          data: {
+            main: `You have matched with ${ud[0].firstName} ${ud[0].lastName}`,
+            subject: `You have agreed to match with ${ud[0].firstName} ${ud[0].lastName} on project, ${feedDetail[0].primary_need}`,
+            body: 'You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project',
+          },
+        },
+      });
       router.push('/mp/entrepreneur');
     } catch (err) {
       console.log(err);
@@ -176,7 +198,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud }: Props) => {
                         </svg>
                         <span className="sr-only">Icon description</span>
                       </span>
-                      This project is approved for investing
+                      This project is approved for matching
                     </div>
                   </div>
                 </div>

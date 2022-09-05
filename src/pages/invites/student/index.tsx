@@ -75,6 +75,7 @@ export default function Index() {
         open={open}
         setOpen={setOpen}
         ud={ed}
+        sd={ud}
       />
     </>
   );

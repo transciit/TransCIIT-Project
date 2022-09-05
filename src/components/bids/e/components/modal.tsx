@@ -6,15 +6,7 @@ import Loading from '@/components/loading';
 
 import DescriptionCard from './description';
 
-interface Props {
-  feeds: any;
-  feedDetails: any;
-  open: any;
-  setOpen: any;
-  ud: any;
-}
-
-export const Modal = ({ feeds, feedDetails, open, setOpen, ud }: Props) => {
+export const Modal = ({ feeds, feedDetails, open, setOpen, ud, ed }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -74,6 +66,7 @@ export const Modal = ({ feeds, feedDetails, open, setOpen, ud }: Props) => {
                           feeds={feeds}
                           feedDetail={feedDetails}
                           ud={ud}
+                          ed={ed}
                         />
                       ) : (
                         <Loading />

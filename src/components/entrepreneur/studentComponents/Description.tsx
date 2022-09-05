@@ -16,7 +16,11 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
       router.push(
         {
           pathname: '/terms/entrepreneur',
-          query: { id: feedDetail[0].id, uid: student[0].id },
+          query: {
+            id: feedDetail[0].id,
+            uid: student[0].id,
+            email: student[0].email,
+          },
         },
         '/terms/entrepreneur'
       );

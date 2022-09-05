@@ -60,6 +60,18 @@ const Index = () => {
         student_id: router?.query?.uid,
         project_id: feedDetail[0].id,
       });
+
+      await addDoc(collection(db, 'mail'), {
+        to: router?.query?.email,
+        template: {
+          name: 'invites',
+          data: {
+            main: `You have been invited to match with ${ud[0].firstName} ${ud[0].lastName}`,
+            subject: `${ud[0].firstName} ${ud[0].lastName} has invited you to  ${feedDetail[0].primary_need}`,
+            body: 'You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you do not want to match, just ignore this email',
+          },
+        },
+      });
       router.push('/invites/entrepreneur');
     } catch (err) {
       console.log(err);
@@ -195,7 +207,7 @@ const Index = () => {
                                   Icon description
                                 </span>
                               </span>
-                              This project is approved for investing
+                              This project is approved for matching
                             </div>
                           </div>
                         </div>

@@ -178,7 +178,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud }: Props) => {
                         </svg>
                         <span className="sr-only">Icon description</span>
                       </span>
-                      This project is approved for investing
+                      This project is approved for matching
                     </div>
                   </div>
                 </div>
