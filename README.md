@@ -80,7 +80,7 @@ All tests are colocated with the source code inside the same directory. So, it m
 
 ### Deploy to Vercel
 
-Deploy this Next JS Boilerplate on Vercel in one click:
+Deploy this Project on Vercel in one click:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/phanuelmutuma/trans-ciit-project)
 
