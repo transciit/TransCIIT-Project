@@ -25,6 +25,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
         '/terms/entrepreneur'
       );
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -71,7 +72,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                       type="button"
                       className=" rounded-full border border-indigo-500 py-[2px] px-4 text-xs text-indigo-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                     >
-                      {student[0].area_of_expertise}
+                      {student[0].area_of_expertise || 'Not Specified'}
                     </button>
                   </div>
                 </div>
@@ -122,7 +123,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                     type="button"
                     className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
-                    {student[0].area_of_expertise}
+                    {student[0].area_of_expertise || 'Not Specified'}
                   </button>
                   {/* {feedDetails.area_of_expertise?.map((item) => (
                       <button
@@ -144,7 +145,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                       </div>
                     </div>
                     <div className="mx-3 mb-3 px-2 text-base text-slate-800">
-                      {student[0].website}
+                      {student[0].website || 'No Website Provided'}
                     </div>
                   </div>
                   <div>

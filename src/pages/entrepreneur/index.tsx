@@ -64,7 +64,7 @@ export default function Index() {
           </div>
         </div>
       </DashBoard>
-      {feedDetail.length ? (
+      {feedDetail?.length ? (
         <Modal feedDetails={feedDetail} ud={ud} open={open} setOpen={setOpen} />
       ) : (
         ''

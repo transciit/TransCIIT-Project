@@ -26,7 +26,7 @@ const navigation = [
 
 const entrepreneurs = [
   { name: 'My Projects', href: '/entrepreneur', current: false },
-  { name: 'My Invites', href: '/invites/entrepreneur', current: false },
+  { name: 'Invited Projects', href: '/invites/entrepreneur', current: false },
   { name: 'Bidded Projects', href: '/bids/entrepreneur', current: false },
   { name: 'Matched Projects', href: '/mp/entrepreneur', current: false },
   { name: 'Contact', href: '/contact', current: false },
@@ -34,8 +34,8 @@ const entrepreneurs = [
 
 const studentNav = [
   { name: 'Find Projects', href: '/students', current: false },
-  { name: 'My Bids', href: '/bids/student', current: false },
-  { name: 'Invites', href: '/invites/student', current: false },
+  { name: 'Bidded Projects', href: '/bids/student', current: false },
+  { name: 'Invited Projects', href: '/invites/student', current: false },
   { name: 'Matched Projects', href: '/mp/student', current: false },
   { name: 'Contact', href: '/contact', current: false },
 ];
@@ -72,6 +72,7 @@ const NavBar = (props: Props) => {
         }
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -107,7 +108,7 @@ const NavBar = (props: Props) => {
           </div>
         ) : (
           <>
-            <div className="flex h-7 items-center justify-center bg-red-700 text-center">
+            <div className="flex h-7 items-center justify-center bg-gray-700 text-center">
               <p className=" pr-0 text-xs font-semibold text-gray-50 sm:text-base md:text-sm">
                 TRANSCIIT WEBSITE IS STILL IN BETA.{' '}
                 <span className="text-yellow-200 hover:underline">

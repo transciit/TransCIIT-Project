@@ -31,7 +31,7 @@ export const Modal = ({ feedDetails, ud, open, setOpen }: Props) => {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:w-[80rem]">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:w-[90rem]">
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-400 sm:duration-500"

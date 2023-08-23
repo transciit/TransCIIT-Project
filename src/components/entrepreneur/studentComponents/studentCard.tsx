@@ -90,11 +90,11 @@ const StudentCard = ({
 
               <div className="col-span-3 ml-3">
                 <div className="mt-5 mb-1 font-inter text-lg font-medium text-slate-700 group-hover:underline">
-                  {`${students.firstName} ${students.lastName}`}
+                  {`${students.firstName}  ${students.lastName}`}
                 </div>
                 <div className="relative overflow-hidden text-gray-600 focus-within:text-gray-400">
                   <div className="mb-2 text-xs font-normal text-gray-600 line-clamp-2">
-                    {students.about}
+                    {students.about || 'No bio provided'}
                   </div>
                 </div>
                 <div>
@@ -102,7 +102,7 @@ const StudentCard = ({
                     type="button"
                     className=" rounded-full border border-indigo-500 py-[2px] px-4 text-xs text-indigo-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
-                    {students.area_of_expertise}
+                    {students.area_of_expertise || 'Not Specified'}
                   </button>
                 </div>
               </div>
@@ -132,8 +132,8 @@ const StudentCard = ({
               </div>
               <div className="flex items-end justify-end text-xs text-gray-700">
                 Rate:
-                <span className="font-medium text-indigo-700">
-                  {students.rate}
+                <span className="ml-1 font-medium text-indigo-700">
+                  {students.rate || 'Not Specified'}
                 </span>
               </div>
             </div>

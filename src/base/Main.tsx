@@ -33,12 +33,12 @@ const Main = (props: IMainProps) => {
         {props.name.includes('onboard') ? (
           <p></p>
         ) : (
-          <div className="mx-auto mt-5 px-6">
-            <footer className="border-t border-gray-200 bg-white px-4 pt-12 pb-8 text-white">
-              <div className="container mx-auto flex max-w-6xl flex-col justify-between overflow-hidden px-4 lg:flex-row">
-                <div className="mr-4 w-full pl-12 text-left sm:pl-0 sm:text-center lg:w-1/4 lg:text-left">
+          <div className="mx-auto mt-5">
+            <footer className="border-t border-gray-200 bg-white py-8 text-white">
+              <div className="container mx-auto flex flex-col justify-between overflow-hidden">
+                <div className="mr-4 w-full text-center sm:pl-0">
                   <Link href="/">
-                    <a className="flex justify-start text-left sm:justify-center sm:text-center lg:justify-start lg:text-left">
+                    <a className="flex justify-center text-center">
                       <span className="flex items-start sm:items-center">
                         <svg
                           className="h-6 w-auto fill-current text-gray-800"
@@ -55,11 +55,11 @@ const Main = (props: IMainProps) => {
                   </Link>
                   <p className="mt-6 mr-4 font-manrope text-base text-gray-500">
                     Transforming Climate Innovation Ecosystems through Inclusive
-                    Transdisciplinarity (TransCIIT) project
+                    Transdisciplinarity
                   </p>
                 </div>
-                <div className="mt-6 block w-full pl-10 text-sm sm:flex lg:mt-0 lg:w-3/4">
-                  <ul className="flex w-full list-none flex-col p-0 text-left font-medium text-gray-700">
+                {/* <div className="mt-6 hidden w-full pl-10 text-sm sm:flex lg:mt-0 lg:w-3/4">
+                  <ul className="hidden w-full list-none flex-col p-0 text-left font-medium text-gray-700">
                     <li className="mt-5 inline-block px-3 py-2 font-manrope font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                       Services
                     </li>
@@ -96,7 +96,7 @@ const Main = (props: IMainProps) => {
                       </a>
                     </li>
                   </ul>
-                  <ul className="flex w-full list-none flex-col p-0 text-left font-medium text-gray-700">
+                  <ul className="hidden w-full list-none flex-col p-0 text-left font-medium text-gray-700">
                     <li className="mt-5 inline-block px-3 py-2 font-manrope font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                       Company
                     </li>
@@ -117,7 +117,7 @@ const Main = (props: IMainProps) => {
                       </a>
                     </li>
                   </ul>
-                  <ul className="flex w-full list-none flex-col p-0 text-left font-medium text-gray-700">
+                  <ul className="hidden w-full list-none flex-col p-0 text-left font-medium text-gray-700">
                     <li className="mt-5 inline-block px-3 py-2 font-manrope font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                       Contact
                     </li>
@@ -146,7 +146,7 @@ const Main = (props: IMainProps) => {
                       </a>
                     </li>
                   </ul>
-                  <div className="flex w-full flex-col text-gray-700">
+                  <div className="hidden w-full flex-col text-gray-700">
                     <div className="mt-5 inline-block px-3 py-2 font-manrope font-bold uppercase text-gray-800 md:mt-0">
                       Follow Us
                     </div>
@@ -195,17 +195,9 @@ const Main = (props: IMainProps) => {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </footer>
-
-            <div className="border-t border-gray-300 py-8 text-center text-sm">
-              © {new Date().getFullYear()}
-              {'. '}{' '}
-              <a href="https://transciit.phanuelmutuma.co.ke">
-                TransCIIT Project
-              </a>
-            </div>
           </div>
         )}
       </div>

@@ -33,6 +33,7 @@ const ViewStudents = ({ feedDetail, student }) => {
         });
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -47,7 +48,6 @@ const ViewStudents = ({ feedDetail, student }) => {
 
   return (
     <>
-      {/* <Search /> */}
       <div
         className="mb-28 grid rounded-2xl border border-slate-300 bg-white p-1 md:mb-24 lg:col-span-2 
         lg:mb-0"
@@ -57,20 +57,24 @@ const ViewStudents = ({ feedDetail, student }) => {
             <Tabs.Item title="View Students" active={true}>
               <div className="grid-cols-3 gap-8 md:grid">
                 {student.length ? (
-                  student?.map((students) => (
-                    <StudentCard
-                      key={students.id}
-                      fav={
-                        students?.liked !== undefined
-                          ? !!students?.liked.includes(user.uid)
-                          : false
-                      }
-                      students={students}
-                      getId={getId}
-                      getStudentId={getStudentId}
-                      setOpen={setOpen}
-                    />
-                  ))
+                  student?.map(
+                    (students) =>
+                      students.firstName &&
+                      students.lastName && (
+                        <StudentCard
+                          key={students.id}
+                          fav={
+                            students?.liked !== undefined
+                              ? !!students?.liked.includes(user.uid)
+                              : false
+                          }
+                          students={students}
+                          getId={getId}
+                          getStudentId={getStudentId}
+                          setOpen={setOpen}
+                        />
+                      )
+                  )
                 ) : (
                   <Loading />
                 )}
