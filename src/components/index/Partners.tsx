@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 export default function Partners() {
   return (
     <div>
-      <section className="hidden bg-white pt-7 pb-14 sm:block">
+      <section className="hidden bg-white pb-14 pt-7 sm:block">
         <div className="container mx-auto px-8 sm:px-12 lg:px-20">
           <h1 className=" mb-7 text-center text-sm font-bold uppercase tracking-wide text-gray-800">
             Innovative organizations that partner with TransCIIT

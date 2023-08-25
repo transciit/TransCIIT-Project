@@ -1,15 +1,14 @@
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-
-import { useAuth } from '@/lib/auth';
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
 const RedirectionRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
 
   useEffect(() => {
     if (user) {
-      router.push('/feed');
+      router.push("/feed");
     }
   }, [router, user]);
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { Main } from '@/base/Main';
-import { Meta } from '@/layouts/Meta';
+import { Main } from "@/base/Main";
+import { Meta } from "@/layouts/Meta";
 
 const contact = () => {
   return (
@@ -13,7 +13,7 @@ const contact = () => {
             description="Matching the needs of climate entrepreneurs with the skills of master's students"
           />
         }
-        name={'home'}
+        name="contact"
       >
         <div>
           <div className="mb-8 px-8 text-gray-100">

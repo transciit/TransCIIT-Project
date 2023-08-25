@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 /* eslint-disable tailwindcss/no-custom-classname */
 export default function Matched() {
@@ -11,10 +11,10 @@ export default function Matched() {
               Who We Are
             </h2>
             <h1 className="relative mb-4 text-3xl font-extrabold leading-tight text-gray-900 sm:text-5xl xl:mb-2">
-              Projects already{' '}
+              Projects already{" "}
               <span className="w-full bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent lg:inline">
                 matched
-              </span>{' '}
+              </span>{" "}
               with students
             </h1>
             <p className="mb-8 pr-0 text-base text-gray-600 sm:text-lg lg:pr-20 xl:text-xl">
@@ -27,7 +27,7 @@ export default function Matched() {
               </a>
             </Link>
           </div>
-          <div className="relative mt-5 mb-4 -ml-5 box-border w-full max-w-md border-solid bg-contain bg-no-repeat px-4 text-center md:ml-0 md:mt-0 md:w-1/2 md:max-w-none lg:mb-0 xl:pl-10">
+          <div className="relative -ml-5 mb-4 mt-5 box-border w-full max-w-md border-solid bg-contain bg-no-repeat px-4 text-center md:ml-0 md:mt-0 md:w-1/2 md:max-w-none lg:mb-0 xl:pl-10">
             <img src="/assets/images/matched/1.jpg" alt="image" />
           </div>
         </div>

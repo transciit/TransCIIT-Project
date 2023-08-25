@@ -1,29 +1,30 @@
+/* eslint-disable no-console */
 /* eslint-disable tailwindcss/no-custom-classname */
 // import FeedCard from './feedcard';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import useSWR from "swr";
 
-import { Main } from '@/base/Main';
-import Loading from '@/components/loading';
-import { db, storage } from '@/config/firebase';
-import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
+import { Main } from "@/base/Main";
+import Loading from "@/components/loading";
+import { db, storage } from "@/config/firebase";
+import { Meta } from "@/layouts/Meta";
+import fetcher from "@/utils/fetcher";
 
-import PersonalCard from '../../components/users/components/personal';
-import ProfileCard from '../../components/users/components/profile';
+import PersonalCard from "../../components/users/components/personal";
+import ProfileCard from "../../components/users/components/profile";
 
 export default function UserProfile() {
-  const { user } = useAuth();
-  const reference = doc(db, 'users', user.uid);
+  const { user } = useUser();
+  const reference = doc(db, "users", user?.id || "0");
 
-  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
   const ud = userDetails?.userDetails;
-  const [profile, setProfile] = useState('/assets/images/placeholder.png');
+  const [profile, setProfile] = useState("/assets/images/placeholder.png");
 
   const getFromDB = async () => {
     const docSnap = await getDoc(reference);
@@ -58,18 +59,18 @@ export default function UserProfile() {
 
     // Listen for state changes, errors, and completion of the upload.
     uploadTask.on(
-      'state_changed',
+      "state_changed",
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progressBar =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log(`Upload is ${progressBar}% done`);
         switch (snapshot.state) {
-          case 'paused':
-            console.log('Upload is paused');
+          case "paused":
+            console.log("Upload is paused");
             break;
-          case 'running':
-            console.log('Upload is running');
+          case "running":
+            console.log("Upload is running");
             break;
 
           default:
@@ -79,16 +80,16 @@ export default function UserProfile() {
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
         switch (onError.code) {
-          case 'storage/unauthorized':
+          case "storage/unauthorized":
             // User doesn't have permission to access the object
             break;
-          case 'storage/canceled':
+          case "storage/canceled":
             // User canceled the upload
             break;
 
           // ...
 
-          case 'storage/unknown':
+          case "storage/unknown":
             // Unknown error occurred, inspect error.serverResponse
             break;
 
@@ -114,7 +115,7 @@ export default function UserProfile() {
             description="Matching the needs of climate entrepreneurs with the skills of master's students"
           />
         }
-        name={'user'}
+        name={"user"}
       >
         <div className="relative w-full items-center justify-center overflow-x-hidden md:px-10">
           <div className="mx-auto max-w-6xl">
@@ -184,14 +185,14 @@ export default function UserProfile() {
                           <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-sm">
                             <Link href="#">
                               <a className="font-bold text-indigo-500">
-                                {' '}
+                                {" "}
                                 Edit Profile
                               </a>
                             </Link>
                           </div>
                         </div>
                       ) : (
-                        'Loading Profile'
+                        "Loading Profile"
                       )}
                     </div>
                   </div>
@@ -207,7 +208,7 @@ export default function UserProfile() {
               </div>
               <div className="col-span-2 py-5">
                 {ud?.length ? <PersonalCard usr={ud} /> : <Loading />}
-                {ud?.length ? <ProfileCard usr={ud} /> : ''}
+                {ud?.length ? <ProfileCard usr={ud} /> : ""}
               </div>
             </div>
           </div>

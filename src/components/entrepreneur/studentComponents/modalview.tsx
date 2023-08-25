@@ -1,12 +1,12 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { ChevronLeftIcon } from '@heroicons/react/outline';
-import { Fragment } from 'react';
-import useSWR from 'swr';
+import { Dialog, Transition } from "@headlessui/react";
+import { ChevronLeftIcon } from "@heroicons/react/outline";
+import { Fragment } from "react";
+import useSWR from "swr";
 
-import ViewStudents from '@/components/entrepreneur/studentComponents/ViewStudents';
-import fetcher from '@/utils/fetcher';
+import ViewStudents from "@/components/entrepreneur/studentComponents/ViewStudents";
+import fetcher from "@/utils/fetcher";
 
-import EmptyCard from '../components/emptycard';
+import EmptyCard from "../components/emptycard";
 
 interface Props {
   feedDetails: any;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const Modal = ({ feedDetails, open, setOpen }: Props) => {
-  const { data: fetchStudents } = useSWR('/api/students', fetcher);
+  const { data: fetchStudents } = useSWR("/api/students", fetcher);
   const student = fetchStudents?.fetchStudents;
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -55,7 +55,7 @@ export const Modal = ({ feedDetails, open, setOpen }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute top-0 left-0 flex pt-4 sm:ml-10 sm:pr-4">
+                    <div className="absolute left-0 top-0 flex pt-4 sm:ml-10 sm:pr-4">
                       <button
                         type="button"
                         className="rounded-md text-gray-700 hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-900"

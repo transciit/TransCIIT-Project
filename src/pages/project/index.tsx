@@ -1,35 +1,35 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import React, { useState } from "react";
+import useSWR from "swr";
 
-import { DashBoard } from '@/base/Dashboard';
-import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
+import { DashBoard } from "@/base/Dashboard";
+import { Meta } from "@/layouts/Meta";
+import fetcher from "@/utils/fetcher";
 
-import { Side } from '../../components/entrepreneur/components/side';
-import Stepper from '../../components/project/components/Stepper';
-import StepperControl from '../../components/project/components/StepperControl';
-import { UseContextProvider } from '../../components/project/context/StepperContext';
-import AdditionalCard from '../../components/projects/components/additional';
-import BusinessCard from '../../components/projects/components/business';
-import OverviewCard from '../../components/projects/components/overview';
-import ReviewCard from '../../components/projects/components/review';
+import { Side } from "../../components/entrepreneur/components/side";
+import Stepper from "../../components/project/components/Stepper";
+import StepperControl from "../../components/project/components/StepperControl";
+import { UseContextProvider } from "../../components/project/context/StepperContext";
+import AdditionalCard from "../../components/projects/components/additional";
+import BusinessCard from "../../components/projects/components/business";
+import OverviewCard from "../../components/projects/components/overview";
+import ReviewCard from "../../components/projects/components/review";
 
 const Index = () => {
-  const { user } = useAuth();
+  const { user } = useUser();
   const [currentStep, setCurrentStep] = useState(1);
   const [done, setDone] = useState(false);
 
-  const steps = ['Overview', 'Additional', 'Business', 'Review'];
-  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const steps = ["Overview", "Additional", "Business", "Review"];
+  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
   const ud = userDetails?.userDetails;
 
   const handleClick = (direction) => {
     let newStep = currentStep;
 
-    direction === 'next' ? (newStep += 1) : (newStep -= 1);
+    direction === "next" ? (newStep += 1) : (newStep -= 1);
     newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
   };
 
@@ -49,7 +49,7 @@ const Index = () => {
         return <ReviewCard />;
       default:
     }
-    return 'foo';
+    return "foo";
   };
 
   return (
@@ -60,7 +60,7 @@ const Index = () => {
           description="Welcome to TransCIIT"
         />
       }
-      nameDashboard={'steps'}
+      nameDashboard={"steps"}
     >
       <div className="block bg-slate-50 lg:grid lg:grid-flow-row-dense lg:grid-cols-4">
         <div className="col-span-3">
@@ -99,7 +99,7 @@ const Index = () => {
           <ReviewCard current={area} /> */}
         </div>
         <div className="sticky top-6 hidden py-5 lg:block">
-          {ud?.length ? <Side ud={ud} /> : ''}
+          {ud?.length ? <Side /> : ""}
         </div>
       </div>
     </DashBoard>

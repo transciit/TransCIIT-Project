@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { Menu } from '@headlessui/react';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { Menu } from "@headlessui/react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 type Props = {
   feedDetail: any;
@@ -15,14 +15,14 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
     try {
       router.push(
         {
-          pathname: '/terms/entrepreneur',
+          pathname: "/terms/entrepreneur",
           query: {
             id: feedDetail[0].id,
             uid: student[0].id,
             email: student[0].email,
           },
         },
-        '/terms/entrepreneur'
+        "/terms/entrepreneur"
       );
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -48,7 +48,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                           src={
                             student[0].profile !== undefined
                               ? student[0].profile
-                              : '/assets/images/placeholder.png'
+                              : "/assets/images/placeholder.png"
                           }
                           alt="Picture of the Student"
                           width={120}
@@ -70,9 +70,9 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                   <div className="relative mt-2 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400 sm:mt-5">
                     <button
                       type="button"
-                      className=" rounded-full border border-indigo-500 py-[2px] px-4 text-xs text-indigo-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                      className=" rounded-full border border-indigo-500 px-4 py-[2px] text-xs text-indigo-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                     >
-                      {student[0].area_of_expertise || 'Not Specified'}
+                      {student[0].area_of_expertise || "Not Specified"}
                     </button>
                   </div>
                 </div>
@@ -101,14 +101,14 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
 
             <div>
               <div>
-                <div className="mt-3 mb-2 flex w-full"></div>
+                <div className="mb-2 mt-3 flex w-full"></div>
                 <hr className="my-3 h-px border-0 bg-gray-200 dark:bg-gray-700" />
                 <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                   <div className="text-grey-600 mb-4 text-xs font-normal">
                     More Details
                   </div>
                 </div>
-                <div className="mx-3 mb-3 px-2 text-base text-slate-800 line-clamp-6">
+                <div className="mx-3 mb-3 line-clamp-6 px-2 text-base text-slate-800">
                   {student[0].about}
                 </div>
 
@@ -121,9 +121,9 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                 <div className="mx-3 flex justify-start px-2">
                   <button
                     type="button"
-                    className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
-                    {student[0].area_of_expertise || 'Not Specified'}
+                    {student[0].area_of_expertise || "Not Specified"}
                   </button>
                   {/* {feedDetails.area_of_expertise?.map((item) => (
                       <button
@@ -145,7 +145,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                       </div>
                     </div>
                     <div className="mx-3 mb-3 px-2 text-base text-slate-800">
-                      {student[0].website || 'No Website Provided'}
+                      {student[0].website || "No Website Provided"}
                     </div>
                   </div>
                   <div>
@@ -157,7 +157,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                     <div className="mx-3 px-2">
                       <button
                         type="button"
-                        className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                        className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                       >
                         {student[0].rate}
                       </button>
@@ -176,7 +176,7 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
 
                 <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                   <hr className="my-3 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-                  <div className="text-grey-600 ml-3 mb-4 text-xs font-normal">
+                  <div className="text-grey-600 mb-4 ml-3 text-xs font-normal">
                     <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-base font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
                       <svg
                         aria-hidden="true"
@@ -217,14 +217,14 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                 Talk to Student
               </button>
             </div>
-            <div className="ml-5 mb-3 items-center rounded-md text-base font-medium text-primary-600">
+            <div className="mb-3 ml-5 items-center rounded-md text-base font-medium text-primary-600">
               Contact Support for help!
             </div>
 
             <div>
               <div>
                 <div className="m-3 mb-2 px-2 text-xl font-medium text-slate-900"></div>
-                <div className="mt-3 mb-2 flex w-full"></div>
+                <div className="mb-2 mt-3 flex w-full"></div>
                 <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
                 <div>
                   <div className="relative mx-5 items-center self-center overflow-hidden  text-gray-900 focus-within:text-gray-400">

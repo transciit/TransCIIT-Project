@@ -1,22 +1,15 @@
-import Link from 'next/link';
-import type { ReactNode } from 'react';
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import React from "react";
 
-import NavBar from '@/components/navbar';
+import NavBar from "@/components/navbar";
 
 type IMainProps = {
   meta: ReactNode;
   name: string;
   children: ReactNode;
 };
-
-// const styling = {
-//   backgroundImage: "url('/assets/images/bg.png')",
-//   width: '100%',
-//   height: '100%',
-//   backgroundPosition: 'top',
-//   backgroundRepeat: 'no-repeat',
-// };
 
 const Main = (props: IMainProps) => {
   return (
@@ -25,40 +18,37 @@ const Main = (props: IMainProps) => {
 
       <div className="mx-auto">
         <div>
-          <NavBar needs={props.name} />
+          <NavBar currentTab={props.name} />
           <div className="mx-auto">
             <div className="content text-xl">{props.children}</div>
           </div>
         </div>
-        {props.name.includes('onboard') ? (
-          <p></p>
-        ) : (
-          <div className="mx-auto mt-5">
-            <footer className="border-t border-gray-200 bg-white py-8 text-white">
-              <div className="container mx-auto flex flex-col justify-between overflow-hidden">
-                <div className="mr-4 w-full text-center sm:pl-0">
-                  <Link href="/">
-                    <a className="flex justify-center text-center">
-                      <span className="flex items-start sm:items-center">
-                        <svg
-                          className="h-6 w-auto fill-current text-gray-800"
-                          viewBox="0 0 194 116"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g fillRule="evenodd">
-                            <path d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z"></path>
-                            <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z"></path>
-                          </g>
-                        </svg>
+        <div className="mx-auto mt-5">
+          <footer className="border-t border-gray-200 bg-white py-4 text-white">
+            <div className="container mx-auto flex flex-col justify-between overflow-hidden">
+              <div className="mr-4 flex w-full items-center justify-center text-center sm:pl-0">
+                <div className="flex shrink-0 items-center">
+                  <Image
+                    src={"/assets/images/transciit-logo.png"}
+                    alt="Picture of the author"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
+                  <Link href={"/"}>
+                    <a className="relative flex h-full items-center">
+                      <span className="ml-3  text-xl font-extrabold text-gray-700">
+                        TransCIIT
                       </span>
                     </a>
                   </Link>
-                  <p className="mt-6 mr-4 font-manrope text-base text-gray-500">
-                    Transforming Climate Innovation Ecosystems through Inclusive
-                    Transdisciplinarity
-                  </p>
                 </div>
-                {/* <div className="mt-6 hidden w-full pl-10 text-sm sm:flex lg:mt-0 lg:w-3/4">
+                <p className="mx-4 font-manrope text-base text-gray-500">
+                  Transforming Climate Innovation Ecosystems through Inclusive
+                  Transdisciplinarity
+                </p>
+              </div>
+              {/* <div className="mt-6 hidden w-full pl-10 text-sm sm:flex lg:mt-0 lg:w-3/4">
                   <ul className="hidden w-full list-none flex-col p-0 text-left font-medium text-gray-700">
                     <li className="mt-5 inline-block px-3 py-2 font-manrope font-bold uppercase tracking-wide text-gray-800 md:mt-0">
                       Services
@@ -196,10 +186,9 @@ const Main = (props: IMainProps) => {
                     </div>
                   </div>
                 </div> */}
-              </div>
-            </footer>
-          </div>
-        )}
+            </div>
+          </footer>
+        </div>
       </div>
     </div>
   );

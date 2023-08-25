@@ -25,5 +25,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "spellright.language": ["en"],
-  "spellright.documentTypes": ["markdown", "latex"]
+  "spellright.documentTypes": ["markdown", "latex"],
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

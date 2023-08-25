@@ -1,30 +1,30 @@
 /* eslint-disable no-console */
-import { doc, updateDoc } from 'firebase/firestore';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useUser } from "@clerk/nextjs";
+import { doc, updateDoc } from "firebase/firestore";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
-import { db } from '@/config/firebase';
-import { useAuth } from '@/lib/auth';
+import { db } from "@/config/firebase";
 
-import { useStepperContext } from '../context/StepperContext';
+import { useStepperContext } from "../context/StepperContext";
 
 const StudentReviewCard = () => {
   const { myData } = useStepperContext();
-  const { user } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
   const savetoDb = async () => {
-    const referenceData = doc(db, 'users', user.uid);
+    const referenceData = doc(db, "users", user?.id || "0");
     await updateDoc(referenceData, {
       about: myData.about_you,
       skills: myData.area_of_expertise,
     });
-    router.push('/students');
+    router.push("/students");
   };
   return (
     <div>
       <div className="top-6">
         <div className="mt-10 sm:mt-0">
-          <div className="mt-3 mb-1 px-5 font-playfair text-2xl font-extrabold text-slate-900 sm:text-2xl">
+          <div className="mb-1 mt-3 px-5 font-playfair text-2xl font-extrabold text-slate-900 sm:text-2xl">
             Review Submission
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
@@ -102,7 +102,7 @@ const StudentReviewCard = () => {
               <div className="bg-gray-50 px-4 text-right sm:px-6">
                 <button
                   type="button"
-                  className="mr-2 mb-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                  className="mb-2 mr-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                   onClick={() => {
                     savetoDb();
                   }}

@@ -1,10 +1,10 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-import type { Projects } from '../../interfaces/projects';
+import type { Projects } from "../../interfaces/projects";
 
 type Props = {
   items: Projects[];
@@ -25,8 +25,8 @@ const shimmer = (w: number, h: number) => `
 </svg>`;
 
 const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
     : window.btoa(str);
 
 const Article = ({ items }: Props) => (
@@ -77,12 +77,12 @@ const Article = ({ items }: Props) => (
           <Link href="/projects/[id]" as={`/projects/${item.b_id}`}>
             <a
               href="#"
-              className="inline-flex items-center rounded-lg bg-primary-700 py-2 px-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="inline-flex items-center rounded-lg bg-primary-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Read more
               <svg
                 aria-hidden="true"
-                className="ml-2 -mr-1 h-4 w-4"
+                className="-mr-1 ml-2 h-4 w-4"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"

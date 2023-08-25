@@ -1,10 +1,10 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { Menu } from '@headlessui/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
+import { Menu } from "@headlessui/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
-import { Modal } from '../studentComponents/modalview';
+import { Modal } from "../studentComponents/modalview";
 
 type Props = {
   feedDetail: any;
@@ -33,10 +33,10 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                   {feedDetails.business_focus}
                 </div>
               </div>
-              <div className="mt-1 mb-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+              <div className="mb-3 mt-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
                 {feedDetails.business_name}
               </div>
-              <div className="ml-5 mb-7 items-center rounded-md text-base font-normal text-primary-500">
+              <div className="mb-7 ml-5 items-center rounded-md text-base font-normal text-primary-500">
                 By {`${ud[0].firstName} ${ud[0].lastName}`}
               </div>
 
@@ -45,14 +45,14 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                   <div className="m-3 mb-2 px-2 text-base font-medium text-slate-900 sm:text-xl">
                     {feedDetails.primary_need}
                   </div>
-                  <div className="mt-3 mb-2 flex w-full"></div>
+                  <div className="mb-2 mt-3 flex w-full"></div>
                   <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
                   <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                     <div className="text-grey-600 mb-4 text-xs font-normal">
                       More Details
                     </div>
                   </div>
-                  <div className="mx-3 mb-3 px-2 text-base text-slate-800 line-clamp-6">
+                  <div className="mx-3 mb-3 line-clamp-6 px-2 text-base text-slate-800">
                     {feedDetails.primary_gap}
                   </div>
 
@@ -65,7 +65,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                   <div className="mx-3 flex justify-start px-2">
                     <button
                       type="button"
-                      className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                      className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                     >
                       {feedDetails.area_of_expertise}
                     </button>
@@ -101,7 +101,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                       <div className="mx-3 px-2">
                         <button
                           type="button"
-                          className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                          className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                         >
                           {feedDetails.secondary_expertise}
                         </button>
@@ -120,7 +120,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
 
                   <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                     <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                    <div className="text-grey-600 ml-3 mb-4 text-xs font-normal">
+                    <div className="text-grey-600 mb-4 ml-3 text-xs font-normal">
                       <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-base font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
                         <svg
                           aria-hidden="true"
@@ -164,14 +164,14 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                   Talk to Student
                 </button>
               </div>
-              <div className="ml-5 mb-3 items-center rounded-md text-base font-medium text-primary-600">
+              <div className="mb-3 ml-5 items-center rounded-md text-base font-medium text-primary-600">
                 Contact Support for help!
               </div>
 
               <div>
                 <div>
                   <div className="m-3 mb-2 px-2 text-xl font-medium text-slate-900"></div>
-                  <div className="mt-3 mb-2 flex w-full"></div>
+                  <div className="mb-2 mt-3 flex w-full"></div>
                   <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
                   <div>
                     <div className="relative mx-5 items-center self-center overflow-hidden  text-gray-900 focus-within:text-gray-400">
@@ -199,7 +199,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                           src={
                             ud[0].profile !== undefined
                               ? ud[0].profile
-                              : '/assets/images/placeholder.png'
+                              : "/assets/images/placeholder.png"
                           }
                           alt="Picture of the author"
                           width={70}
@@ -208,7 +208,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                         />
                       </div>
                     </Menu>
-                    <div className="mt-3 mb-1 px-4 text-center font-inter text-lg font-medium text-slate-900">
+                    <div className="mb-1 mt-3 px-4 text-center font-inter text-lg font-medium text-slate-900">
                       {`${ud[0].firstName} ${ud[0].lastName}`}
                     </div>
                     <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
@@ -260,7 +260,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
           </div>
           <Modal
             feedDetails={feedDetail}
-            from={'where'}
+            from={"where"}
             open={open}
             setOpen={setOpen}
           />

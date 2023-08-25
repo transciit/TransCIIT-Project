@@ -8,13 +8,13 @@ export default function AboutUs() {
             Who We Are
           </h2>
           <h3 className="mt-2 max-w-2xl text-center text-3xl font-extrabold leading-tight text-gray-900 sm:px-0 sm:text-5xl">
-            What is{' '}
+            What is{" "}
             <span className="w-full bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent lg:inline">
               TransCIIT Project
             </span>
           </h3>
           <div className="mt-0 flex w-full flex-col lg:my-20 lg:flex-row">
-            <div className="mt-0 mr-10 flex w-full flex-col sm:mt-20 lg:my-2 lg:flex-col">
+            <div className="mr-10 mt-0 flex w-full flex-col sm:mt-20 lg:my-2 lg:flex-col">
               <img src="/assets/images/about/1.jpg" alt="image" />
               <img
                 src="/assets/images/about/3.jpg"

@@ -1,22 +1,23 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import React, { useState } from "react";
+import useSWR from "swr";
 
-import { DashBoard } from '@/base/Dashboard';
-import EmptyCard from '@/components/entrepreneur/components/emptycard';
-import FeedCard from '@/components/invites/s/components/feedcard';
-import { Modal } from '@/components/invites/s/components/modal';
-import Loading from '@/components/loading';
-import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
+import { DashBoard } from "@/base/Dashboard";
+import EmptyCard from "@/components/entrepreneur/components/emptycard";
+import FeedCard from "@/components/invites/s/components/feedcard";
+import { Modal } from "@/components/invites/s/components/modal";
+import Loading from "@/components/loading";
+import { Top } from "@/components/students/components/top";
+import { Meta } from "@/layouts/Meta";
+import fetcher from "@/utils/fetcher";
 
-import { Side } from '../../../components/entrepreneur/components/side';
+import { Side } from "../../../components/entrepreneur/components/side";
 
 export default function Index() {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
-  const { user } = useAuth();
+  const { user } = useUser();
   const [termId, setTermId] = useState({});
   const getId = (idDetails: string) => {
     setId(idDetails);
@@ -30,14 +31,14 @@ export default function Index() {
   };
 
   // changables
-  const where = 'student';
-  const { data: fetchInvites } = useSWR(`/api/invites/s/${user?.uid}`, fetcher);
+  const where = "student";
+  const { data: fetchInvites } = useSWR(`/api/invites/s/${user?.id}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
   const { data: studentDetails } = useSWR(
     `/api/users/${entrepreneurId}`,
     fetcher
   );
-  const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
   const { data: fetchInviteTerms } = useSWR(
     `/api/invites/details/${termId}`,
     fetcher
@@ -56,10 +57,11 @@ export default function Index() {
             description="Welcome to TransCIIT"
           />
         }
-        nameDashboard={where}
+        nameDashboard="studentInvites"
       >
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
-          <div className="col-span-3">
+          <div className="col-span-3 py-5">
+            <div className="top-6">{user ? <Top /> : <Loading />}</div>
             {feeds?.length ? (
               <FeedCard
                 feeds={feeds}
@@ -74,7 +76,7 @@ export default function Index() {
             )}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
-            {ud?.length ? <Side ud={ud} /> : <Loading />}
+            {user ? <Side /> : <Loading />}
           </div>
         </div>
       </DashBoard>

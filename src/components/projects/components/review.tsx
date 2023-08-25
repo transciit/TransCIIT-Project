@@ -1,48 +1,48 @@
 /* eslint-disable no-console */
-import { addDoc, collection } from 'firebase/firestore';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import { addDoc, collection } from "firebase/firestore";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 
-import { useStepperContext } from '@/components/project/context/StepperContext';
-import { db } from '@/config/firebase';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
+import { useStepperContext } from "@/components/project/context/StepperContext";
+import { db } from "@/config/firebase";
+import fetcher from "@/utils/fetcher";
 
 const ReviewCard = () => {
   const { userData } = useStepperContext();
-  const { user } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
-  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
   const ud = userDetails?.userDetails;
   const savetoDb = async () => {
-    const docRef = await addDoc(collection(db, 'feed'), {
+    const docRef = await addDoc(collection(db, "feed"), {
       primary_need: userData.primary_need,
       primary_gap: userData.primary_gap,
       area_of_expertise: userData.area_of_expertise,
       business_focus: userData.business_focus,
-      secondary_need: userData.secondary_need || '',
-      secondary_gap: userData.secondary_gap || '',
-      secondary_expertise: userData.secondary_expertise || '',
+      secondary_need: userData.secondary_need || "",
+      secondary_gap: userData.secondary_gap || "",
+      secondary_expertise: userData.secondary_expertise || "",
       business_name: userData.business_name,
       business_description: userData.business_description,
       business_contact_name: userData.business_contact_name,
       business_contact_email: userData.business_email,
       matched: false,
       help_required: userData.help_required,
-      entrepreneur_id: user.uid,
+      entrepreneur_id: user?.id,
       entrepreneur_name: `${ud[0].firstName} ${ud[0].lastName}`,
       entrepreneur_profile: ud[0].profile,
       entrepreneur_email: ud[0].email,
     });
     console.log(docRef.id);
-    router.push('/entrepreneur');
+    router.push("/entrepreneur");
   };
   return (
     <div>
       <div className="top-6">
         <div className="mt-10 sm:mt-0">
-          <div className="mt-3 mb-1 px-5 font-playfair text-2xl font-extrabold text-slate-900 sm:text-2xl">
+          <div className="mb-1 mt-3 px-5 font-playfair text-2xl font-extrabold text-slate-900 sm:text-2xl">
             Review Submission
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
@@ -274,7 +274,7 @@ const ReviewCard = () => {
                 {ud.length ? (
                   <button
                     type="button"
-                    className="mr-2 mb-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                    className="mb-2 mr-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                     onClick={() => {
                       savetoDb();
                     }}
@@ -282,7 +282,7 @@ const ReviewCard = () => {
                     Submit Project
                   </button>
                 ) : (
-                  'Loading...'
+                  "Loading..."
                 )}
               </div>
             </div>

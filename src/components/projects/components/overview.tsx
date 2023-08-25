@@ -1,10 +1,10 @@
 // import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useState } from 'react';
-import validator from 'validator';
+import { useState } from "react";
+import validator from "validator";
 
-import { useStepperContext } from '@/components/project/context/StepperContext';
+import { useStepperContext } from "@/components/project/context/StepperContext";
 // import { storage } from '@/config/firebase';
-import { isEmpty } from '@/validator';
+import { isEmpty } from "@/validator";
 
 const OverviewCard = ({ getDone }) => {
   //  const [progress, setProgress] = useState(0);
@@ -56,7 +56,7 @@ const OverviewCard = ({ getDone }) => {
     <div>
       <div className="top-6">
         <div className="mt-10 sm:mt-0">
-          <div className="mt-3 mb-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+          <div className="mb-1 mt-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
             Project Overview
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-slate-600 focus-within:text-gray-400">
@@ -87,19 +87,19 @@ const OverviewCard = ({ getDone }) => {
                         className="block w-full flex-1 rounded-md border-slate-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-base md:rounded-none md:rounded-r-md"
                         placeholder=" "
                         value={userData.primary_need}
-                        style={{ border: error ? '2px solid red' : '' }}
+                        style={{ border: error ? "2px solid red" : "" }}
                         onChange={handleChange}
                         required
                       />
                       {error ? (
-                        <div style={{ color: 'red' }}>
+                        <div style={{ color: "red" }}>
                           This is a required field
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                     </div>
-                    <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                    <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                       Brief title of your project. Should be short and precise
                     </div>
                   </div>
@@ -123,14 +123,14 @@ const OverviewCard = ({ getDone }) => {
                         required
                       />
                       {error ? (
-                        <div style={{ color: 'red' }}>
+                        <div style={{ color: "red" }}>
                           This is a required field
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                     </div>
-                    <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                    <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                       Detailed description for your project need. URLs are
                       hyperlinked. Ensure to include references if any.
                     </div>
@@ -199,11 +199,11 @@ const OverviewCard = ({ getDone }) => {
                           required
                         />
                         {error ? (
-                          <div style={{ color: 'red' }}>
+                          <div style={{ color: "red" }}>
                             This is a required field
                           </div>
                         ) : (
-                          ''
+                          ""
                         )}
                       </div>
                       <div className="mt-2 text-xs font-normal text-slate-700">
@@ -230,11 +230,11 @@ const OverviewCard = ({ getDone }) => {
                           required
                         />
                         {error ? (
-                          <div style={{ color: 'red' }}>
+                          <div style={{ color: "red" }}>
                             This is a required field
                           </div>
                         ) : (
-                          ''
+                          ""
                         )}
                       </div>
                       <div className="mt-2 text-xs font-normal text-slate-700">
@@ -260,19 +260,19 @@ const OverviewCard = ({ getDone }) => {
                         className="block w-full flex-1 rounded-md border-slate-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-base md:rounded-none md:rounded-r-md"
                         placeholder=" "
                         value={userData.help_required}
-                        style={{ border: error ? '2px solid red' : '' }}
+                        style={{ border: error ? "2px solid red" : "" }}
                         onChange={handleChange}
                         required
                       />
                       {error ? (
-                        <div style={{ color: 'red' }}>
+                        <div style={{ color: "red" }}>
                           This is a required field
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                     </div>
-                    <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                    <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                       Brief explanation od your project need.
                     </div>
                   </div>

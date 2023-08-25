@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { Menu } from '@headlessui/react';
-import Image from 'next/image';
-import React, { useState } from 'react';
+import { Menu } from "@headlessui/react";
+import Image from "next/image";
+import React, { useState } from "react";
 
 interface DataProps {
   students: any;
@@ -25,7 +25,7 @@ const StudentCard = ({
       <div className="group mt-4 rounded-lg border border-slate-300 hover:cursor-pointer hover:bg-slate-100 md:mt-0 ">
         <div>
           <div className="relative">
-            <div className="absolute top-0 right-0 mr-5 mt-3">
+            <div className="absolute right-0 top-0 mr-5 mt-3">
               {showSFav ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ const StudentCard = ({
                         src={
                           students?.profile !== undefined
                             ? students.profile
-                            : '/assets/images/placeholder.png'
+                            : "/assets/images/placeholder.png"
                         }
                         alt="Picture of the Student"
                         width={80}
@@ -89,20 +89,20 @@ const StudentCard = ({
               </div>
 
               <div className="col-span-3 ml-3">
-                <div className="mt-5 mb-1 font-inter text-lg font-medium text-slate-700 group-hover:underline">
+                <div className="mb-1 mt-5 font-inter text-lg font-medium text-slate-700 group-hover:underline">
                   {`${students.firstName}  ${students.lastName}`}
                 </div>
                 <div className="relative overflow-hidden text-gray-600 focus-within:text-gray-400">
-                  <div className="mb-2 text-xs font-normal text-gray-600 line-clamp-2">
-                    {students.about || 'No bio provided'}
+                  <div className="mb-2 line-clamp-2 text-xs font-normal text-gray-600">
+                    {students.about || "No bio provided"}
                   </div>
                 </div>
                 <div>
                   <button
                     type="button"
-                    className=" rounded-full border border-indigo-500 py-[2px] px-4 text-xs text-indigo-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                    className=" rounded-full border border-indigo-500 px-4 py-[2px] text-xs text-indigo-500 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                   >
-                    {students.area_of_expertise || 'Not Specified'}
+                    {students.area_of_expertise || "Not Specified"}
                   </button>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const StudentCard = ({
               <div className="flex items-end justify-end text-xs text-gray-700">
                 Rate:
                 <span className="ml-1 font-medium text-indigo-700">
-                  {students.rate || 'Not Specified'}
+                  {students.rate || "Not Specified"}
                 </span>
               </div>
             </div>

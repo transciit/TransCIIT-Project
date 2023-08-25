@@ -1,15 +1,11 @@
-import type { FieldHookConfig } from 'formik';
-import { Form, Formik, useField } from 'formik';
-import React from 'react';
-import * as Yup from 'yup';
+import type { FieldHookConfig } from "formik";
+import { Form, Formik, useField } from "formik";
+import React from "react";
+import * as Yup from "yup";
 
 interface OtherProps {
   label: string;
 }
-
-const handleChange = (e) => {
-  console.log(e);
-};
 
 const MyTextInput = (props: OtherProps & FieldHookConfig<string>) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -27,7 +23,7 @@ const MyTextInput = (props: OtherProps & FieldHookConfig<string>) => {
       <input
         className={`block w-full flex-1 rounded-md border-slate-400 focus:border-indigo-500 focus:ring-indigo-500 
         sm:text-base md:rounded-none md:rounded-r-md ${
-          meta.touched && meta.error ? 'border-2 border-red-500' : 'block'
+          meta.touched && meta.error ? "border-2 border-red-500" : "block"
         }`}
         {...field}
         placeholder={props.placeholder}
@@ -43,21 +39,21 @@ const MyTextInput = (props: OtherProps & FieldHookConfig<string>) => {
 const SignupSchema = Yup.object().shape({
   primary_need: Yup.string()
 
-    .min(2, 'Too Short!')
+    .min(2, "Too Short!")
 
-    .max(50, 'Too Long!')
+    .max(50, "Too Long!")
 
-    .required('Required'),
+    .required("Required"),
 
   primary_gap: Yup.string()
 
-    .min(2, 'Too Short!')
+    .min(2, "Too Short!")
 
-    .max(50, 'Too Long!')
+    .max(50, "Too Long!")
 
-    .required('Required'),
+    .required("Required"),
 
-  email: Yup.string().email('Invalid email').required('Required'),
+  email: Yup.string().email("Invalid email").required("Required"),
 });
 
 export default function Index() {
@@ -67,16 +63,15 @@ export default function Index() {
 
       <Formik
         initialValues={{
-          primary_need: '',
-          primary_gap: '',
-          area_of_expertise: '',
-          business_focus: '',
-          business_resources: '',
+          primary_need: "",
+          primary_gap: "",
+          area_of_expertise: "",
+          business_focus: "",
+          business_resources: "",
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values) => {
+        onSubmit={() => {
           // same shape as initial values
-          console.log(values);
         }}
       >
         <Form>
@@ -86,7 +81,6 @@ export default function Index() {
               name="primary_need"
               type="text"
               placeholder="Jane"
-              onChange={handleChange}
             />
 
             <MyTextInput
@@ -94,7 +88,6 @@ export default function Index() {
               name="primary_gap"
               type="text"
               placeholder="Jane"
-              onChange={handleChange}
             />
           </div>
 

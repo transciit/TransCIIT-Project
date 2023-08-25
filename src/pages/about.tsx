@@ -1,10 +1,10 @@
-import { Main } from '@/base/Main';
-import WhoWeAre from '@/components/about/WhoWeAre';
-import Partners from '@/components/index/Partners';
-import { Meta } from '@/layouts/Meta';
+import { Main } from "@/base/Main";
+import WhoWeAre from "@/components/about/WhoWeAre";
+import Partners from "@/components/index/Partners";
+import { Meta } from "@/layouts/Meta";
 
-import bg from '../../public/assets/images/hero/cover.jpg';
-import AboutUs from '../components/about/AboutUs';
+import bg from "../../public/assets/images/hero/cover.jpg";
+import AboutUs from "../components/about/AboutUs";
 
 const About = () => (
   <Main
@@ -14,15 +14,15 @@ const About = () => (
         description="Matching the needs of climate entrepreneurs with the skills of master's students"
       />
     }
-    name={'about'}
+    name={"about"}
   >
     <div className="relative w-full items-center justify-center overflow-x-hidden xl:pb-6">
       <div
         style={{
           backgroundImage: `url(${bg.src})`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
         }}
       >
         <div className="bg-indigo-700/80">

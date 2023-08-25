@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 interface Props {
   getArea: (arg: string) => void;
@@ -6,16 +6,15 @@ interface Props {
   done: any;
 }
 
-export const Top = ({ current, getArea, done }: Props) => {
-  console.log(done);
+export const Top = ({ current, getArea }: Props) => {
   const navigation = [
-    { name: 'Overview', href: '#overview' },
-    { name: 'Additional', href: '#additional' },
-    { name: 'Business', href: '#business' },
-    { name: 'Review', href: '#review' },
+    { name: "Overview", href: "#overview" },
+    { name: "Additional", href: "#additional" },
+    { name: "Business", href: "#business" },
+    { name: "Review", href: "#review" },
   ];
   function classNames(...classes) {
-    return classes.filter(Boolean).join(' ');
+    return classes.filter(Boolean).join(" ");
   }
   return (
     <>
@@ -40,11 +39,11 @@ export const Top = ({ current, getArea, done }: Props) => {
               <a
                 className={classNames(
                   item.name.includes(current)
-                    ? 'bg-indigo-600  text-white dark:bg-gray-700 dark:text-white'
-                    : 'bg-white p-4 hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white',
-                  'inline-block w-full p-4'
+                    ? "bg-indigo-600  text-white dark:bg-gray-700 dark:text-white"
+                    : "bg-white p-4 hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white",
+                  "inline-block w-full p-4"
                 )}
-                aria-current={item.name.includes(current) ? 'page' : undefined}
+                aria-current={item.name.includes(current) ? "page" : undefined}
                 onClick={() => {
                   getArea(item.name);
                 }}

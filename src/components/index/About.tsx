@@ -9,14 +9,14 @@ export default function About() {
             Who We Are
           </h2>
           <h3 className="mt-2 max-w-2xl text-center text-3xl font-extrabold leading-tight text-gray-900 sm:px-0 sm:text-5xl">
-            Learn More{' '}
+            Learn More{" "}
             <span className="w-full bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent lg:inline">
               About Us
             </span>
           </h3>
 
           <div className=" mx-auto my-16 box-border flex flex-col content-center items-center rounded-[2.5rem] border-0 border-solid border-gray-300 bg-white px-8 py-10 text-black md:flex-row lg:px-16">
-            <div className="relative mt-5 mb-4 -ml-5 box-border w-full max-w-md border-solid bg-contain bg-no-repeat px-4 text-center md:ml-0 md:mt-0 md:w-1/2 md:max-w-none lg:mb-0 xl:pl-10">
+            <div className="relative -ml-5 mb-4 mt-5 box-border w-full max-w-md border-solid bg-contain bg-no-repeat px-4 text-center md:ml-0 md:mt-0 md:w-1/2 md:max-w-none lg:mb-0 xl:pl-10">
               <img src="/assets/images/about/about.jpg" alt="image" />
             </div>
 
@@ -26,11 +26,11 @@ export default function About() {
               </h2>
               <div>
                 <span
-                  className="mr-2 mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  className="mb-5 mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
                   data-primary="yellow-400"
                 >
                   <span className="text-base font-bold"> 1 </span>
-                </span>{' '}
+                </span>{" "}
                 <div>
                   To investigate approaches on how to establish strong relations
                   between the full range of actors in
@@ -51,11 +51,11 @@ export default function About() {
 
               <div>
                 <span
-                  className="mr-2 mb-5 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  className="mb-5 mr-2 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
                   data-primary="yellow-400"
                 >
                   <span className="text-base font-bold"> 2 </span>
-                </span>{' '}
+                </span>{" "}
                 <div>
                   To pilot a matchmaking service in Kenya for entrepreneurs and
                   postgraduate students
@@ -64,11 +64,11 @@ export default function About() {
 
               <div>
                 <span
-                  className="mr-2 mb-5 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  className="mb-5 mr-2 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
                   data-primary="yellow-400"
                 >
                   <span className="text-base font-bold"> 3 </span>
-                </span>{' '}
+                </span>{" "}
                 <div>
                   To develop a website that facilitates future matchmaking
                   services of this kind
@@ -77,11 +77,11 @@ export default function About() {
 
               <div>
                 <span
-                  className="mr-2 mb-5 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
+                  className="mb-5 mr-2 mt-8 inline-flex h-10 w-10 items-center justify-center rounded-full bg-yellow-300 text-white"
                   data-primary="yellow-400"
                 >
                   <span className="text-base font-bold"> 4 </span>
-                </span>{' '}
+                </span>{" "}
                 <div>
                   To demonstrate to innovation ecosystem stakeholders beyond the
                   project the benefits of the matchmaking service

@@ -1,12 +1,12 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import React from 'react';
+import React from "react";
 
-import { DashBoard } from '@/base/Dashboard';
-import { Meta } from '@/layouts/Meta';
+import { DashBoard } from "@/base/Dashboard";
+import { Meta } from "@/layouts/Meta";
 
 export default function Index() {
   // changables
-  const where = 'invested';
+  const where = "invested";
 
   return (
     <>

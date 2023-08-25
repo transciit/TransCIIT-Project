@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { addDoc, collection } from 'firebase/firestore';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import { addDoc, collection } from "firebase/firestore";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import useSWR from "swr";
 
-import { DashBoard } from '@/base/Dashboard';
-import Loading from '@/components/loading';
-import { db } from '@/config/firebase';
-import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
-import { isEmpty } from '@/validator';
+import { DashBoard } from "@/base/Dashboard";
+import Loading from "@/components/loading";
+import { db } from "@/config/firebase";
+import { Meta } from "@/layouts/Meta";
+import fetcher from "@/utils/fetcher";
+import { isEmpty } from "@/validator";
 
 const Index = () => {
-  const { user } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
   const [done, setDone] = useState(false);
 
   const [userData, setUserData] = useState({
-    cost: '',
-    duration: '',
+    cost: "",
+    duration: "",
   });
 
   const handleChange = (e) => {
@@ -33,18 +33,18 @@ const Index = () => {
     }
   };
   // changables
-  const where = 'student';
+  const where = "student";
   const { data: feedDetails } = useSWR(
     `/api/feeds/${router?.query?.id}`,
     fetcher
   );
-  const { data: userDetails } = useSWR(`/api/users/${user?.uid}`, fetcher);
+  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
   const ud = userDetails?.userDetails;
   const feedDetail = feedDetails?.feedD;
 
   const handleInvite = async () => {
     try {
-      await addDoc(collection(db, 'invites'), {
+      await addDoc(collection(db, "invites"), {
         primary_need: feedDetail[0].primary_need,
         primary_gap: feedDetail[0].primary_gap,
         area_of_expertise: feedDetail[0].area_of_expertise,
@@ -53,7 +53,7 @@ const Index = () => {
         cost: userData.cost,
         duration: userData.duration,
         matched: false,
-        entrepreneur_id: user.uid,
+        entrepreneur_id: user?.id,
         entrepreneur_name: `${ud[0].firstName} ${ud[0].lastName}`,
         entrepreneur_profile: ud[0].profile,
         entrepreneur_email: ud[0].email,
@@ -61,20 +61,20 @@ const Index = () => {
         project_id: feedDetail[0].id,
       });
 
-      await addDoc(collection(db, 'mail'), {
+      await addDoc(collection(db, "mail"), {
         to: router?.query?.email,
         template: {
-          name: 'invites',
+          name: "invites",
           data: {
             main: `You have been invited to match with ${ud[0].firstName} ${ud[0].lastName}`,
             subject: `${ud[0].firstName} ${ud[0].lastName} has invited you to  ${feedDetail[0].primary_need}`,
-            body: 'You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you do not want to match, just ignore this email',
+            body: "You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you do not want to match, just ignore this email",
           },
         },
       });
-      router.push('/invites/entrepreneur');
-    } catch (err) {
-      console.log(err);
+      router.push("/invites/entrepreneur");
+    } catch (error) {
+      // console.log(error)
     }
   };
 
@@ -101,11 +101,11 @@ const Index = () => {
                           {feedDetails.business_focus}
                         </div>
                       </div>
-                      <div className="mt-1 mb-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+                      <div className="mb-3 mt-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
                         {feedDetails.business_name}
                       </div>
-                      <div className="ml-5 mb-7 items-center rounded-md text-base font-normal text-primary-500">
-                        By {user.displayName}
+                      <div className="mb-7 ml-5 items-center rounded-md text-base font-normal text-primary-500">
+                        By {user?.fullName}
                       </div>
 
                       <div>
@@ -113,14 +113,14 @@ const Index = () => {
                           <div className="m-3 mb-2 px-2 text-base font-medium text-slate-900 sm:text-xl">
                             {feedDetails.primary_need}
                           </div>
-                          <div className="mt-3 mb-2 flex w-full"></div>
+                          <div className="mb-2 mt-3 flex w-full"></div>
                           <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
                           <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                             <div className="text-grey-600 mb-4 text-xs font-normal">
                               More Details
                             </div>
                           </div>
-                          <div className="mx-3 mb-3 px-2 text-base text-slate-800 line-clamp-3">
+                          <div className="mx-3 mb-3 line-clamp-3 px-2 text-base text-slate-800">
                             {feedDetails.primary_gap}
                           </div>
 
@@ -133,7 +133,7 @@ const Index = () => {
                           <div className="mx-3 flex justify-start px-2">
                             <button
                               type="button"
-                              className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                              className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                             >
                               {feedDetails.area_of_expertise}
                             </button>
@@ -169,7 +169,7 @@ const Index = () => {
                               <div className="mx-3 px-2">
                                 <button
                                   type="button"
-                                  className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                                  className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                                 >
                                   {feedDetails.secondary_expertise}
                                 </button>
@@ -188,7 +188,7 @@ const Index = () => {
 
                           <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                             <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                            <div className="text-grey-600 ml-3 mb-4 text-xs font-normal">
+                            <div className="text-grey-600 mb-4 ml-3 text-xs font-normal">
                               <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-base font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
                                 <svg
                                   aria-hidden="true"
@@ -218,7 +218,7 @@ const Index = () => {
               ))}
               <div className="my-6 rounded-xl border border-slate-300 bg-white p-1 shadow-xl">
                 <div className="mt-10 sm:mt-0">
-                  <div className="mt-3 mb-1 px-5 text-xl font-bold text-slate-900 sm:text-2xl">
+                  <div className="mb-1 mt-3 px-5 text-xl font-bold text-slate-900 sm:text-2xl">
                     Your Terms
                   </div>
                   <div className="relative mx-5 items-center self-center overflow-hidden text-slate-600 focus-within:text-gray-400">
@@ -298,7 +298,7 @@ const Index = () => {
                           <div className="pt-5 text-xs font-normal text-gray-600">
                             This information will be visible by the student
                             invited. By proceeding you agree with TransCIIT
-                            Project{' '}
+                            Project{" "}
                             <a
                               href="#"
                               className="text-blue-600 hover:underline dark:text-blue-500"
@@ -329,7 +329,7 @@ const Index = () => {
                       </button>
                     </div>
                   ) : (
-                    ''
+                    ""
                   )}
                 </div>
               </div>

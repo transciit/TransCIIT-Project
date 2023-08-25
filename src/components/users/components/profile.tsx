@@ -1,13 +1,13 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { doc, updateDoc } from 'firebase/firestore';
-import { useState } from 'react';
+import { useUser } from "@clerk/nextjs";
+import { doc, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 
-import { db } from '@/config/firebase';
-import { useAuth } from '@/lib/auth';
+import { db } from "@/config/firebase";
 
 const ProfileCard = ({ usr }) => {
-  const { user } = useAuth();
-  const reference = doc(db, 'users', user.uid);
+  const { user } = useUser();
+  const reference = doc(db, "users", user?.id || "0");
 
   const [userData, setUserData] = useState({
     website: usr[0].website,
@@ -26,7 +26,7 @@ const ProfileCard = ({ usr }) => {
         about: userData.about,
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   return (
@@ -34,7 +34,7 @@ const ProfileCard = ({ usr }) => {
       <div className="top-6 mt-4">
         <div className="rounded-xl border border-slate-300 bg-white p-1">
           <div className="mt-10 sm:mt-0">
-            <div className="mt-3 mb-1 px-5 font-playfair text-xl font-extrabold text-slate-700 sm:text-2xl">
+            <div className="mb-1 mt-3 px-5 font-playfair text-xl font-extrabold text-slate-700 sm:text-2xl">
               Profile
             </div>
             <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
@@ -102,7 +102,7 @@ const ProfileCard = ({ usr }) => {
                       onClick={() => {
                         savetoDb();
                       }}
-                      className="mr-2 mb-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                      className="mb-2 mr-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                     >
                       Save
                     </button>

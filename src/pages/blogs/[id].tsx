@@ -1,10 +1,10 @@
-import type { GetStaticPaths, GetStaticProps } from 'next';
-import ReactMarkdown from 'react-markdown';
+import type { GetStaticPaths, GetStaticProps } from "next";
+import ReactMarkdown from "react-markdown";
 
-import { Main } from '@/base/Main';
-import type { Blogs } from '@/interfaces/blog';
-import { Meta } from '@/layouts/Meta';
-import { blogData } from '@/utils/blogData';
+import { Main } from "@/base/Main";
+import type { Blogs } from "@/interfaces/blog";
+import { Meta } from "@/layouts/Meta";
+import { blogData } from "@/utils/blogData";
 
 type Props = {
   item: Blogs;
@@ -24,7 +24,7 @@ const StaticPropsDetail = ({ item, errors, items }: Props) => {
             <p className="text-2xl font-semibold md:text-3xl">
               Sorry, we couldn&asop;t find this page.
             </p>
-            <p className="mt-4 mb-8 dark:text-gray-400">{errors}</p>
+            <p className="mb-8 mt-4 dark:text-gray-400">{errors}</p>
             <a
               rel="noopener noreferrer"
               href="#"
@@ -46,7 +46,7 @@ const StaticPropsDetail = ({ item, errors, items }: Props) => {
           description="Matching the needs of climate entrepreneurs with the skills of master's students"
         />
       }
-      name={'blogDetails'}
+      name={"blogDetails"}
     >
       <div className="mx-auto max-w-4xl space-y-12 px-6 py-16">
         <article className="space-y-8 dark:bg-gray-800 dark:text-gray-50">

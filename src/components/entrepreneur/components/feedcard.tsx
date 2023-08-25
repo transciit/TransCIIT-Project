@@ -1,6 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 interface DataProps {
   feeds: any;
@@ -30,7 +30,7 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
                     src={
                       ud[0].profile !== undefined
                         ? ud[0].profile
-                        : '/assets/images/placeholder.png'
+                        : "/assets/images/placeholder.png"
                     }
                     alt="Picture of the author"
                     width={50}
@@ -57,7 +57,7 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
               </div>
             </div>
             <div className="mt-1 flex justify-end pr-5">
-              {from.includes('invested') ? (
+              {from.includes("invested") ? (
                 <p></p>
               ) : (
                 <span className="mr-2 h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-400 px-[7px] pt-2 text-center text-slate-400 transition duration-300 ease-out hover:border-red-500 hover:text-red-500 lg:h-10 lg:w-10 lg:px-[9px] lg:pt-[9px]">
@@ -80,7 +80,7 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
             </div>
           </div>
           <div
-            className="m-3 mb-2 px-2 text-lg font-medium text-slate-800 line-clamp-2 hover:line-clamp-none group-hover:cursor-pointer group-hover:text-indigo-500 group-hover:underline md:text-xl lg:line-clamp-1"
+            className="m-3 mb-2 line-clamp-2 px-2 text-lg font-medium text-slate-800 hover:line-clamp-none group-hover:cursor-pointer group-hover:text-indigo-500 group-hover:underline md:text-xl lg:line-clamp-1"
             onClick={() => {
               setOpen(true);
               getId(feed.id);
@@ -88,19 +88,19 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
           >
             {feed.primary_need}
           </div>
-          <div className="mt-3 mb-2 flex w-full">
+          <div className="mb-2 mt-3 flex w-full">
             <div className="ml-5  items-center rounded-md text-sm font-normal text-primary-500">
               {feed.business_focus}
             </div>
           </div>
-          <div className="mx-3 mb-3 px-2 text-base text-slate-700 line-clamp-3">
+          <div className="mx-3 mb-3 line-clamp-3 px-2 text-base text-slate-700">
             {feed.primary_gap}
           </div>
 
           <div className="mx-3 flex justify-start px-2">
             <button
               type="button"
-              className="mr-2 mb-2 rounded-full border border-slate-200 bg-slate-100 py-[6px] px-5 text-sm text-slate-700 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+              className="mb-2 mr-2 rounded-full border border-slate-200 bg-slate-100 px-5 py-[6px] text-sm text-slate-700 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
             >
               {feed.area_of_expertise}
             </button>

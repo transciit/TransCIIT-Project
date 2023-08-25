@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useStepperContext } from '@/components/project/context/StepperContext';
-import { isEmpty } from '@/validator';
+import { useStepperContext } from "@/components/project/context/StepperContext";
+import { isEmpty } from "@/validator";
 
 const AdditionalCard = ({ getDone }) => {
   const [toggle, setToggle] = useState(false);
@@ -26,7 +26,7 @@ const AdditionalCard = ({ getDone }) => {
     <div>
       <div className="top-6">
         <div className="mt-10 sm:mt-0">
-          <div className="mt-3 mb-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+          <div className="mb-1 mt-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
             Additional Information
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-slate-600 focus-within:text-gray-400">
@@ -48,7 +48,7 @@ const AdditionalCard = ({ getDone }) => {
                 checked={toggle}
                 onChange={toggleChecked}
               />
-              <div className="peer h-6 w-11 rounded-full bg-slate-500 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
+              <div className="peer h-6 w-11 rounded-full bg-slate-500 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
               <span className="ml-3 text-base font-medium text-gray-900 dark:text-gray-300">
                 Have Additional Information?
               </span>
@@ -80,7 +80,7 @@ const AdditionalCard = ({ getDone }) => {
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                      <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                         Brief name of your project, Consider it the Business
                         Title. Should be short and precise
                       </div>
@@ -99,13 +99,13 @@ const AdditionalCard = ({ getDone }) => {
                           rows={7}
                           className="mt-1 block w-full rounded-md border border-slate-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base"
                           placeholder="Description of Business Need"
-                          defaultValue={''}
+                          defaultValue={""}
                           name="secondary_gap"
                           value={userData.secondary_gap}
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                      <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                         Detailed description for your project need. URLs are
                         hyperlinked. Ensure to include references if any.
                       </div>

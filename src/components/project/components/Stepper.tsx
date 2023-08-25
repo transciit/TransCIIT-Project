@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+/* eslint-disable no-console */
+import React, { useEffect, useRef, useState } from "react";
 
 const Stepper = ({ steps, currentStep }) => {
   const [newStep, setNewStep] = useState<any>([]);
@@ -6,7 +7,6 @@ const Stepper = ({ steps, currentStep }) => {
 
   const updateStep = (stepNumber, step) => {
     const newSteps = [...step];
-    console.log(newSteps);
     let count = 0;
     while (count < newSteps.length) {
       // current step
@@ -64,16 +64,16 @@ const Stepper = ({ steps, currentStep }) => {
         key={index}
         className={
           index !== newStep.length - 1
-            ? 'flex w-full items-center'
-            : 'flex items-center'
+            ? "flex w-full items-center"
+            : "flex items-center"
         }
       >
         <div className="relative flex flex-col items-center text-indigo-600">
           <div
             className={`flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-300 py-3 transition duration-500 ease-in-out  ${
               step.selected
-                ? 'border border-indigo-600 bg-indigo-600 font-bold text-white '
-                : ''
+                ? "border border-indigo-600 bg-indigo-600 font-bold text-white "
+                : ""
             }`}
           >
             {step.completed ? (
@@ -84,7 +84,7 @@ const Stepper = ({ steps, currentStep }) => {
           </div>
           <div
             className={`absolute top-0  mt-14 w-32 text-center text-xs font-medium uppercase ${
-              step.highlighted ? 'text-gray-900' : 'text-gray-400'
+              step.highlighted ? "text-gray-900" : "text-gray-400"
             }`}
           >
             {step.description}
@@ -92,7 +92,7 @@ const Stepper = ({ steps, currentStep }) => {
         </div>
         <div
           className={`flex-auto border-t-2 transition duration-500 ease-in-out  ${
-            step.completed ? 'border-indigo-600' : 'border-gray-300 '
+            step.completed ? "border-indigo-600" : "border-gray-300 "
           }  `}
         ></div>
       </div>
