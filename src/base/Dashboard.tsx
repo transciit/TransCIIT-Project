@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
-import React from 'react';
+import type { ReactNode } from "react";
+import React from "react";
 
-import { Meta } from '@/layouts/Meta';
+import { Meta } from "@/layouts/Meta";
 
-import { Main } from './Main';
+import { Main } from "./Main";
 
 type IMainProps = {
   metaDashboard: ReactNode;

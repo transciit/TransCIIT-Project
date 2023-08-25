@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import Image from 'next/image';
+import Image from "next/image";
 
-import bg from '../../../public/assets/images/hero/cover.jpg';
+import bg from "../../../public/assets/images/hero/cover.jpg";
 
 type IMetaProps = {
   hero: string;
@@ -14,9 +14,9 @@ export default function Hero(props: IMetaProps) {
     <div
       style={{
         backgroundImage: `url(${bg.src})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
       }}
     >
       <div className="bg-indigo-700/80">
@@ -43,7 +43,7 @@ export default function Hero(props: IMetaProps) {
               placeholder="Have a Question? Reach out"
               className="h-12 w-full px-6 py-2 font-medium text-indigo-800 focus:outline-none"
             />
-            <span className="relative top-0 right-0 block">
+            <span className="relative right-0 top-0 block">
               <button
                 type="button"
                 className="leading-6 inline-flex h-12 w-32 items-center border border-transparent bg-indigo-400 px-8 text-base font-bold text-white transition duration-150 ease-in-out hover:bg-indigo-700 focus:outline-none active:bg-indigo-700"
@@ -63,7 +63,7 @@ export default function Hero(props: IMetaProps) {
             <p className=" sm:text-md pr-0 text-base text-gray-50 xl:text-lg">
               {props.hero}
             </p>
-            <h1 className="mt-2 mb-5 max-w-5xl text-center font-montserrat text-2xl font-extrabold leading-tight text-gray-50 sm:mt-0 sm:px-5 md:text-4xl lg:text-5xl xl:mb-12">
+            <h1 className="mb-5 mt-2 max-w-5xl text-center font-montserrat text-2xl font-extrabold leading-tight text-gray-50 sm:mt-0 sm:px-5 md:text-4xl lg:text-5xl xl:mb-12">
               {props.herodes}
             </h1>
 

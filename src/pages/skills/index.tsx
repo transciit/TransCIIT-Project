@@ -1,37 +1,37 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import React, { useState } from "react";
+import useSWR from "swr";
 
-import { DashBoard } from '@/base/Dashboard';
-import Loading from '@/components/loading';
-import MySkillsCard from '@/components/skills/components/myskills';
-import { Meta } from '@/layouts/Meta';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
+import { DashBoard } from "@/base/Dashboard";
+import Loading from "@/components/loading";
+import MySkillsCard from "@/components/skills/components/myskills";
+import { Meta } from "@/layouts/Meta";
+import fetcher from "@/utils/fetcher";
 
-import { Side } from '../../components/entrepreneur/components/side';
-import StudentReviewCard from '../../components/skills/components/review';
-import Stepper from '../../components/skills/components/Stepper';
-import StepperControl from '../../components/skills/components/StepperControl';
-import { UseContextProvider } from '../../components/skills/context/StepperContext';
+import { Side } from "../../components/entrepreneur/components/side";
+import StudentReviewCard from "../../components/skills/components/review";
+import Stepper from "../../components/skills/components/Stepper";
+import StepperControl from "../../components/skills/components/StepperControl";
+import { UseContextProvider } from "../../components/skills/context/StepperContext";
 
 const Index = () => {
-  const { user } = useAuth();
+  const { user } = useUser();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [done, setDone] = useState(false);
 
-  const steps = ['About', 'Review'];
-  const { data: userDetails } = useSWR(`/api/users/${user.uid}`, fetcher);
-  const { data: fetchCategories } = useSWR('/api/category/', fetcher);
+  const steps = ["About", "Review"];
+  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
+  const { data: fetchCategories } = useSWR("/api/category/", fetcher);
   const ud = userDetails?.userDetails;
   const fc = fetchCategories?.fetchCategories;
 
   const handleClick = (direction) => {
     let newStep = currentStep;
 
-    direction === 'next' ? (newStep += 1) : (newStep -= 1);
+    direction === "next" ? (newStep += 1) : (newStep -= 1);
     newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
   };
 
@@ -47,7 +47,7 @@ const Index = () => {
         return <StudentReviewCard />;
       default:
     }
-    return '';
+    return "";
   };
 
   return (
@@ -58,7 +58,7 @@ const Index = () => {
           description="Welcome to TransCIIT"
         />
       }
-      nameDashboard={'steps'}
+      nameDashboard={"steps"}
     >
       <div className="block bg-slate-50 lg:grid lg:grid-flow-row-dense lg:grid-cols-4">
         <div className="col-span-3">
@@ -88,7 +88,7 @@ const Index = () => {
           </div>
         </div>
         <div className="sticky top-6 hidden py-5 lg:block">
-          {ud?.length ? <Side ud={ud} /> : ''}
+          {ud?.length ? <Side /> : ""}
         </div>
       </div>
     </DashBoard>

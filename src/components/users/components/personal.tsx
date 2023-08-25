@@ -1,12 +1,13 @@
-import { doc, updateDoc } from 'firebase/firestore';
-import { useState } from 'react';
+/* eslint-disable no-console */
+import { useUser } from "@clerk/nextjs";
+import { doc, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 
-import { db } from '@/config/firebase';
-import { useAuth } from '@/lib/auth';
+import { db } from "@/config/firebase";
 
 const PersonalCard = ({ usr }) => {
-  const { user } = useAuth();
-  const reference = doc(db, 'users', user.uid);
+  const { user } = useUser();
+  const reference = doc(db, "users", user?.id || "0");
 
   const [userData, setUserData] = useState({
     firstName: usr[0].firstName,
@@ -40,7 +41,7 @@ const PersonalCard = ({ usr }) => {
       <div className="top-6">
         <div className="rounded-xl border border-slate-300 bg-white p-1">
           <div className="mt-10 sm:mt-0">
-            <div className="mt-3 mb-1 px-5 font-playfair text-xl font-extrabold text-slate-700 sm:text-2xl">
+            <div className="mb-1 mt-3 px-5 font-playfair text-xl font-extrabold text-slate-700 sm:text-2xl">
               Personal Information
             </div>
             <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
@@ -138,7 +139,7 @@ const PersonalCard = ({ usr }) => {
                           className="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
-                      {usr[0].type.includes('student') ? (
+                      {usr[0].type.includes("student") ? (
                         <div className="col-span-6">
                           <label
                             htmlFor="street-address"
@@ -157,7 +158,7 @@ const PersonalCard = ({ usr }) => {
                           />
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                       <div className="col-span-6">
                         <button

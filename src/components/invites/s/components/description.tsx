@@ -1,61 +1,61 @@
 /* eslint-disable no-console */
 /* eslint-disable tailwindcss/no-custom-classname */
-import { Menu } from '@headlessui/react';
+import { useUser } from "@clerk/nextjs";
+import { Menu } from "@headlessui/react";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
   updateDoc,
-} from 'firebase/firestore';
-import { Button, Modal } from 'flowbite-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import router from 'next/router';
-import { useState } from 'react';
-import { BsExclamationCircle } from 'react-icons/bs';
+} from "firebase/firestore";
+import { Button, Modal } from "flowbite-react";
+import Image from "next/image";
+import Link from "next/link";
+import router from "next/router";
+import { useState } from "react";
+import { BsExclamationCircle } from "react-icons/bs";
 
-import Loading from '@/components/loading';
-import { db } from '@/config/firebase';
-import { useAuth } from '@/lib/auth';
+import Loading from "@/components/loading";
+import { db } from "@/config/firebase";
 
 const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth();
+  const { user } = useUser();
   const handleMatch = async () => {
     try {
-      const referenceData = doc(db, 'feed', feedDetail[0].id);
+      const referenceData = doc(db, "feed", feedDetail[0].id);
       await updateDoc(referenceData, {
-        student_id: user.uid,
+        student_id: user?.id,
         matched: true,
         cost: feeds[0].cost,
         duration: feeds[0].duration,
       });
-      const referenceData2 = doc(db, 'invites', feeds[0].id);
+      const referenceData2 = doc(db, "invites", feeds[0].id);
       await deleteDoc(referenceData2);
-      await addDoc(collection(db, 'mail'), {
+      await addDoc(collection(db, "mail"), {
         to: ud[0].email,
         template: {
-          name: 'invites',
+          name: "invites",
           data: {
             main: `${sd[0].firstName} ${sd[0].lastName} has matched with you`,
             subject: `${sd[0].firstName} ${sd[0].lastName} has matched with you on project, ${feedDetail[0].primary_need}`,
-            body: 'You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project',
+            body: "You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project",
           },
         },
       });
-      await addDoc(collection(db, 'mail'), {
+      await addDoc(collection(db, "mail"), {
         to: sd[0].email,
         template: {
-          name: 'invites',
+          name: "invites",
           data: {
             main: `You have matched with ${ud[0].firstName} ${ud[0].lastName}`,
             subject: `You have agreed to match with ${ud[0].firstName} ${ud[0].lastName} on project, ${feedDetail[0].primary_need}`,
-            body: 'You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project',
+            body: "You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project",
           },
         },
       });
-      router.push('/mp/student');
+      router.push("/mp/student");
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +69,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
             <div className="top-6 hidden md:block lg:block">
               <div className="mx-5 overflow-hidden rounded-lg  shadow-sm">
                 <div>
-                  <div className="mt-4 mb-2 text-base font-bold text-indigo-600 sm:text-xl">
+                  <div className="mb-2 mt-4 text-base font-bold text-indigo-600 sm:text-xl">
                     Project Terms
                   </div>
                   <div className="grid grid-cols-2 divide-x rounded-lg border border-slate-500 bg-slate-100 p-1 text-center">
@@ -79,7 +79,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                           Duration
                         </div>
                       </div>
-                      <div className="mx-3 px-2 text-lg font-bold text-indigo-800 line-clamp-3">
+                      <div className="mx-3 line-clamp-3 px-2 text-lg font-bold text-indigo-800">
                         {feeds[0].duration}
                       </div>
                     </div>
@@ -89,7 +89,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                           Cost
                         </div>
                       </div>
-                      <div className="mx-3 px-2 text-lg font-bold text-indigo-800 line-clamp-3">
+                      <div className="mx-3 line-clamp-3 px-2 text-lg font-bold text-indigo-800">
                         ${feeds[0].cost}
                       </div>
                     </div>
@@ -104,10 +104,10 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                   {feedDetails.business_focus}
                 </div>
               </div>
-              <div className="mt-1 mb-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+              <div className="mb-3 mt-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
                 {feedDetails.business_name}
               </div>
-              <div className="ml-5 mb-7 items-center rounded-md text-base font-normal text-primary-500">
+              <div className="mb-7 ml-5 items-center rounded-md text-base font-normal text-primary-500">
                 By {feeds[0].entrepreneur_name}
               </div>
 
@@ -116,14 +116,14 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                   <div className="m-3 mb-2 px-2 text-base font-medium text-slate-900 sm:text-xl">
                     {feedDetails.primary_need}
                   </div>
-                  <div className="mt-3 mb-2 flex w-full"></div>
+                  <div className="mb-2 mt-3 flex w-full"></div>
                   <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
                   <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                     <div className="text-grey-600 mb-4 text-xs font-normal">
                       More Details
                     </div>
                   </div>
-                  <div className="mx-3 mb-3 px-2 text-base text-slate-800 line-clamp-3">
+                  <div className="mx-3 mb-3 line-clamp-3 px-2 text-base text-slate-800">
                     {feedDetails.primary_gap}
                   </div>
 
@@ -136,7 +136,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                   <div className="mx-3 flex justify-start px-2">
                     <button
                       type="button"
-                      className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                      className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                     >
                       {feedDetails.area_of_expertise}
                     </button>
@@ -163,7 +163,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                       <div className="mx-3 px-2">
                         <button
                           type="button"
-                          className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                          className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
                         >
                           {feedDetails.secondary_expertise}
                         </button>
@@ -182,7 +182,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
 
                   <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                     <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                    <div className="text-grey-600 ml-3 mb-4 text-xs font-normal">
+                    <div className="text-grey-600 mb-4 ml-3 text-xs font-normal">
                       <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-base font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
                         <svg
                           aria-hidden="true"
@@ -235,7 +235,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                           src={
                             ud[0].profile !== undefined
                               ? ud[0].profile
-                              : '/assets/images/placeholder.png'
+                              : "/assets/images/placeholder.png"
                           }
                           alt="Picture of the author"
                           width={70}
@@ -244,7 +244,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                         />
                       </div>
                     </Menu>
-                    <div className="mt-3 mb-1 px-4 text-center font-inter text-lg font-medium text-slate-900">
+                    <div className="mb-1 mt-3 px-4 text-center font-inter text-lg font-medium text-slate-900">
                       {`${ud[0].firstName} ${ud[0].lastName}`}
                     </div>
                     <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">

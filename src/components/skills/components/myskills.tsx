@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
 // import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 // React-wrapper file
-import '@yaireo/tagify/dist/tagify.css'; // Tagify CSS
+import "@yaireo/tagify/dist/tagify.css"; // Tagify CSS
 
 // React-wrapper file
-import { useState } from 'react';
+import { useState } from "react";
 
 // import { storage } from '@/config/firebase';
-import { isEmpty } from '@/validator';
+import { isEmpty } from "@/validator";
 
-import { useStepperContext } from '../context/StepperContext';
+import { useStepperContext } from "../context/StepperContext";
 
 const MySkillsCard = ({ getDone }) => {
   //  const [progress, setProgress] = useState(0);
@@ -88,7 +88,7 @@ const MySkillsCard = ({ getDone }) => {
     <div>
       <div className="top-6">
         <div className="mt-10 sm:mt-0">
-          <div className="mt-3 mb-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+          <div className="mb-1 mt-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
             About You
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-slate-600 focus-within:text-gray-400">
@@ -119,14 +119,14 @@ const MySkillsCard = ({ getDone }) => {
                         required
                       />
                       {error ? (
-                        <div style={{ color: 'red' }}>
+                        <div style={{ color: "red" }}>
                           This is a required field
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                     </div>
-                    <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                    <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                       A summary of who you are and what you would like to
                       achieve. You can also include previous projects youve
                       successfully handled
@@ -180,11 +180,11 @@ const MySkillsCard = ({ getDone }) => {
                         required
                       />
                       {error ? (
-                        <div style={{ color: 'red' }}>
+                        <div style={{ color: "red" }}>
                           This is a required field
                         </div>
                       ) : (
-                        ''
+                        ""
                       )}
                     </div>
                     <div className="mt-2 text-xs font-normal text-slate-700">

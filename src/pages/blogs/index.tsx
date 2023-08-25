@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable no-console */
 
-import type { GetStaticProps } from 'next';
+import type { GetStaticProps } from "next";
 
-import { Main } from '@/base/Main';
-import Article from '@/components/blog/Article';
-import type { Blogs } from '@/interfaces/blog';
-import { Meta } from '@/layouts/Meta';
-import { blogData } from '@/utils/blogData';
+import { Main } from "@/base/Main";
+import Article from "@/components/blog/Article";
+import type { Blogs } from "@/interfaces/blog";
+import { Meta } from "@/layouts/Meta";
+import { blogData } from "@/utils/blogData";
 
 type Props = {
   items: Blogs[];
@@ -22,10 +22,10 @@ export default function Matched({ items }: Props) {
           description="Matching the needs of climate entrepreneurs with the skills of master's students"
         />
       }
-      name={'blogs'}
+      name={"blogs"}
     >
-      <div className="relative w-full items-center justify-center overflow-x-hidden lg:py-20 xl:pt-10 xl:pb-6">
-        <div className="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
+      <div className="relative w-full items-center justify-center overflow-x-hidden lg:py-20 xl:pb-6 xl:pt-10">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
           <div className="mx-auto mb-8 lg:mb-20">
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:text-4xl">
               Our Blogs

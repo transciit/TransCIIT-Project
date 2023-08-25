@@ -1,10 +1,10 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { ChevronLeftIcon } from '@heroicons/react/outline';
-import { Fragment } from 'react';
+import { Dialog, Transition } from "@headlessui/react";
+import { ChevronLeftIcon } from "@heroicons/react/outline";
+import { Fragment } from "react";
 
-import Loading from '@/components/loading';
+import Loading from "@/components/loading";
 
-import DescriptionCard from './description';
+import DescriptionCard from "./description";
 
 interface Props {
   feeds: any;
@@ -52,7 +52,7 @@ export const Modal = ({ feeds, feedDetails, open, setOpen, ud }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute top-0 left-0 flex pt-4 sm:ml-10 sm:pr-4">
+                    <div className="absolute left-0 top-0 flex pt-4 sm:ml-10 sm:pr-4">
                       <button
                         type="button"
                         className="rounded-md text-gray-700 hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-900"

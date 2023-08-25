@@ -8,7 +8,7 @@ export default function AboutUs() {
             About Us
           </h2>
           <h3 className="mt-2 max-w-2xl text-center text-3xl font-extrabold leading-tight text-gray-900 sm:px-0 sm:text-5xl">
-            Who{' '}
+            Who{" "}
             <span className="w-full bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent lg:inline">
               We Are
             </span>
@@ -20,7 +20,7 @@ export default function AboutUs() {
                   <span className="w-full bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text font-extrabold text-transparent lg:inline">
                     Transforming Climate Innovation Ecosystems through Inclusive
                     Transdisciplinarity (TransCIIT)
-                  </span>{' '}
+                  </span>{" "}
                   project is seeking to pilot a service in Kenya that matches
                   the needs of climate entrepreneurs with the skills of master’s
                   students, thereby exploring how to develop and strengthen
@@ -34,7 +34,7 @@ export default function AboutUs() {
                   particular.
                 </div>
                 <p className="text-[17px]">
-                  1){' '}
+                  1){" "}
                   <span className="w-full bg-gradient-to-r from-blue-900 to-green-900 bg-clip-text font-bold text-transparent lg:inline">
                     African Centre for Technology Studies (ACTS)
                   </span>
@@ -43,11 +43,11 @@ export default function AboutUs() {
                   to the project’s other two partners in Kenya.
                 </p>
                 <p className="text-[17px]">
-                  2){' '}
+                  2){" "}
                   <span className="w-full bg-gradient-to-r from-blue-900 to-green-900 bg-clip-text font-bold text-transparent lg:inline">
                     Jaramogi Oginga Odinga University of Science and Technology
                     (JOOUST)
-                  </span>{' '}
+                  </span>{" "}
                   in Kenya will identify suitable masters students from various
                   disciplines to be involved in the matchmaking process and
                   project activities. Masters students in various fields of
@@ -55,34 +55,34 @@ export default function AboutUs() {
                   were be targeted
                 </p>
                 <p className="text-[17px]">
-                  3){' '}
+                  3){" "}
                   <span className="w-full bg-gradient-to-r from-blue-900 to-green-900 bg-clip-text font-bold text-transparent lg:inline">
                     Kenya Climate Innovation Center (KCIC)
-                  </span>{' '}
+                  </span>{" "}
                   will provide business advisors.
                 </p>
                 <p className="text-[17px]">
-                  4){' '}
+                  4){" "}
                   <span className="w-full bg-gradient-to-r from-blue-900 to-green-900 bg-clip-text font-bold text-transparent lg:inline">
                     University of Johannesburg (UJ)
-                  </span>{' '}
+                  </span>{" "}
                   who, through the Trilateral Research Chair on Transformative
                   Innovation (TRCTI), provide important expertise on innovation
                   systems and informal sector entrepreneurship. And part of the
                   TRCTI along with UJ (and ACTS),
                 </p>
                 <p className="text-[17px]">
-                  5){' '}
+                  5){" "}
                   <span className="w-full bg-gradient-to-r from-blue-900 to-green-900 bg-clip-text font-bold text-transparent lg:inline">
                     The University of Sussex in the UK through the Science
                     Policy Research Unit (SPRU)
-                  </span>{' '}
+                  </span>{" "}
                   is leading the project, connecting it with the work of the
                   Transformative Innovation Policy Consortium (TIPC).
                 </p>
               </div>
             </div>
-            <div className="mt-0 mr-10 flex w-full flex-col sm:mt-20 lg:my-2 lg:flex-col">
+            <div className="mr-10 mt-0 flex w-full flex-col sm:mt-20 lg:my-2 lg:flex-col">
               <img src="/assets/images/about/2.jpg" alt="image" />
             </div>
           </div>

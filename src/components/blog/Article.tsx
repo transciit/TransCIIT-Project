@@ -1,10 +1,10 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 
-import { Card } from 'flowbite-react';
-import Link from 'next/link';
-import React from 'react';
+import { Card } from "flowbite-react";
+import Link from "next/link";
+import React from "react";
 
-import type { Blogs } from '../../interfaces/blog';
+import type { Blogs } from "../../interfaces/blog";
 
 type Props = {
   items: Blogs[];
@@ -24,17 +24,17 @@ const Article = ({ items }: Props) => (
           <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {item.bg_title}
           </h5>
-          <p className="text-base font-normal text-gray-700 line-clamp-3 dark:text-gray-400">
+          <p className="line-clamp-3 text-base font-normal text-gray-700 dark:text-gray-400">
             {item.bg_description}
           </p>
           <Link href="/blogs/[id]" as={`/blogs/${item.bg_id}`}>
             <a
               href="#"
-              className="inline-flex items-center justify-center rounded-lg bg-primary-700 py-2  px-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="inline-flex items-center justify-center rounded-lg bg-primary-700 px-3  py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Read more
               <svg
-                className="ml-2 -mr-1 h-4 w-4"
+                className="-mr-1 ml-2 h-4 w-4"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"

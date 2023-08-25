@@ -1,10 +1,10 @@
 /* eslint-disable tailwindcss/no-contradicting-classname */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable tailwindcss/no-custom-classname */
-import Link from 'next/link';
-import type { ReactNode } from 'react';
+import Link from "next/link";
+import type { ReactNode } from "react";
 
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from "@/utils/AppConfig";
 
 type IMainProps = {
   meta: ReactNode;
@@ -12,15 +12,15 @@ type IMainProps = {
 };
 
 const newLocal_2 =
-  'relative flex items-center inline-block h-5 h-full font-black leading-none';
+  "relative flex items-center inline-block h-5 h-full font-black leading-none";
 const newLocal_3 =
-  'flex flex-col block w-full font-medium border-t border-gray-200 md:hidden';
+  "flex flex-col block w-full font-medium border-t border-gray-200 md:hidden";
 const styling = {
   backgroundImage: "url('/assets/images/bg.png')",
-  width: '100%',
-  height: '100%',
-  backgroundPosition: 'top',
-  backgroundRepeat: 'no-repeat',
+  width: "100%",
+  height: "100%",
+  backgroundPosition: "top",
+  backgroundRepeat: "no-repeat",
 };
 const Mainc = (props: IMainProps) => (
   <div className="w-full text-gray-700 antialiased">
@@ -32,14 +32,14 @@ const Mainc = (props: IMainProps) => (
           <div className="flex h-7 items-center justify-center bg-indigo-500 text-center">
             <p className=" sm:text-md pr-0 text-base font-semibold text-gray-50 xl:text-sm">
               The TransCIIT Project is a collaboration of five innovative driven
-              organizations in Africa.{' '}
+              organizations in Africa.{" "}
               <span className="text-yellow-400 hover:underline">
                 <Link href="/about">Learn more</Link>
               </span>
             </p>
           </div>
           <div className="container mx-auto flex h-full max-w-6xl items-center justify-center px-8 sm:justify-between xl:px-0">
-            <Link href={'/'}>
+            <Link href={"/"}>
               <a className={newLocal_2}>
                 <svg
                   className="h-6 w-auto fill-current text-indigo-500"
@@ -59,7 +59,7 @@ const Mainc = (props: IMainProps) => (
 
             <nav
               id="nav"
-              className="absolute top-0 left-0 z-50 mt-24 flex h-64 w-full flex-col items-center justify-between border-t border-gray-200 bg-white pt-5 text-sm text-indigo-900 md:relative md:mt-0 md:flex md:h-24 md:w-auto md:flex-row md:border-none md:bg-transparent md:py-0 lg:text-base"
+              className="absolute left-0 top-0 z-50 mt-24 flex h-64 w-full flex-col items-center justify-between border-t border-gray-200 bg-white pt-5 text-sm text-indigo-900 md:relative md:mt-0 md:flex md:h-24 md:w-auto md:flex-row md:border-none md:bg-transparent md:py-0 lg:text-base"
             >
               <Link href="/">
                 <a className="transition-color mx-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:ml-12 md:mr-3 lg:mr-8">
@@ -118,7 +118,7 @@ const Mainc = (props: IMainProps) => (
 
             <div
               id="nav-mobile-btn"
-              className="absolute top-0 right-0 z-50 mt-8 mr-10 block w-6 cursor-pointer select-none sm:mt-10 md:hidden"
+              className="absolute right-0 top-0 z-50 mr-10 mt-8 block w-6 cursor-pointer select-none sm:mt-10 md:hidden"
             >
               <span className="mt-2 block h-1 w-full rounded-full bg-gray-800 duration-200 sm:mt-1"></span>
               <span className="mt-1 block h-1 w-full rounded-full bg-gray-800 duration-200"></span>
@@ -131,7 +131,7 @@ const Mainc = (props: IMainProps) => (
       </div>
 
       <div className="mx-auto px-6 md:max-w-screen-xl">
-        <footer className="border-t border-gray-200 bg-white px-4 pt-12 pb-8 text-white">
+        <footer className="border-t border-gray-200 bg-white px-4 pb-8 pt-12 text-white">
           <div className="container mx-auto flex max-w-6xl flex-col justify-between overflow-hidden px-4 lg:flex-row">
             <div className="mr-4 w-full pl-12 text-left sm:pl-0 sm:text-center lg:w-1/4 lg:text-left">
               <Link href="/">
@@ -150,7 +150,7 @@ const Mainc = (props: IMainProps) => (
                   </span>
                 </a>
               </Link>
-              <p className="mt-6 mr-4 font-manrope text-base text-gray-500">
+              <p className="mr-4 mt-6 font-manrope text-base text-gray-500">
                 Transforming Climate Innovation Ecosystems through Inclusive
                 Transdisciplinarity (TransCIIT) project
               </p>
@@ -298,7 +298,7 @@ const Mainc = (props: IMainProps) => (
 
         <div className="border-t border-gray-300 py-8 text-center text-sm">
           © Copyright {new Date().getFullYear()} {AppConfig.title}
-          {'. '}{' '}
+          {". "}{" "}
           <a href="https://transciit.phanuelmutuma.co.ke">TransCIIT Project</a>
         </div>
       </div>

@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 const StepperContext = createContext<any>({});
 
 export function UseContextProvider({ children }) {
-  const [myData, setMyData] = useState('');
+  const [myData, setMyData] = useState("");
 
   return (
     <StepperContext.Provider value={{ myData, setMyData }}>

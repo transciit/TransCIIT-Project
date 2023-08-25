@@ -1,5 +1,5 @@
-import { useStepperContext } from '@/components/project/context/StepperContext';
-import { isEmpty } from '@/validator';
+import { useStepperContext } from "@/components/project/context/StepperContext";
+import { isEmpty } from "@/validator";
 
 const BusinessCard = ({ getDone }) => {
   const { userData, setUserData } = useStepperContext();
@@ -21,7 +21,7 @@ const BusinessCard = ({ getDone }) => {
     <div>
       <div className="top-6">
         <div className="mt-10 sm:mt-0">
-          <div className="mt-3 mb-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
+          <div className="mb-1 mt-3 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
             Business Information
           </div>
           <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
@@ -55,7 +55,7 @@ const BusinessCard = ({ getDone }) => {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mt-2 ml-3 text-xs font-normal text-slate-600">
+                    <div className="ml-3 mt-2 text-xs font-normal text-slate-600">
                       Name of your business.
                     </div>
                   </div>
@@ -73,13 +73,13 @@ const BusinessCard = ({ getDone }) => {
                         rows={3}
                         className="mt-1 block w-full rounded-md border border-slate-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base"
                         placeholder="Description of Business"
-                        defaultValue={''}
+                        defaultValue={""}
                         name="business_description"
                         value={userData.business_description}
                         onChange={handleChange}
                       />
                     </div>
-                    <div className="mt-2 ml-3 text-xs font-normal text-slate-700">
+                    <div className="ml-3 mt-2 text-xs font-normal text-slate-700">
                       Brief description for your business
                     </div>
                     <p className="mt-2 text-base text-gray-500"></p>

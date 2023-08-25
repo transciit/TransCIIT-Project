@@ -1,20 +1,20 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-cycle */
-import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { Tabs } from 'flowbite-react';
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import { useUser } from "@clerk/nextjs";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { Tabs } from "flowbite-react";
+import React, { useState } from "react";
+import useSWR from "swr";
 
-import Loading from '@/components/loading';
-import { db } from '@/config/firebase';
-import { useAuth } from '@/lib/auth';
-import fetcher from '@/utils/fetcher';
+import Loading from "@/components/loading";
+import { db } from "@/config/firebase";
+import fetcher from "@/utils/fetcher";
 
-import { ModalDescription } from './modalDescription';
-import StudentCard from './studentCard';
+import { ModalDescription } from "./modalDescription";
+import StudentCard from "./studentCard";
 
 const ViewStudents = ({ feedDetail, student }) => {
-  const { user } = useAuth();
+  const { user } = useUser();
   const [open, setOpen] = useState(false);
   const [id, setId] = useState({});
   const { data: userDetails } = useSWR(`/api/users/${id}`, fetcher);
@@ -22,17 +22,18 @@ const ViewStudents = ({ feedDetail, student }) => {
 
   const handleSaved = async (stud, dab) => {
     try {
-      const referenceData = doc(db, 'users', stud);
+      const referenceData = doc(db, "users", stud);
       if (dab) {
         await updateDoc(referenceData, {
-          liked: arrayUnion(user.uid),
+          liked: arrayUnion(user?.id),
         });
       } else {
         await updateDoc(referenceData, {
-          liked: arrayRemove(user.uid),
+          liked: arrayRemove(user?.id),
         });
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -47,7 +48,6 @@ const ViewStudents = ({ feedDetail, student }) => {
 
   return (
     <>
-      {/* <Search /> */}
       <div
         className="mb-28 grid rounded-2xl border border-slate-300 bg-white p-1 md:mb-24 lg:col-span-2 
         lg:mb-0"
@@ -57,20 +57,24 @@ const ViewStudents = ({ feedDetail, student }) => {
             <Tabs.Item title="View Students" active={true}>
               <div className="grid-cols-3 gap-8 md:grid">
                 {student.length ? (
-                  student?.map((students) => (
-                    <StudentCard
-                      key={students.id}
-                      fav={
-                        students?.liked !== undefined
-                          ? !!students?.liked.includes(user.uid)
-                          : false
-                      }
-                      students={students}
-                      getId={getId}
-                      getStudentId={getStudentId}
-                      setOpen={setOpen}
-                    />
-                  ))
+                  student?.map(
+                    (students) =>
+                      students.firstName &&
+                      students.lastName && (
+                        <StudentCard
+                          key={students.id}
+                          fav={
+                            students?.liked !== undefined
+                              ? !!students?.liked.includes(user?.id)
+                              : false
+                          }
+                          students={students}
+                          getId={getId}
+                          getStudentId={getStudentId}
+                          setOpen={setOpen}
+                        />
+                      )
+                  )
                 ) : (
                   <Loading />
                 )}
@@ -81,12 +85,12 @@ const ViewStudents = ({ feedDetail, student }) => {
                 {student.length ? (
                   student?.map((students) =>
                     students?.liked !== undefined ? (
-                      students?.liked.includes(user.uid) ? (
+                      students?.liked.includes(user?.id) ? (
                         <StudentCard
                           key={students.id}
                           fav={
                             students?.liked !== undefined
-                              ? !!students?.liked.includes(user.uid)
+                              ? !!students?.liked.includes(user?.id)
                               : false
                           }
                           students={students}
@@ -95,10 +99,10 @@ const ViewStudents = ({ feedDetail, student }) => {
                           setOpen={setOpen}
                         />
                       ) : (
-                        ''
+                        ""
                       )
                     ) : (
-                      ''
+                      ""
                     )
                   )
                 ) : (

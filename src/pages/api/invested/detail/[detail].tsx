@@ -1,8 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable import/no-cycle */
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getInvestmentDetails } from '@/lib/db';
+import { getInvestmentDetails } from "@/lib/db";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const result = await getInvestmentDetails(req.query.id);

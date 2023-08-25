@@ -3,11 +3,11 @@
 /* eslint-disable func-names */
 // build-search.js
 
-const { initializeApp, cert } = require('firebase-admin/app');
-const { getFirestore } = require('firebase-admin/firestore');
-const dotenv = require('dotenv');
-const algoliasearch = require('algoliasearch/lite');
-const serviceAccount = require('./sa.json');
+const { initializeApp, cert } = require("firebase-admin/app");
+const { getFirestore } = require("firebase-admin/firestore");
+const dotenv = require("dotenv");
+const algoliasearch = require("algoliasearch/lite");
+const serviceAccount = require("./sa.json");
 
 initializeApp({
   credential: cert(serviceAccount),
@@ -56,10 +56,10 @@ function transformPostsToSearchObjects(posts) {
   dotenv.config();
 
   try {
-    const citiesRef = db.collection('users');
-    const snapshot = await citiesRef.where('type', '==', 'student').get();
+    const citiesRef = db.collection("users");
+    const snapshot = await citiesRef.where("type", "==", "student").get();
     if (snapshot.empty) {
-      console.log('No matching documents.');
+      console.log("No matching documents.");
       return;
     }
     try {
@@ -75,7 +75,7 @@ function transformPostsToSearchObjects(posts) {
       );
 
       // initialize the index with your index name
-      const index = client.initIndex('student_list_search');
+      const index = client.initIndex("student_list_search");
 
       // save the objects!
       const algoliaResponse = await index.saveObjects(transformed);
@@ -85,7 +85,7 @@ function transformPostsToSearchObjects(posts) {
         `🎉 Sucessfully added ${
           algoliaResponse.objectIDs.length
         } records to Algolia search. Object IDs:\n${algoliaResponse.objectIDs.join(
-          '\n'
+          "\n"
         )}`
       );
     } catch (err) {

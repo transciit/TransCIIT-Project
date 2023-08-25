@@ -5,12 +5,12 @@ import {
   getDocs,
   query,
   where,
-} from 'firebase/firestore';
+} from "firebase/firestore";
 
-import { db } from '../config/firebase';
+import { db } from "../config/firebase";
 
 export const getFeeds = async () => {
-  const q = query(collection(db, 'feed'), where('matched', '==', false));
+  const q = query(collection(db, "feed"), where("matched", "==", false));
   try {
     const querySnapshot = await getDocs(q);
     const feeds: any[] = [];
@@ -25,9 +25,9 @@ export const getFeeds = async () => {
 
 export const getMyProjects = async (uid) => {
   const q = query(
-    collection(db, 'feed'),
-    where('matched', '==', false),
-    where('entrepreneur_id', '==', uid)
+    collection(db, "feed"),
+    where("matched", "==", false),
+    where("entrepreneur_id", "==", uid)
   );
   try {
     const querySnapshot = await getDocs(q);
@@ -43,7 +43,7 @@ export const getMyProjects = async (uid) => {
 
 export const getFeedDetails = async (id) => {
   try {
-    const docRef = doc(db, 'feed', id);
+    const docRef = doc(db, "feed", id);
     const docSnap = await getDoc(docRef);
     const feedDetail: any[] = [];
     feedDetail.push({ id: docSnap.id, ...docSnap.data() });
@@ -54,7 +54,7 @@ export const getFeedDetails = async (id) => {
 };
 
 export const getInvested = async (uid) => {
-  const q = query(collection(db, 'feed'), where('entrepreneurId', '==', uid));
+  const q = query(collection(db, "feed"), where("entrepreneurId", "==", uid));
   try {
     const querySnapshot = await getDocs(q);
     const investments: any[] = [];
@@ -69,7 +69,7 @@ export const getInvested = async (uid) => {
 
 export const getInvestmentDetails = async (id) => {
   try {
-    const docRef = doc(db, 'feed', id);
+    const docRef = doc(db, "feed", id);
     const docSnap = await getDoc(docRef);
     const investmentDetail: any[] = [];
     investmentDetail.push({ id: docSnap.id, ...docSnap.data() });
@@ -81,7 +81,7 @@ export const getInvestmentDetails = async (id) => {
 
 export const getUser = async (uid) => {
   try {
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
     const userType: any[] = [];
     userType.push({ id: docSnap.id, ...docSnap.data() });
@@ -93,7 +93,7 @@ export const getUser = async (uid) => {
 
 export const getUserAbout = async (uid) => {
   try {
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
     const userAbout: any[] = [];
     userAbout.push({ about: docSnap.data()?.about });
@@ -104,7 +104,7 @@ export const getUserAbout = async (uid) => {
 };
 
 export const getStudents = async () => {
-  const q = query(collection(db, 'users'), where('type', '==', 'student'));
+  const q = query(collection(db, "users"), where("type", "==", "student"));
   try {
     const querySnapshot = await getDocs(q);
     const fetchStudents: any[] = [];
@@ -119,9 +119,9 @@ export const getStudents = async () => {
 
 export const getMatchedE = async (uid) => {
   const q = query(
-    collection(db, 'feed'),
-    where('entrepreneur_id', '==', uid),
-    where('matched', '==', true)
+    collection(db, "feed"),
+    where("entrepreneur_id", "==", uid),
+    where("matched", "==", true)
   );
   try {
     const querySnapshot = await getDocs(q);
@@ -137,9 +137,9 @@ export const getMatchedE = async (uid) => {
 
 export const getMatchedS = async (uid) => {
   const q = query(
-    collection(db, 'feed'),
-    where('student_id', '==', uid),
-    where('matched', '==', true)
+    collection(db, "feed"),
+    where("student_id", "==", uid),
+    where("matched", "==", true)
   );
   try {
     const querySnapshot = await getDocs(q);
@@ -154,7 +154,7 @@ export const getMatchedS = async (uid) => {
 };
 
 export const getCategories = async () => {
-  const q = query(collection(db, 'categories'));
+  const q = query(collection(db, "categories"));
   try {
     const querySnapshot = await getDocs(q);
     const fetchCategories: any[] = [];
@@ -169,9 +169,9 @@ export const getCategories = async () => {
 
 export const getInvitesEntrepreneur = async (uid) => {
   const q = query(
-    collection(db, 'invites'),
-    where('matched', '==', false),
-    where('entrepreneur_id', '==', uid)
+    collection(db, "invites"),
+    where("matched", "==", false),
+    where("entrepreneur_id", "==", uid)
   );
   try {
     const querySnapshot = await getDocs(q);
@@ -187,9 +187,9 @@ export const getInvitesEntrepreneur = async (uid) => {
 
 export const getInvitesStudent = async (uid) => {
   const q = query(
-    collection(db, 'invites'),
-    where('matched', '==', false),
-    where('student_id', '==', uid)
+    collection(db, "invites"),
+    where("matched", "==", false),
+    where("student_id", "==", uid)
   );
   try {
     const querySnapshot = await getDocs(q);
@@ -205,7 +205,7 @@ export const getInvitesStudent = async (uid) => {
 
 export const getInvitesDetails = async (id) => {
   try {
-    const docRef = doc(db, 'invites', id);
+    const docRef = doc(db, "invites", id);
     const docSnap = await getDoc(docRef);
     const feedDetail: any[] = [];
     feedDetail.push({ id: docSnap.id, ...docSnap.data() });
@@ -217,9 +217,9 @@ export const getInvitesDetails = async (id) => {
 
 export const getBidsEntrepreneur = async (uid) => {
   const q = query(
-    collection(db, 'bids'),
-    where('matched', '==', false),
-    where('entrepreneur_id', '==', uid)
+    collection(db, "bids"),
+    where("matched", "==", false),
+    where("entrepreneur_id", "==", uid)
   );
   try {
     const querySnapshot = await getDocs(q);
@@ -235,7 +235,7 @@ export const getBidsEntrepreneur = async (uid) => {
 
 export const getBidsDetails = async (id) => {
   try {
-    const docRef = doc(db, 'bids', id);
+    const docRef = doc(db, "bids", id);
     const docSnap = await getDoc(docRef);
     const feedDetail: any[] = [];
     feedDetail.push({ id: docSnap.id, ...docSnap.data() });
@@ -247,9 +247,9 @@ export const getBidsDetails = async (id) => {
 
 export const getBidsStudent = async (uid) => {
   const q = query(
-    collection(db, 'bids'),
-    where('matched', '==', false),
-    where('student_id', '==', uid)
+    collection(db, "bids"),
+    where("matched", "==", false),
+    where("student_id", "==", uid)
   );
   try {
     const querySnapshot = await getDocs(q);

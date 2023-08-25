@@ -1,13 +1,13 @@
 /* eslint-disable import/no-cycle */
-import { Dialog, Transition } from '@headlessui/react';
-import { ChevronLeftIcon } from '@heroicons/react/outline';
-import { Fragment } from 'react';
-import useSWR from 'swr';
+import { Dialog, Transition } from "@headlessui/react";
+import { ChevronLeftIcon } from "@heroicons/react/outline";
+import { Fragment } from "react";
+import useSWR from "swr";
 
-import fetcher from '@/utils/fetcher';
+import fetcher from "@/utils/fetcher";
 
-import EmptyCard from '../components/emptycard';
-import DescriptionCard from './Description';
+import EmptyCard from "../components/emptycard";
+import DescriptionCard from "./Description";
 
 interface Props {
   feedDetails: any;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const ModalDescription = ({ feedDetails, ud, open, setOpen }: Props) => {
-  const { data: fetchStudents } = useSWR('/api/students', fetcher);
+  const { data: fetchStudents } = useSWR("/api/students", fetcher);
   const student = fetchStudents?.fetchStudents;
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -36,7 +36,7 @@ export const ModalDescription = ({ feedDetails, ud, open, setOpen }: Props) => {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:w-[80rem]">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full sm:w-[71rem]">
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-500 sm:duration-500"
@@ -56,7 +56,7 @@ export const ModalDescription = ({ feedDetails, ud, open, setOpen }: Props) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute top-0 left-0 flex pt-4 sm:ml-10 sm:pr-4">
+                    <div className="absolute left-0 top-0 flex pt-4 sm:ml-10 sm:pr-4">
                       <button
                         type="button"
                         className="rounded-md text-gray-700 hover:text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-900"
