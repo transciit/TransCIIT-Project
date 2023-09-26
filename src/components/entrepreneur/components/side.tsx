@@ -32,11 +32,6 @@ export const Side = () => {
               {user?.primaryEmailAddress?.emailAddress}
             </div>
           </div>
-          {/* <div className="mx-3 mb-3 flex-1 rounded-lg border p-4 px-2 text-center text-sm">
-            <Link href="/user">
-              <a className="font-bold text-indigo-500"> View Profile</a>
-            </Link>
-          </div> */}
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 
 import { DashBoard } from "@/base/Dashboard";
-import EmptyCard from "@/components/entrepreneur/components/emptycard";
+import { EmptyCard } from "@/components/entrepreneur/components/emptycard";
 import FeedCard from "@/components/invites/s/components/feedcard";
 import { Modal } from "@/components/invites/s/components/modal";
 import Loading from "@/components/loading";

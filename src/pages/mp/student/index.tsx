@@ -11,7 +11,7 @@ import { Top } from "@/components/students/components/top";
 import { Meta } from "@/layouts/Meta";
 import fetcher from "@/utils/fetcher";
 
-import EmptyCard from "../../../components/entrepreneur/components/emptycard";
+import { EmptyCard } from "../../../components/entrepreneur/components/emptycard";
 import { Side } from "../../../components/entrepreneur/components/side";
 
 export default function Index() {

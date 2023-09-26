@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { DashBoard } from "@/base/Dashboard";
 import FeedCard from "@/components/bids/e/components/feedcard";
 import { Modal } from "@/components/bids/e/components/modal";
-import EmptyCard from "@/components/entrepreneur/components/emptycard";
+import { EmptyCard } from "@/components/entrepreneur/components/emptycard";
 import Loading from "@/components/loading";
 import { Meta } from "@/layouts/Meta";
 import fetcher from "@/utils/fetcher";

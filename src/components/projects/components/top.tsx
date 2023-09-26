@@ -35,21 +35,20 @@ export const Top = ({ current, getArea }: Props) => {
       <ul className="hidden divide-x divide-slate-200 rounded-lg border border-slate-300 text-center text-sm font-medium text-slate-500 dark:divide-gray-700 dark:text-gray-400 sm:flex">
         {navigation.map((item) => (
           <li key={item.name} className="w-full">
-            <Link href={item.href}>
-              <a
-                className={classNames(
-                  item.name.includes(current)
-                    ? "bg-indigo-600  text-white dark:bg-gray-700 dark:text-white"
-                    : "bg-white p-4 hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white",
-                  "inline-block w-full p-4"
-                )}
-                aria-current={item.name.includes(current) ? "page" : undefined}
-                onClick={() => {
-                  getArea(item.name);
-                }}
-              >
-                {item.name}
-              </a>
+            <Link
+              href={item.href}
+              className={classNames(
+                item.name.includes(current)
+                  ? "bg-indigo-600  text-white dark:bg-gray-700 dark:text-white"
+                  : "bg-white p-4 hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white",
+                "inline-block w-full p-4"
+              )}
+              aria-current={item.name.includes(current) ? "page" : undefined}
+              onClick={() => {
+                getArea(item.name);
+              }}
+            >
+              {item.name}
             </Link>
           </li>
         ))}

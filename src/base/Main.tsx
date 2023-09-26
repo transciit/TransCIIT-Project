@@ -35,12 +35,13 @@ const Main = (props: IMainProps) => {
                     height={40}
                     className="rounded-full"
                   />
-                  <Link href={"/"}>
-                    <a className="relative flex h-full items-center">
-                      <span className="ml-3  text-xl font-extrabold text-gray-700">
-                        TransCIIT
-                      </span>
-                    </a>
+                  <Link
+                    href={"/"}
+                    className="relative flex h-full items-center"
+                  >
+                    <span className="ml-3  text-xl font-extrabold text-gray-700">
+                      TransCIIT
+                    </span>
                   </Link>
                 </div>
                 <p className="mx-4 font-manrope text-base text-gray-500">

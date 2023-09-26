@@ -102,10 +102,8 @@ const NavBar = ({ currentTab }: Props) => {
                 This includes fine tuning the site&apos;s content and
                 navigation.
               </p>
-              <Link href="/contact">
-                <a className="flex-none text-xs font-medium">
-                  Tell us what you think <span aria-hidden="true">&rarr;</span>
-                </a>
+              <Link href="/contact" className="flex-none text-xs font-medium">
+                Tell us what you think <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
             <div className="flex flex-1 justify-end">
@@ -151,32 +149,33 @@ const NavBar = ({ currentTab }: Props) => {
                             height={40}
                             className="rounded-full"
                           />
-                          <Link href={"/"}>
-                            <a className="relative flex h-full items-center">
-                              <span className="ml-3  text-xl font-extrabold text-gray-700">
-                                TransCIIT
-                              </span>
-                            </a>
+                          <Link
+                            href={"/"}
+                            className="relative flex h-full items-center"
+                          >
+                            <span className="ml-3  text-xl font-extrabold text-gray-700">
+                              TransCIIT
+                            </span>
                           </Link>
                         </div>
                         <div className="hidden items-center pl-3 lg:flex">
                           <div className="flex items-center space-x-2">
                             {!user ? (
                               navigation.map((item) => (
-                                <Link key={item.name} href={item.href}>
-                                  <a
-                                    className={classNames(
-                                      item.current
-                                        ? "text-indigo-600"
-                                        : "text-gray-700 hover:bg-gray-800 hover:text-white",
-                                      "px-3 py-2 rounded-md text-sm font-semibold uppercase"
-                                    )}
-                                    aria-current={
-                                      item.current ? "page" : undefined
-                                    }
-                                  >
-                                    {item.name}
-                                  </a>
+                                <Link
+                                  key={item.name}
+                                  href={item.href}
+                                  className={classNames(
+                                    item.current
+                                      ? "text-indigo-600"
+                                      : "text-gray-700 hover:bg-gray-800 hover:text-white",
+                                    "px-3 py-2 rounded-md text-sm font-semibold uppercase"
+                                  )}
+                                  aria-current={
+                                    item.current ? "page" : undefined
+                                  }
+                                >
+                                  {item.name}
                                 </Link>
                               ))
                             ) : (
@@ -187,22 +186,22 @@ const NavBar = ({ currentTab }: Props) => {
                                   ? entrepreneurs
                                   : studentNav
                                 ).map((item) => (
-                                  <Link key={item.name} href={item.href}>
-                                    <a
-                                      className={classNames(
-                                        item.id === currentTab
-                                          ? " bg-slate-600 text-white hover:bg-slate-500"
-                                          : "text-grey-600 hover:bg-slate-600 hover:text-white",
-                                        "px-3 py-1 rounded-md text-sm font-medium"
-                                      )}
-                                      aria-current={
-                                        item.id === currentTab
-                                          ? "page"
-                                          : undefined
-                                      }
-                                    >
-                                      {item.name}
-                                    </a>
+                                  <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={classNames(
+                                      item.id === currentTab
+                                        ? " bg-slate-600 text-white hover:bg-slate-500"
+                                        : "text-grey-600 hover:bg-slate-600 hover:text-white",
+                                      "px-3 py-1 rounded-md text-sm font-medium"
+                                    )}
+                                    aria-current={
+                                      item.id === currentTab
+                                        ? "page"
+                                        : undefined
+                                    }
+                                  >
+                                    {item.name}
                                   </Link>
                                 ))}
                               </>
@@ -249,12 +248,13 @@ const NavBar = ({ currentTab }: Props) => {
                           />
                         </SignedIn>
                         {!user && (
-                          <Link href="/sign-in">
-                            <a className="relative flex h-9 w-full items-center justify-center rounded-full bg-gray-900 px-4 before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:bg-gray-800 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
-                              <span className="relative text-sm font-semibold  text-white">
-                                Get Started
-                              </span>
-                            </a>
+                          <Link
+                            href="/sign-in"
+                            className="relative flex h-9 w-full items-center justify-center rounded-full bg-gray-900 px-4 before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:bg-gray-800 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
+                          >
+                            <span className="relative text-sm font-semibold  text-white">
+                              Get Started
+                            </span>
                           </Link>
                         )}
                         {/* Profile dropdown */}
@@ -336,20 +336,20 @@ const NavBar = ({ currentTab }: Props) => {
                             ? entrepreneurs
                             : studentNav
                           ).map((item) => (
-                            <Link key={item.name} href={item.href}>
-                              <a
-                                className={classNames(
-                                  item.id === currentTab
-                                    ? " bg-slate-800 text-white font-medium"
-                                    : "text-grey-600 hover:bg-gray-900 hover:text-white",
-                                  "px-3 py-1 rounded-md text-sm "
-                                )}
-                                aria-current={
-                                  item.name === currentTab ? "page" : undefined
-                                }
-                              >
-                                {item.name}
-                              </a>
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              className={classNames(
+                                item.id === currentTab
+                                  ? " bg-slate-800 text-white font-medium"
+                                  : "text-grey-600 hover:bg-gray-900 hover:text-white",
+                                "px-3 py-1 rounded-md text-sm "
+                              )}
+                              aria-current={
+                                item.name === currentTab ? "page" : undefined
+                              }
+                            >
+                              {item.name}
                             </Link>
                           ))}
                         </>

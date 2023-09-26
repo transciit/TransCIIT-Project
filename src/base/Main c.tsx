@@ -39,47 +39,49 @@ const Mainc = (props: IMainProps) => (
             </p>
           </div>
           <div className="container mx-auto flex h-full max-w-6xl items-center justify-center px-8 sm:justify-between xl:px-0">
-            <Link href={"/"}>
-              <a className={newLocal_2}>
-                <svg
-                  className="h-6 w-auto fill-current text-indigo-500"
-                  viewBox="0 0 194 116"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g fillRule="evenodd">
-                    <path d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z" />
-                    <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z" />
-                  </g>
-                </svg>
-                <span className="text-gray-80 ml-3 font-manrope text-xl font-extrabold">
-                  TransCIIT<span className=" text-blue-500">.</span>
-                </span>
-              </a>
+            <Link href={"/"} className={newLocal_2}>
+              <svg
+                className="h-6 w-auto fill-current text-indigo-500"
+                viewBox="0 0 194 116"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g fillRule="evenodd">
+                  <path d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z" />
+                  <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z" />
+                </g>
+              </svg>
+              <span className="text-gray-80 ml-3 font-manrope text-xl font-extrabold">
+                TransCIIT<span className=" text-blue-500">.</span>
+              </span>
             </Link>
 
             <nav
               id="nav"
               className="absolute left-0 top-0 z-50 mt-24 flex h-64 w-full flex-col items-center justify-between border-t border-gray-200 bg-white pt-5 text-sm text-indigo-900 md:relative md:mt-0 md:flex md:h-24 md:w-auto md:flex-row md:border-none md:bg-transparent md:py-0 lg:text-base"
             >
-              <Link href="/">
-                <a className="transition-color mx-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:ml-12 md:mr-3 lg:mr-8">
-                  Home
-                </a>
+              <Link
+                href="/"
+                className="transition-color mx-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:ml-12 md:mr-3 lg:mr-8"
+              >
+                Home
               </Link>
-              <Link href="/about">
-                <a className="transition-color mr-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:mr-3 lg:mr-8">
-                  About Us
-                </a>
+              <Link
+                href="/about"
+                className="transition-color mr-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:mr-3 lg:mr-8"
+              >
+                About Us
               </Link>
-              <Link href="/projects/matched">
-                <a className="transition-color mr-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:mr-3 lg:mr-8">
-                  Matched Projects
-                </a>
+              <Link
+                href="/projects/matched"
+                className="transition-color mr-0 text-base font-semibold uppercase duration-100 hover:text-indigo-500 md:mr-3 lg:mr-8"
+              >
+                Matched Projects
               </Link>
-              <Link href="/blogs">
-                <a className="transition-color text-base font-semibold uppercase duration-100 hover:text-indigo-500">
-                  Blog
-                </a>
+              <Link
+                href="/blogs"
+                className="transition-color text-base font-semibold uppercase duration-100 hover:text-indigo-500"
+              >
+                Blog
               </Link>
               {/* <Link href="/contact">
                 <a className="transition-color text-base font-semibold uppercase duration-100 hover:text-indigo-500">
@@ -134,21 +136,22 @@ const Mainc = (props: IMainProps) => (
         <footer className="border-t border-gray-200 bg-white px-4 pb-8 pt-12 text-white">
           <div className="container mx-auto flex max-w-6xl flex-col justify-between overflow-hidden px-4 lg:flex-row">
             <div className="mr-4 w-full pl-12 text-left sm:pl-0 sm:text-center lg:w-1/4 lg:text-left">
-              <Link href="/">
-                <a className="flex justify-start text-left sm:justify-center sm:text-center lg:justify-start lg:text-left">
-                  <span className="flex items-start sm:items-center">
-                    <svg
-                      className="h-6 w-auto fill-current text-gray-800"
-                      viewBox="0 0 194 116"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g fillRule="evenodd">
-                        <path d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z"></path>
-                        <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z"></path>
-                      </g>
-                    </svg>
-                  </span>
-                </a>
+              <Link
+                href="/"
+                className="flex justify-start text-left sm:justify-center sm:text-center lg:justify-start lg:text-left"
+              >
+                <span className="flex items-start sm:items-center">
+                  <svg
+                    className="h-6 w-auto fill-current text-gray-800"
+                    viewBox="0 0 194 116"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g fillRule="evenodd">
+                      <path d="M96.869 0L30 116h104l-9.88-17.134H59.64l47.109-81.736zM0 116h19.831L77 17.135 67.088 0z"></path>
+                      <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z"></path>
+                    </g>
+                  </svg>
+                </span>
               </Link>
               <p className="mr-4 mt-6 font-manrope text-base text-gray-500">
                 Transforming Climate Innovation Ecosystems through Inclusive

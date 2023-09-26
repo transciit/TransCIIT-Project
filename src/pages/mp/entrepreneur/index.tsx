@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 
 import { DashBoard } from "@/base/Dashboard";
+import { EmptyCard } from "@/components/entrepreneur/components/emptycard";
 import Loading from "@/components/loading";
 import FeedCard from "@/components/mp/e/components/feedcard";
 import { Modal } from "@/components/mp/e/components/modal";
@@ -27,7 +28,11 @@ export default function Index() {
 
   // changables
   const where = "student";
-  const { data: fetchMatchedE } = useSWR(`/api/matched/e/${user?.id}`, fetcher);
+  const {
+    data: fetchMatchedE,
+    error,
+    isLoading,
+  } = useSWR(`/api/matched/e/${user?.id}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
   const { data: studentDetails } = useSWR(`/api/users/${studentId}`, fetcher);
   const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
@@ -49,17 +54,25 @@ export default function Index() {
         <div className="block md:grid md:grid-flow-row-dense md:grid-cols-4">
           <div className="col-span-3 py-5">
             <div>{user ? <Top /> : <Loading />}</div>
-            {feeds?.length ? (
-              <FeedCard
-                feeds={feeds}
-                setOpen={setOpen}
-                getId={getId}
-                getStudentId={getStudentId}
-                from={where}
-              />
-            ) : (
-              <Loading />
+            {error && !isLoading && (
+              <div className="mt-12 flex items-center justify-center text-sm font-bold text-red-300">
+                Kindly Check Your Internet Connection!
+              </div>
             )}
+            {isLoading && <Loading />}
+            {!error &&
+              !isLoading &&
+              (feeds?.length ? (
+                <FeedCard
+                  feeds={feeds}
+                  setOpen={setOpen}
+                  getId={getId}
+                  getStudentId={getStudentId}
+                  from={where}
+                />
+              ) : (
+                <EmptyCard />
+              ))}
           </div>
           <div className="sticky top-6 hidden py-5 md:block lg:block">
             {ud?.length ? <Side /> : <Loading />}
