@@ -6,7 +6,7 @@ import useSWR from "swr";
 import ViewStudents from "@/components/entrepreneur/studentComponents/ViewStudents";
 import fetcher from "@/utils/fetcher";
 
-import EmptyCard from "../components/emptycard";
+import { EmptyCard } from "../components/emptycard";
 
 interface Props {
   feedDetails: any;

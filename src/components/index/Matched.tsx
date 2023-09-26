@@ -21,10 +21,11 @@ export default function Matched() {
               Transforming Climate Innovation Ecosystems through Inclusive
               Transdisciplinarity (TransCIIT) project
             </p>
-            <Link href="/onboarding/signin">
-              <a className="fold-bold relative mx-auto mt-0 inline-block w-auto self-start rounded-md border-t border-gray-200 bg-indigo-600 px-8 py-4 text-base font-bold text-white shadow-xl sm:mt-10 lg:mx-0">
-                Signup Today!
-              </a>
+            <Link
+              href="/onboarding/signin"
+              className="fold-bold relative mx-auto mt-0 inline-block w-auto self-start rounded-md border-t border-gray-200 bg-indigo-600 px-8 py-4 text-base font-bold text-white shadow-xl sm:mt-10 lg:mx-0"
+            >
+              Signup Today!
             </Link>
           </div>
           <div className="relative -ml-5 mb-4 mt-5 box-border w-full max-w-md border-solid bg-contain bg-no-repeat px-4 text-center md:ml-0 md:mt-0 md:w-1/2 md:max-w-none lg:mb-0 xl:pl-10">

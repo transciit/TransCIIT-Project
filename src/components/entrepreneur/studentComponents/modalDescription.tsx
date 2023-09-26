@@ -6,7 +6,7 @@ import useSWR from "swr";
 
 import fetcher from "@/utils/fetcher";
 
-import EmptyCard from "../components/emptycard";
+import { EmptyCard } from "../components/emptycard";
 import DescriptionCard from "./Description";
 
 interface Props {

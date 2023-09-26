@@ -183,11 +183,12 @@ export default function UserProfile() {
                             Email
                           </div>
                           <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-sm">
-                            <Link href="#">
-                              <a className="font-bold text-indigo-500">
-                                {" "}
-                                Edit Profile
-                              </a>
+                            <Link
+                              href="#"
+                              className="font-bold text-indigo-500"
+                            >
+                              {" "}
+                              Edit Profile
                             </Link>
                           </div>
                         </div>

@@ -19,8 +19,8 @@ const AddProjects = () => (
           </div>
         </div>
         <div className="mx-3 mb-3 items-center rounded-lg  text-center text-base hover:underline">
-          <Link href="/project">
-            <a className="font-bold text-green-500 "> Add project</a>
+          <Link href="/project" className="font-bold text-green-500 ">
+            Add project
           </Link>
         </div>
       </div>

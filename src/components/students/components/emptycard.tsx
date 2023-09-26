@@ -15,8 +15,8 @@ const EmptyCard = () => (
           </div>
         </div>
         <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-sm">
-          <Link href="/projects/matched">
-            <a className="font-bold text-indigo-500"> Go to Matched projects</a>
+          <Link href="/projects/matched" className="font-bold text-indigo-500">
+            Go to Matched projects
           </Link>
         </div>
       </div>

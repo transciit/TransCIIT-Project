@@ -2,7 +2,7 @@
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import React from "react";
 
-const EmptyCard = () => (
+export const EmptyCard = () => (
   <div>
     <div className="relative mt-5 justify-center">
       <div className="flex flex-col justify-center rounded-lg p-10 text-center">
@@ -22,5 +22,3 @@ const EmptyCard = () => (
     </div>
   </div>
 );
-
-export default EmptyCard;
