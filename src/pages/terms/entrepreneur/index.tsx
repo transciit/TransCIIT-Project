@@ -94,122 +94,26 @@ const Index = () => {
             <>
               {feedDetail?.map((feedDetails) => (
                 <div className="top-6" key={feedDetails.id}>
-                  <div className="mb-28 grid rounded-xl border border-slate-300 bg-white p-1 shadow-lg md:mb-24 lg:col-span-2 lg:mb-0">
+                  <div className="grid rounded-xl  bg-white p-1 pb-5">
                     <div className="mt-10 sm:mt-0">
-                      <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400 sm:mt-5">
-                        <div className="text-grey-600 text-xs font-normal">
+                      <div className="mt-5 px-5 text-xs text-primary-600">
+                        {feedDetails.business_name} By {user?.fullName}
+                      </div>
+                      <div>
+                        <div className="mx-3 px-2 text-base font-bold text-slate-900 sm:text-2xl">
+                          {feedDetails.primary_need}
+                        </div>
+                        <div className="mx-3 px-2 pb-2 pt-1 text-xs font-normal text-gray-700">
                           {feedDetails.business_focus}
                         </div>
-                      </div>
-                      <div className="mb-3 mt-1 px-5 font-playfair text-xl font-extrabold text-slate-900 sm:text-2xl">
-                        {feedDetails.business_name}
-                      </div>
-                      <div className="mb-7 ml-5 items-center rounded-md text-base font-normal text-primary-500">
-                        By {user?.fullName}
-                      </div>
-
-                      <div>
-                        <div>
-                          <div className="m-3 mb-2 px-2 text-base font-medium text-slate-900 sm:text-xl">
-                            {feedDetails.primary_need}
+                        <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
+                        <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
+                          <div className="mb-4 text-xs font-normal text-primary-600">
+                            More Details
                           </div>
-                          <div className="mb-2 mt-3 flex w-full"></div>
-                          <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                          <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                            <div className="text-grey-600 mb-4 text-xs font-normal">
-                              More Details
-                            </div>
-                          </div>
-                          <div className="mx-3 mb-3 line-clamp-3 px-2 text-base text-slate-800">
-                            {feedDetails.primary_gap}
-                          </div>
-
-                          <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                          <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                            <div className="text-grey-600 mb-4 text-xs font-normal">
-                              Area of Expertise Needed
-                            </div>
-                          </div>
-                          <div className="mx-3 flex justify-start px-2">
-                            <button
-                              type="button"
-                              className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                            >
-                              {feedDetails.area_of_expertise}
-                            </button>
-                            {/* {feedDetails.area_of_expertise?.map((item) => (
-                      <button
-                        type="button"
-                        key={item}
-                        className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                      >
-                        {item}
-                      </button>
-                    ))} */}
-                          </div>
-
-                          <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                          <div className="grid grid-cols-2 divide-x">
-                            <div>
-                              <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                                <div className="text-grey-600 mb-4 text-xs font-normal">
-                                  Secondary Business Need
-                                </div>
-                              </div>
-                              <div className="mx-3 mb-3 px-2 text-base text-slate-800">
-                                {feedDetails.secondary_need}
-                              </div>
-                            </div>
-                            <div>
-                              <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                                <div className="text-grey-600 mb-4  text-xs font-normal">
-                                  Secondary Area of Expertise
-                                </div>
-                              </div>
-                              <div className="mx-3 px-2">
-                                <button
-                                  type="button"
-                                  className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                                >
-                                  {feedDetails.secondary_expertise}
-                                </button>
-                                {/* {feedDetails.secondary_expertise?.map((item) => (
-                          <button
-                            type="button"
-                            key={item}
-                            className="mr-2 mb-2 rounded-full border border-slate-300 bg-slate-100 py-[6px] px-5 text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                          >
-                            {item}
-                          </button>
-                        ))} */}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                            <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                            <div className="text-grey-600 mb-4 ml-3 text-xs font-normal">
-                              <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-base font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
-                                <svg
-                                  aria-hidden="true"
-                                  className="h-3 w-3"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                  ></path>
-                                </svg>
-                                <span className="sr-only">
-                                  Icon description
-                                </span>
-                              </span>
-                              This project is approved for matching
-                            </div>
-                          </div>
+                        </div>
+                        <div className="mx-3 mb-3 line-clamp-3 px-2 text-base text-slate-500">
+                          {feedDetails.primary_gap}
                         </div>
                       </div>
                     </div>

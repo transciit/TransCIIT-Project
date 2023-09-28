@@ -8,12 +8,11 @@ import DescriptionCard from "./description";
 
 interface Props {
   feedDetails: any;
-  ud: any;
   open: any;
   setOpen: any;
 }
 
-export const Modal = ({ feedDetails, ud, open, setOpen }: Props) => {
+export const Modal = ({ feedDetails, open, setOpen }: Props) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -65,11 +64,11 @@ export const Modal = ({ feedDetails, ud, open, setOpen }: Props) => {
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-slate-50 py-6 shadow-xl">
                     <div className="px-4 sm:px-6"></div>
                     <div className="relative mt-10 flex-1 px-4 sm:px-6">
-                      {feedDetails?.length && ud?.length ? (
-                        <DescriptionCard feedDetail={feedDetails} ud={ud} />
+                      {feedDetails?.length ? (
+                        <DescriptionCard feedDetail={feedDetails} />
                       ) : (
                         <Loading />
                       )}
