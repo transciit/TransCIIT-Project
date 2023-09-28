@@ -6,7 +6,7 @@ export const Side = () => {
   const { user } = useUser();
 
   return (
-    <div className="mx-4 mt-3 max-w-xl overflow-hidden rounded-lg">
+    <div className="mx-4 max-w-xl overflow-hidden rounded-lg">
       <div className="flex w-full">
         <div className="w-full rounded-lg border border-slate-300 bg-slate-100 p-1">
           <Menu as="div" className="relative mt-6 flex justify-center">

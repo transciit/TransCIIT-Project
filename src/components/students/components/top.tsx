@@ -14,7 +14,7 @@ export const Top = () => {
   else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon";
   else if (hrs >= 17 && hrs <= 24) greet = "Good Evening";
   return (
-    <div className="relative isolate mt-3 flex items-center gap-x-6 overflow-hidden rounded-lg bg-gray-50 py-1 sm:before:flex-1">
+    <div className="relative isolate flex items-center gap-x-6 overflow-hidden rounded-lg bg-gray-50 py-1 sm:before:flex-1">
       <div
         className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
