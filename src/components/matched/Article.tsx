@@ -1,7 +1,6 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 import type { Projects } from "../../interfaces/projects";
@@ -57,7 +56,7 @@ const Article = ({ items }: Props) => (
         <p className="mb-5 text-lg font-light text-gray-700 dark:text-gray-800">
           {item.b_need}
         </p>
-        <div className="flex items-center justify-between">
+        <div className="mt-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <Image
               src="/assets/images/1.png"
@@ -74,7 +73,7 @@ const Article = ({ items }: Props) => (
               {item.s_name}
             </span>
           </div>
-          <Link
+          {/* <Link
             href="/projects/[id]"
             as={`/projects/${item.b_id}`}
             className="inline-flex items-center rounded-lg bg-primary-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -93,7 +92,7 @@ const Article = ({ items }: Props) => (
                 clipRule="evenodd"
               ></path>
             </svg>
-          </Link>
+          </Link> */}
         </div>
       </article>
     ))}

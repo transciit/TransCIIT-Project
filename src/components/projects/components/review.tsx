@@ -3,18 +3,14 @@ import { useUser } from "@clerk/nextjs";
 import { addDoc, collection } from "firebase/firestore";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 
 import { useStepperContext } from "@/components/project/context/StepperContext";
 import { db } from "@/config/firebase";
-import fetcher from "@/utils/fetcher";
 
 const ReviewCard = () => {
   const { userData } = useStepperContext();
   const { user } = useUser();
   const router = useRouter();
-  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
-  const ud = userDetails?.userDetails;
   const savetoDb = async () => {
     const docRef = await addDoc(collection(db, "feed"), {
       primary_need: userData.primary_need,
@@ -29,11 +25,11 @@ const ReviewCard = () => {
       business_contact_name: userData.business_contact_name,
       business_contact_email: userData.business_email,
       matched: false,
-      help_required: userData.help_required,
+      help_required: userData.help_required || "",
       entrepreneur_id: user?.id,
-      entrepreneur_name: `${ud[0].firstName} ${ud[0].lastName}`,
-      entrepreneur_profile: ud[0].profile,
-      entrepreneur_email: ud[0].email,
+      entrepreneur_name: user?.fullName,
+      entrepreneur_profile: user?.imageUrl,
+      entrepreneur_email: user?.primaryEmailAddress?.emailAddress,
     });
     console.log(docRef.id);
     router.push("/entrepreneur");
@@ -271,19 +267,15 @@ const ReviewCard = () => {
               </div>
               <hr className="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700"></hr>
               <div className="bg-gray-50 px-4 text-right sm:px-6">
-                {ud.length ? (
-                  <button
-                    type="button"
-                    className="mb-2 mr-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                    onClick={() => {
-                      savetoDb();
-                    }}
-                  >
-                    Submit Project
-                  </button>
-                ) : (
-                  "Loading..."
-                )}
+                <button
+                  type="button"
+                  className="mb-2 mr-2 w-full rounded-lg bg-gray-800 px-5 py-2.5 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                  onClick={() => {
+                    savetoDb();
+                  }}
+                >
+                  Submit Project
+                </button>
               </div>
             </div>
           </div>

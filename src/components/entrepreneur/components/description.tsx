@@ -1,4 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import { useUser } from "@clerk/nextjs";
 import { Menu } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,25 +9,17 @@ import { Modal } from "../studentComponents/modalview";
 
 type Props = {
   feedDetail: any;
-  ud: any;
 };
 
-const DescriptionCard = ({ feedDetail, ud }: Props) => {
+const DescriptionCard = ({ feedDetail }: Props) => {
   const [open, setOpen] = useState(false);
-  // const router = useRouter();
-
-  // const handleMatched = () => {
-  // router.push({
-  //   pathname: '/students/ViewEntrepreneurs',
-  //   query: { project_id: 'Someone' },
-  // });
-  // };
+  const { user } = useUser();
 
   return (
     <div>
       {feedDetail?.map((feedDetails) => (
         <div className="top-6 grid grid-cols-3" key={feedDetails.id}>
-          <div className="col-span-3 mb-28 grid rounded-2xl border border-slate-400 bg-white p-1 md:mb-24 lg:col-span-2 lg:mb-0">
+          <div className="col-span-3 mb-28 grid rounded-2xl border border-slate-300 bg-white p-1 shadow-xl md:mb-24 lg:col-span-2 lg:mb-0">
             <div className="mt-10 sm:mt-0">
               <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400 sm:mt-5">
                 <div className="text-grey-600 text-xs font-normal">
@@ -37,7 +30,7 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                 {feedDetails.business_name}
               </div>
               <div className="mb-7 ml-5 items-center rounded-md text-base font-normal text-primary-500">
-                By {`${ud[0].firstName} ${ud[0].lastName}`}
+                By {user?.fullName}
               </div>
 
               <div>
@@ -80,32 +73,34 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                     ))} */}
                   </div>
 
-                  <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
-                  <div className="grid grid-cols-2 divide-x">
+                  {feedDetails.secondary_need && (
                     <div>
-                      <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                        <div className="text-grey-600 mb-4 text-xs font-normal">
-                          Secondary Business Need
+                      <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
+                      <div className="grid grid-cols-2 divide-x">
+                        <div>
+                          <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
+                            <div className="text-grey-600 mb-4 text-xs font-normal">
+                              Secondary Business Need
+                            </div>
+                          </div>
+                          <div className="mx-3 mb-3 px-2 text-base text-slate-800">
+                            {feedDetails.secondary_need}
+                          </div>
                         </div>
-                      </div>
-                      <div className="mx-3 mb-3 px-2 text-base text-slate-800">
-                        {feedDetails.secondary_need}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
-                        <div className="text-grey-600 mb-4  text-xs font-normal">
-                          Secondary Area of Expertise
-                        </div>
-                      </div>
-                      <div className="mx-3 px-2">
-                        <button
-                          type="button"
-                          className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-                        >
-                          {feedDetails.secondary_expertise}
-                        </button>
-                        {/* {feedDetails.secondary_expertise?.map((item) => (
+                        <div>
+                          <div className="relative mx-5 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
+                            <div className="text-grey-600 mb-4  text-xs font-normal">
+                              Secondary Area of Expertise
+                            </div>
+                          </div>
+                          <div className="mx-3 px-2">
+                            <button
+                              type="button"
+                              className="mb-2 mr-2 rounded-full border border-slate-300 bg-slate-100 px-5 py-[6px] text-base text-slate-800 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                            >
+                              {feedDetails.secondary_expertise}
+                            </button>
+                            {/* {feedDetails.secondary_expertise?.map((item) => (
                           <button
                             type="button"
                             key={item}
@@ -114,9 +109,11 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                             {item}
                           </button>
                         ))} */}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
                   <div className="relative mx-3 items-center self-center overflow-hidden text-gray-600 focus-within:text-gray-400">
                     <hr className="my-3 h-px border-0 bg-gray-300 dark:bg-gray-700" />
@@ -145,8 +142,8 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
             </div>
           </div>
           <div className="mx-8 hidden p-1 lg:block">
-            <div className="mt-10 rounded-xl border border-slate-300 bg-gray-100 sm:mt-0 ">
-              <div className="mx-5 mt-5">
+            <div className="mt-10 rounded-xl bg-white sm:mt-0 ">
+              <div className="flex w-full flex-col items-center space-y-1 px-5 pt-6 text-center">
                 <button
                   type="button"
                   onClick={() => {
@@ -157,16 +154,16 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                   Match Project
                 </button>
 
-                <button
-                  type="button"
-                  className="mb-2 w-full rounded-full border border-gray-300 bg-white px-5 py-2.5 text-base font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                <Link
+                  href="/contact"
+                  className="mb-2 w-full rounded-full border border-gray-300 bg-white px-5 py-2.5 text-base font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 "
                 >
-                  Talk to Student
-                </button>
+                  Contact Support
+                </Link>
               </div>
-              <div className="mb-3 ml-5 items-center rounded-md text-base font-medium text-primary-600">
+              {/* <div className="mb-3 ml-5 items-center rounded-md text-base font-medium text-primary-50">
                 Contact Support for help!
-              </div>
+              </div> */}
 
               <div>
                 <div>
@@ -197,8 +194,8 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                       <div>
                         <Image
                           src={
-                            ud[0].profile !== undefined
-                              ? ud[0].profile
+                            user?.imageUrl !== undefined
+                              ? user?.imageUrl
                               : "/assets/images/placeholder.png"
                           }
                           alt="Picture of the author"
@@ -209,16 +206,16 @@ const DescriptionCard = ({ feedDetail, ud }: Props) => {
                       </div>
                     </Menu>
                     <div className="mb-1 mt-3 px-4 text-center font-inter text-lg font-medium text-slate-900">
-                      {`${ud[0].firstName} ${ud[0].lastName}`}
+                      {user?.fullName}
                     </div>
                     <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
                       <div className="text-grey-600 text-xs font-normal">
-                        {ud[0].about}
+                        {user?.username}
                       </div>
                     </div>
                     <div className="relative mx-1 items-center self-center overflow-hidden text-center text-indigo-700 focus-within:text-gray-400">
                       <div className="text-grey-600 mb-4 text-xs font-normal">
-                        {ud[0].email}
+                        {user?.primaryEmailAddress?.emailAddress}
                       </div>
                     </div>
                     <div className="borderp-4 mx-3 mb-3 flex-1 rounded-lg px-2 text-center text-base">

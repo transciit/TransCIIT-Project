@@ -26,8 +26,6 @@ export default function Index() {
   const where = "entrepreneur";
   const { data: myProjects } = useSWR(`/api/projects/${user?.id}`, fetcher);
   const { data: feedDetails } = useSWR(`/api/feeds/${id}`, fetcher);
-  const { data: userDetails } = useSWR(`/api/users/${user?.id}`, fetcher);
-  const ud = userDetails?.userDetails;
   const feeds = myProjects?.myProjects;
   const feedDetail = feedDetails?.feedD;
 
@@ -51,7 +49,6 @@ export default function Index() {
                 setOpen={setOpen}
                 getId={getId}
                 from={where}
-                ud={ud}
               />
             ) : (
               <AddProjects />
@@ -63,7 +60,7 @@ export default function Index() {
         </div>
       </DashBoard>
       {feedDetail?.length ? (
-        <Modal feedDetails={feedDetail} ud={ud} open={open} setOpen={setOpen} />
+        <Modal feedDetails={feedDetail} open={open} setOpen={setOpen} />
       ) : (
         ""
       )}

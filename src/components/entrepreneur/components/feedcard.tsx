@@ -1,4 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import React from "react";
 
@@ -7,10 +8,11 @@ interface DataProps {
   setOpen: any;
   getId: (arg: string) => void;
   from: string;
-  ud: any;
 }
 
-const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
+const FeedCard = ({ feeds, setOpen, getId, from }: DataProps) => {
+  const { user } = useUser();
+
   return (
     <div>
       {feeds?.map((feed) => (
@@ -28,8 +30,8 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
                 <div className="h-auto w-auto rounded-full">
                   <Image
                     src={
-                      ud[0].profile !== undefined
-                        ? ud[0].profile
+                      user?.imageUrl !== undefined
+                        ? user?.imageUrl
                         : "/assets/images/placeholder.png"
                     }
                     alt="Picture of the author"
@@ -40,7 +42,7 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
                 </div>
                 <div className="mb-2 ml-4 mt-1 flex flex-col">
                   <div className="text-sm font-medium text-slate-800 lg:text-base">
-                    {`${ud[0].firstName} ${ud[0].lastName}`}
+                    {user?.fullName}
                   </div>
                   <div className="flex w-full">
                     <div className="font-base mr-1 cursor-pointer text-xs text-blue-700">
@@ -50,7 +52,7 @@ const FeedCard = ({ feeds, setOpen, getId, from, ud }: DataProps) => {
                       className="hidden
               text-xs text-gray-600 md:flex"
                     >
-                      • {ud[0].email}
+                      • {user?.primaryEmailAddress?.emailAddress}
                     </div>
                   </div>
                 </div>
