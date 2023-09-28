@@ -13,7 +13,7 @@ type IMainProps = {
 
 const Main = (props: IMainProps) => {
   return (
-    <div className="w-full bg-slate-50 text-gray-700 antialiased">
+    <div className="w-full bg-slate-50/80 text-gray-700 antialiased">
       {props.meta}
 
       <div className="mx-auto">
