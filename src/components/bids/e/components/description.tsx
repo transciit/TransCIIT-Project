@@ -37,8 +37,16 @@ const DescriptionCard = ({ feeds, feedDetail, ud, ed }) => {
         template: {
           name: "invites",
           data: {
-            main: `${ed[0].firstName} ${ed[0].lastName} has matched with you`,
-            subject: `${ed[0].firstName} ${ed[0].lastName} has matched with you on project, ${feedDetail[0].primary_need}`,
+            main: `${
+              ed[0].firstName
+                ? `${ed[0].firstName} ${ed[0].lastName}`
+                : ed[0].name || ed[0].email
+            } has matched with you`,
+            subject: `${
+              ed[0].firstName
+                ? `${ed[0].firstName} ${ed[0].lastName}`
+                : ed[0].name || ed[0].email
+            } has matched with you on project, ${feedDetail[0].primary_need}`,
             body: "You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project",
           },
         },
@@ -48,8 +56,16 @@ const DescriptionCard = ({ feeds, feedDetail, ud, ed }) => {
         template: {
           name: "invites",
           data: {
-            main: `You have matched with ${ud[0].firstName} ${ud[0].lastName}`,
-            subject: `You have agreed to match with ${ud[0].firstName} ${ud[0].lastName} on project, ${feedDetail[0].primary_need}`,
+            main: `You have matched with ${
+              ud[0].firstName
+                ? `${ud[0].firstName} ${ud[0].lastName}`
+                : ud[0].name || ud[0].email
+            }`,
+            subject: `You have agreed to match with ${
+              ud[0].firstName
+                ? `${ud[0].firstName} ${ud[0].lastName}`
+                : ud[0].name || ud[0].email
+            } on project, ${feedDetail[0].primary_need}`,
             body: "You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you don&apos;t agree to the terms you are free to unmatch the project",
           },
         },
@@ -232,9 +248,9 @@ const DescriptionCard = ({ feeds, feedDetail, ud, ed }) => {
                       <div>
                         <Image
                           src={
-                            ud[0].profile !== undefined
-                              ? ud[0].profile
-                              : "/assets/images/placeholder.png"
+                            ud[0].profile ||
+                            ud[0].profileUrl ||
+                            "/assets/images/placeholder.png"
                           }
                           alt="Picture of the author"
                           width={70}
@@ -244,7 +260,9 @@ const DescriptionCard = ({ feeds, feedDetail, ud, ed }) => {
                       </div>
                     </Menu>
                     <div className="mb-1 mt-3 px-4 text-center font-inter text-lg font-medium text-slate-900">
-                      {`${ud[0].firstName} ${ud[0].lastName}`}
+                      {ud[0].firstName
+                        ? `${ud[0].firstName} ${ud[0].lastName}`
+                        : ud[0].name || ud[0].email}
                     </div>
                     <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
                       <div className="text-grey-600 text-xs font-normal">

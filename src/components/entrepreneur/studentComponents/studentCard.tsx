@@ -74,9 +74,9 @@ const StudentCard = ({
                       <span className="sr-only">Open user menu</span>
                       <Image
                         src={
-                          students?.profile !== undefined
-                            ? students.profile
-                            : "/assets/images/placeholder.png"
+                          students.profile ||
+                          students.profileUrl ||
+                          "/assets/images/placeholder.png"
                         }
                         alt="Picture of the Student"
                         width={80}
@@ -90,7 +90,9 @@ const StudentCard = ({
 
               <div className="col-span-3 ml-3">
                 <div className="mb-1 mt-5 font-inter text-lg font-medium text-slate-700 group-hover:underline">
-                  {`${students.firstName}  ${students.lastName}`}
+                  {students.firstName
+                    ? `${students.firstName} ${students.lastName}`
+                    : students.name || students.email}
                 </div>
                 <div className="relative overflow-hidden text-gray-600 focus-within:text-gray-400">
                   <div className="mb-2 line-clamp-2 text-xs font-normal text-gray-600">

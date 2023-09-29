@@ -54,8 +54,10 @@ const Index = () => {
         duration: userData.duration,
         matched: false,
         entrepreneur_id: user?.id,
-        entrepreneur_name: `${ud[0].firstName} ${ud[0].lastName}`,
-        entrepreneur_profile: ud[0].profile,
+        entrepreneur_name: ud[0].firstName
+          ? `${ud[0].firstName} ${ud[0].lastName}`
+          : ud[0].name || ud[0].email,
+        entrepreneur_profile: ud[0].profile || ud[0].profileUrl,
         entrepreneur_email: ud[0].email,
         student_id: router?.query?.uid,
         project_id: feedDetail[0].id,
@@ -66,8 +68,12 @@ const Index = () => {
         template: {
           name: "invites",
           data: {
-            main: `You have been invited to match with ${ud[0].firstName} ${ud[0].lastName}`,
-            subject: `${ud[0].firstName} ${ud[0].lastName} has invited you to  ${feedDetail[0].primary_need}`,
+            main: `You have been invited to match with ${
+              ud[0].firstName
+                ? `${ud[0].firstName} ${ud[0].lastName}`
+                : ud[0].name || ud[0].email
+            }`,
+            subject: `Invitation to  ${feedDetail[0].primary_need}`,
             body: "You can proceed by visiting the link below to take you to the TransCIIT Dashboard. Signin with your TransCIIT account. If you do not want to match, just ignore this email",
           },
         },
