@@ -103,7 +103,7 @@ const Index = () => {
                   <div className="grid rounded-xl  bg-white p-1 pb-5">
                     <div className="mt-10 sm:mt-0">
                       <div className="mt-5 px-5 text-xs text-primary-600">
-                        {feedDetails.business_name} By {user?.fullName}
+                        {feedDetails.business_name}
                       </div>
                       <div>
                         <div className="mx-3 px-2 text-base font-bold text-slate-900 sm:text-2xl">
