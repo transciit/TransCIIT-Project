@@ -63,7 +63,10 @@ const DescriptionCard = ({ feedDetail, ud, sd }: Props) => {
                 {feedDetails.business_name}
               </div>
               <div className="mb-7 ml-5 items-center rounded-md text-base font-normal text-primary-500">
-                By {`${ud[0].firstName} ${ud[0].lastName}`}
+                By{" "}
+                {ud[0].firstName
+                  ? `${ud[0].firstName} ${ud[0].lastName}`
+                  : ud[0].name || ud[0].email}
               </div>
 
               <div>
@@ -224,9 +227,9 @@ const DescriptionCard = ({ feedDetail, ud, sd }: Props) => {
                       <div>
                         <Image
                           src={
-                            ud[0].profile !== undefined
-                              ? ud[0].profile
-                              : "/assets/images/placeholder.png"
+                            ud[0].profile ||
+                            ud[0].profileUrl ||
+                            "/assets/images/placeholder.png"
                           }
                           alt="Picture of the author"
                           width={70}
@@ -236,7 +239,9 @@ const DescriptionCard = ({ feedDetail, ud, sd }: Props) => {
                       </div>
                     </Menu>
                     <div className="mb-1 mt-3 px-4 text-center font-inter text-lg font-medium text-slate-900">
-                      {`${ud[0].firstName} ${ud[0].lastName}`}
+                      {ud[0].firstName
+                        ? `${ud[0].firstName} ${ud[0].lastName}`
+                        : ud[0].name || ud[0].email}
                     </div>
                     <div className="relative mx-5 items-center self-center overflow-hidden text-center text-gray-600 focus-within:text-gray-400">
                       <div className="text-grey-600 text-xs font-normal">

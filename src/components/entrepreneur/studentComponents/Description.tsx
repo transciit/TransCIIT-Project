@@ -46,9 +46,9 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
                         <span className="sr-only">Open user menu</span>
                         <Image
                           src={
-                            student[0].profile !== undefined
-                              ? student[0].profile
-                              : "/assets/images/placeholder.png"
+                            student[0].profile ||
+                            student[0].profileUrl ||
+                            "/assets/images/placeholder.png"
                           }
                           alt="Picture of the Student"
                           width={120}
@@ -62,7 +62,9 @@ const DescriptionCard = ({ feedDetail, student }: Props) => {
 
                 <div className="col-span-3 mt-4 text-center md:text-start">
                   <div className="my-1 font-playfair text-2xl font-extrabold text-slate-900 sm:text-3xl">
-                    {`${student[0].firstName} ${student[0].lastName}`}
+                    {student[0].firstName
+                      ? `${student[0].firstName} ${student[0].lastName}`
+                      : student[0].name || student[0].email}
                   </div>
                   <div className="mb-1 items-center rounded-md text-base font-normal text-primary-500">
                     {student[0].email}

@@ -138,9 +138,9 @@ const NavBar = ({ currentTab }: Props) => {
                                     href={item.href}
                                     className={classNames(
                                       item.id === currentTab
-                                        ? " bg-slate-600 text-white hover:bg-slate-500 py-1.5"
+                                        ? " bg-slate-600 text-white hover:bg-slate-500"
                                         : "text-gray-700 hover:bg-slate-600 hover:text-white",
-                                      "px-3 py-1 rounded-md text-sm font-medium"
+                                      "px-3 py-1.5 rounded-md text-sm font-medium"
                                     )}
                                     aria-current={
                                       item.id === currentTab

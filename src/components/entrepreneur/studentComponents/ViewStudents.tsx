@@ -59,8 +59,7 @@ const ViewStudents = ({ feedDetail, student }) => {
                 {student.length ? (
                   student?.map(
                     (students) =>
-                      students.firstName &&
-                      students.lastName && (
+                      students.email && (
                         <StudentCard
                           key={students.id}
                           fav={
