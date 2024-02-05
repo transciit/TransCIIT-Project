@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 export default function AboutUs() {
   return (
     <div>

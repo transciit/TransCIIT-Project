@@ -9,7 +9,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function (req: NextApiRequest, _: NextApiResponse) {
   const { body } = req;
 
   // eslint-disable-next-line no-console

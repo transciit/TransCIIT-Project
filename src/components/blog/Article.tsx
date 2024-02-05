@@ -1,5 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-
 import { Card } from "flowbite-react";
 import Link from "next/link";
 import React from "react";

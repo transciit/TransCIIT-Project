@@ -26,7 +26,6 @@ const MyTextInput = (props: OtherProps & FieldHookConfig<string>) => {
           meta.touched && meta.error ? "border-2 border-red-500" : "block"
         }`}
         {...field}
-        placeholder={props.placeholder}
         type={props.type}
       />
       {meta.touched && meta.error ? (

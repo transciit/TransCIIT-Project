@@ -1,5 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-
 export default function About() {
   return (
     <div className="sm:px-7">

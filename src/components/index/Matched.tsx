@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-/* eslint-disable tailwindcss/no-custom-classname */
 export default function Matched() {
   return (
     <div className="px-7">

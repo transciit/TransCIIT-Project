@@ -1,7 +1,7 @@
 import type { Blogs } from "@/interfaces/blog";
 
-const reflections =
-  "We at Jaramogi Oginga Odinga University of Science and Technology (JOOUST) are excited to have been selected to pilot this noble project on how to implement a matchmaking service between\nthe various and evolving business needs of young climate entrepreneurs and the specialist skills of\nmaster\u2019s students through the Transforming Climate Innovation Ecosystems through Inclusive\nTransdisciplinarity (TransCIIT) project..";
+// const reflections =
+//   "We at Jaramogi Oginga Odinga University of Science and Technology (JOOUST) are excited to have been selected to pilot this noble project on how to implement a matchmaking service between\nthe various and evolving business needs of young climate entrepreneurs and the specialist skills of\nmaster\u2019s students through the Transforming Climate Innovation Ecosystems through Inclusive\nTransdisciplinarity (TransCIIT) project..";
 export const blogData: Blogs[] = [
   {
     bg_id: 1,

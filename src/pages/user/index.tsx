@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 // import FeedCard from './feedcard';
 import { useUser } from "@clerk/nextjs";
 import { doc, getDoc, updateDoc } from "firebase/firestore";

@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { ExclamationCircleIcon } from "@heroicons/react/outline";
 import React from "react";
 

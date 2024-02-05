@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
 import useSWR from "swr";

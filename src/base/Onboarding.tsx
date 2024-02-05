@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import type { ReactNode } from "react";
 
 type IMainProps = {

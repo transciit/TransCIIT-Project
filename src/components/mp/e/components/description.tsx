@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 import { useUser } from "@clerk/nextjs";
 import { Menu } from "@headlessui/react";
 import { doc, updateDoc } from "firebase/firestore";

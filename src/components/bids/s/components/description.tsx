@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 import { Menu } from "@headlessui/react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { Button, Modal } from "flowbite-react";

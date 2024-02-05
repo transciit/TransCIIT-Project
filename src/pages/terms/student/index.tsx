@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 import { useUser } from "@clerk/nextjs";
 import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/router";

@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import Image from "next/image";
 
 import bg from "../../../public/assets/images/hero/cover.jpg";

@@ -1,6 +1,5 @@
-/* eslint-disable tailwindcss/no-contradicting-classname */
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 import Link from "next/link";
 import type { ReactNode } from "react";
 

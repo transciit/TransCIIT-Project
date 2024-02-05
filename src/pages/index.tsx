@@ -1,5 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-
 import { Main } from "@/base/Main";
 import Partners from "@/components/index/Partners";
 import { Meta } from "@/layouts/Meta";

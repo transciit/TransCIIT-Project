@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { useUser } from "@clerk/nextjs";
 import { Menu } from "@headlessui/react";
 import Image from "next/image";

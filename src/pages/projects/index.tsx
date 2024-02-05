@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 // import React, { useState } from 'react';
 
 // import { DashBoard } from '@/base/Dashboard';

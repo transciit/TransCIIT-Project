@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable tailwindcss/no-custom-classname */
+
 import { Menu } from "@headlessui/react";
 import { Button, Modal } from "flowbite-react";
 import Image from "next/image";
