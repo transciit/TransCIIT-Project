@@ -25,8 +25,8 @@ export default function Matched({ items }: Props) {
       name={"blogs"}
     >
       <div className="relative w-full items-center justify-center overflow-x-hidden lg:py-20 xl:pb-6 xl:pt-10">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
-          <div className="mx-auto mb-8 lg:mb-20">
+        <div className="mx-auto max-w-screen-xl px-12 py-5">
+          <div className="mx-auto mb-8 lg:mb-10">
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:text-4xl">
               Our Blogs
             </h2>
@@ -35,6 +35,9 @@ export default function Matched({ items }: Props) {
               Transdisciplinarity (TransCIIT) project
             </p>
           </div>
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-blue-700 underline">
+            TransCIIT 3
+          </h2>
           <Article items={items} />
         </div>
       </div>

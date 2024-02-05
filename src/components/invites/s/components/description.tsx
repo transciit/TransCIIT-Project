@@ -18,8 +18,10 @@ import { BsExclamationCircle } from "react-icons/bs";
 
 import Loading from "@/components/loading";
 import { db } from "@/config/firebase";
+import { SendMatchedEntrepreneurEmail } from "@/model";
 
 const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
+  const { sendEntrepreneurEmail } = SendMatchedEntrepreneurEmail();
   const [open, setOpen] = useState(false);
   const { user } = useUser();
   const handleMatch = async () => {
@@ -31,8 +33,16 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
         cost: feeds[0].cost,
         duration: feeds[0].duration,
       });
-      const referenceData2 = doc(db, "invites", feeds[0].id);
-      await deleteDoc(referenceData2);
+      const referenceDataDelete = doc(db, "invites", feeds[0].id);
+      await deleteDoc(referenceDataDelete);
+      const entrepreneurEmailData = {
+        subject: `${
+          sd[0].firstName
+            ? `${sd[0].firstName} ${sd[0].lastName}`
+            : sd[0].name || sd[0].email
+        } has matched with you on project, ${feedDetail[0].primary_need}`,
+      };
+      sendEntrepreneurEmail({ data: entrepreneurEmailData });
       await addDoc(collection(db, "mail"), {
         to: ud[0].email,
         template: {
@@ -202,7 +212,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
                       <span className="mr-2 inline-flex items-center rounded-full bg-green-100 p-1 text-base font-semibold text-green-800 dark:bg-gray-700 dark:text-gray-300">
                         <svg
                           aria-hidden="true"
-                          className="h-3 w-3"
+                          className="size-3"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -318,7 +328,7 @@ const DescriptionCard = ({ feeds, feedDetail, ud, sd }) => {
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
-            <BsExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+            <BsExclamationCircle className="mx-auto mb-4 size-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
               Are you sure you want to accept the terms?
             </h3>

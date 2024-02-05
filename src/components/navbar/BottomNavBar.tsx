@@ -10,7 +10,7 @@ import Link from "next/link";
 import React, { Fragment } from "react";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/", current: false },
   { name: "About Us", href: "/about", current: false },
   { name: "Matched Projects", href: "/matched", current: false },
   {

@@ -5,4 +5,5 @@ export type Blogs = {
   bg_image: string;
   bg_author: string;
   cd_date: string;
+  bg_link: string;
 };

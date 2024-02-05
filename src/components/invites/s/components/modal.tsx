@@ -52,7 +52,7 @@ export const Modal = ({ feeds, feedDetails, open, setOpen, ud, sd }) => {
                       >
                         <span className="sr-only">Close panel</span>
                         <ChevronLeftIcon
-                          className="h-6 w-6"
+                          className="size-6"
                           aria-hidden="true"
                         />
                       </button>
