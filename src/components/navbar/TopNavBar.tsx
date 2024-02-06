@@ -84,7 +84,7 @@ const BottomNavBar = ({ currentTab }: Props) => {
               ))}
             </Popover.Group>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0">
-              <div className="w-full text-gray-600 lg:w-auto lg:pr-3 lg:pt-0">
+              <div className="w-full text-gray-600 lg:w-auto lg:pr-3">
                 <div className="flex flex-col gap-6 truncate font-medium tracking-wide lg:flex-row lg:gap-0 lg:text-sm">
                   {user ? (
                     user?.unsafeMetadata?.data?.["accountType"] ===
