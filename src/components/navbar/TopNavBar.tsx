@@ -131,7 +131,7 @@ const BottomNavBar = ({ currentTab }: Props) => {
                 <Link href="https://github.com/transciit/TransCIIT-Project">
                   <Image
                     src="/assets/images/github-mark.png"
-                    alt="Github"
+                    alt="Github Logo"
                     width={30}
                     height={30}
                     className="opacity-80 hover:opacity-100"
