@@ -2,6 +2,7 @@
 /* eslint-disable no-nested-ternary */
 import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
 import { Menu, Popover, Transition } from "@headlessui/react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment } from "react";
 
@@ -126,6 +127,17 @@ const BottomNavBar = ({ currentTab }: Props) => {
                   </span>
                 </Link>
               )}
+              <div className="pl-5">
+                <Link href="https://github.com/transciit/TransCIIT-Project">
+                  <Image
+                    src="/assets/images/github-mark.png"
+                    alt="Github Logo"
+                    width={30}
+                    height={30}
+                    className="opacity-80 hover:opacity-100"
+                  />
+                </Link>
+              </div>
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3 hidden">
                 <div>
