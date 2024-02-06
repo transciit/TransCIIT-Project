@@ -13,8 +13,8 @@
 Run the following command on your local environment:
 
 ```shell
-git clone --depth=1 https://github.com/phanuelmutuma/TransCIIT-Project.git v0.1
-cd v0.1
+git clone --depth=1 https://github.com/phanuelmutuma/TransCIIT-Project.git
+cd TransCIIT-Project
 npm install
 ```
 
@@ -82,7 +82,7 @@ All tests are colocated with the source code inside the same directory. So, it m
 
 Deploy this Project on Vercel in one click:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/phanuelmutuma/trans-ciit-project)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com)
 
 ### VSCode information (optional)
 
