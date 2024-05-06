@@ -17,6 +17,9 @@ importers:
       '@heroicons/react':
         specifier: ^1.0.6
         version: 1.0.6(react@18.3.0)
+      '@iconify/react':
+        specifier: ^4.1.1
+        version: 4.1.1(react@18.3.0)
       '@nandorojo/swr-firestore':
         specifier: ^0.16.0
         version: 0.16.0(react@18.3.0)
@@ -174,9 +177,6 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^17.0.3
         version: 17.8.1
-      '@iconify/react':
-        specifier: ^4.1.1
-        version: 4.1.1(react@18.3.0)
       '@next/bundle-analyzer':
         specifier: ^12.2.2
         version: 12.3.4

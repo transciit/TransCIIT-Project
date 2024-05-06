@@ -70,7 +70,7 @@ export default function Hero(props: IMetaProps) {
               <p className="mb-4 text-sm font-medium uppercase text-gray-500">
                 Innovative organizations that partner with TransCIIT
               </p>
-              <div className="flex gap-16 lg:gap-20">
+              <div className="flex justify-center gap-16 lg:gap-20">
                 <Image
                   src="/assets/images/1.png"
                   width={500}

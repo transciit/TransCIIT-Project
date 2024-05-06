@@ -9,7 +9,7 @@ export default function Partners() {
           <h1 className=" mb-7 text-center text-sm font-bold uppercase tracking-wide text-gray-800">
             Innovative organizations that partner with TransCIIT
           </h1>
-          <div className="flex h-14 gap-10">
+          <div className="flex justify-center h-14 gap-10">
             <Image
               src="/assets/images/1.png"
               width={200}
