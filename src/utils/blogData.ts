@@ -27,6 +27,17 @@ export const blogData: Blogs[] = [
   },
   {
     bg_id: 3,
+    bg_title: "Revolutionizing Climate Innovation",
+    bg_description:
+      "In the heart of Nairobi, the city in the sun and where innovation interconnects with academia, a groundbreaking phenomena unfolded on January 30th, 2024",
+    bg_image: "null",
+    bg_author: "",
+    cd_date: "",
+    bg_link:
+      "https://www.acts-net.org/blogs/foresight-africa-blog/revolutionizing-climate-innovation",
+  },
+  {
+    bg_id: 4,
     bg_title:
       "Reflections on institutionalization of matchmaking service at institutional level (KCIC)",
     bg_description: "",
@@ -36,26 +47,30 @@ export const blogData: Blogs[] = [
     bg_link: "",
   },
   {
-    bg_id: 4,
+    bg_id: 5,
     bg_title:
       "Reflections on institutionalization of matchmaking service at institutional level (JOOUST)",
-    bg_description: "",
+    bg_description:
+      "The lessons learnt from matchmaking events and working together were essential in the institutionalization efforts of the matchmaking service",
     bg_image: "null",
     bg_author: "",
     cd_date: "",
-    bg_link: "",
-  },
-  {
-    bg_id: 5,
-    bg_title: "Reflections on Phase 3 outcomes & lessons learnt",
-    bg_description: "",
-    bg_image: "null",
-    bg_author: "",
-    cd_date: "",
-    bg_link: "",
+    bg_link:
+      "https://www.acts-net.org/blogs/foresight-africa-blog/reflections-on-institutionalization-of-matchmaking-service-at-jooust",
   },
   {
     bg_id: 6,
+    bg_title: "Reflections on Phase 3 outcomes & lessons learnt",
+    bg_description:
+      "We are thrilled to share reflections on the project outcomes and the valuable lessons learned during this transformative journey.",
+    bg_image: "null",
+    bg_author: "",
+    cd_date: "",
+    bg_link:
+      "https://www.acts-net.org/blogs/foresight-africa-blog/transforming-climate-innovation-ecosystems-reflecting-on-transciit-phase-3-outcomes-and-lessons-learnt",
+  },
+  {
+    bg_id: 7,
     bg_title: "Reflections on the Showcase event TransCIIT Project",
     bg_description:
       "TransCIIT Phase 2 attempted to address the business needs of selected entrepreneurs by finding suitable Master’s students who can help you address a problem that you are facing in your business through a researcher-entrepreneur mentorship relationship.",
@@ -66,14 +81,3 @@ export const blogData: Blogs[] = [
       "https://www.acts-net.org/blogs/foresight-africa-blog/reflections-on-the-showcase-event-transforming-climate-innovation-ecosystems-through-inclusive-transdisciplinarity-phase-3-transciit-3-project",
   },
 ];
-
-// {
-//   bg_id: 2,
-//   bg_title: "Reflections on the TransCIIT project matchmaking event",
-//   bg_description: reflections,
-//   bg_image: "null",
-//   bg_author:
-//     "By Solomon Ogara, Dean, School of Informatics and Innovative Systems, Jaramogi Oginga Odinga University of Science and Technology (JOOUST), Kenya",
-//   cd_date: "",
-//   bg_link: "",
-// },
