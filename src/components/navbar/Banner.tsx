@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import Link from "next/link";
 
 const Banner = () => {
@@ -30,7 +31,9 @@ const Banner = () => {
         </div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
           <p className="text-sm text-gray-900">
-            <strong className="font-semibold">Beta Program</strong>
+            <strong className="font-semibold">
+              TransCIIT Project is Open Source
+            </strong>
             <svg
               viewBox="0 0 2 2"
               className="mx-2 inline h-0.5 w-0.5 fill-current"
@@ -38,10 +41,13 @@ const Banner = () => {
             >
               <circle cx={1} cy={1} r={1} />
             </svg>
-            This includes fine tuning the site&apos;s content and navigation.
+            You can contribute to the website on Github
           </p>
-          <Link href="/contact" className="flex-none text-xs font-medium">
-            Tell us what you think <span aria-hidden="true">&rarr;</span>
+          <Link
+            href="https://github.com/transciit/TransCIIT-Project"
+            className="flex-none text-xs font-medium"
+          >
+            <Icon icon="fluent-mdl2:open-in-new-tab" />
           </Link>
         </div>
         <div className="flex flex-1 justify-end">
